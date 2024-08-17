@@ -1,11 +1,8 @@
 <body>
-    <span class="main_menu">
-        <h1><strong>Punto Online</strong></h1>
-        <a href="/newgame"><h3><i class="fa-sharp fa-regular fa-sparkles"></i> New Game <i class="fa-sharp fa-regular fa-sparkles"></i></h3></a>
-        <h3>Continue</h3>
-        <h3>About</h3>
-        <h3>Exit</h3>
-    </span>
+    <span>
+        <h1>New Game page</h1>
+        <a href="/"><h3><i class="fa-sharp fa-regular fa-arrow-left-long"></i> cofnij</h3></a>
+    </span>    
 </body>
 
 <script>
@@ -18,7 +15,7 @@
 </svelte:head>
 
 <style>
-    span.main_menu {
+    span {
         margin: 0;
         position: absolute;
         top: 50%;
@@ -35,10 +32,7 @@
         background-blend-mode: lighten;
     }
     a {
-        color: inherit; 
-        text-decoration: inherit; 
-    }
-    h1{
-        padding-bottom: 20px;
+        color: inherit;
+        text-decoration: inherit;
     }
 </style>
