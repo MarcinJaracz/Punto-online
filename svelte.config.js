@@ -1,8 +1,10 @@
-import adapter from '@sveltejs/adapter-node';
+import node from '@sveltejs/adapter-node';
 
 export default {
-  kit: {
-    adapter: adapter(),
-    // inne opcje konfiguracji
-  }
+	kit: {
+	  	adapter: node({
+			fallback: null,
+			static: false,
+	  	})
+  	}
 };

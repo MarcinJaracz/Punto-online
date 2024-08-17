@@ -8,14 +8,25 @@
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
-		"start": "vite build && electron ."
+		"start": "vite build && electron .",
+		"electron": "electron .",
+		"build:electro": "electron-builder"
+	},
+	"build": {
+		"appId": "com.yourname.yourapp",
+		"win": {
+			"target": "nsis",
+			"icon": "favicon.png"
+		}
 	},
 	"main": "main.js",
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.0.0",
+		"@sveltejs/adapter-node": "^5.2.2",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"electron": "^31.4.0",
+		"electron-builder": "^24.13.3",
 		"svelte": "^4.2.7",
 		"svelte-check": "^3.6.0",
 		"typescript": "^5.0.0",
@@ -23,6 +34,8 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@sveltejs/adapter-node": "^5.2.2"
+		"@popperjs/core": "^2.11.8",
+		"@sveltejs/adapter-static": "^3.0.4",
+		"bootstrap": "^5.3.3"
 	}
 }
