@@ -1,44 +1,9 @@
 <body>
     <span class="main_menu">
         <h1><strong>Punto Online</strong></h1>
-        <a href="/newgame"><h3><i class="fa-sharp fa-regular fa-sparkles"></i> New Game <i class="fa-sharp fa-regular fa-sparkles"></i></h3></a>
-        <h3>Continue</h3>
-        <h3>About</h3>
-        <h3>Exit</h3>
+        <a href="/newgame"><h3><i class="fa-regular fa-diamonds-4"></i>New Game<i class="fa-regular fa-diamonds-4"></i></h3></a>
+        <h3><i class="fa-regular fa-diamonds-4"></i>Continue<i class="fa-regular fa-diamonds-4"></i></h3>
+        <h3><a href="/about"><i class="fa-regular fa-diamonds-4"></i>About<i class="fa-regular fa-diamonds-4"></i></a></h3>
+        <h3><a href="https://google.com"><i class="fa-regular fa-diamonds-4"></i>Exit<i class="fa-regular fa-diamonds-4"></i></a></h3>
     </span>
 </body>
-
-<script>
-    import 'bootstrap/dist/css/bootstrap.min.css';
-</script>
-
-<svelte:head>
-    <link href="/font-awesome/css/all.min.css" rel='stylesheet'>
-	<link href="/font-awesome/css/fontawesome.min.css" rel='stylesheet'>
-</svelte:head>
-
-<style>
-    span.main_menu {
-        margin: 0;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-    }
-    body {
-        background-image: url('background.jpg');
-        background-color: rgba(255, 255, 255, 0.4);
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
-        background-blend-mode: lighten;
-    }
-    a {
-        color: inherit; 
-        text-decoration: inherit; 
-    }
-    h1{
-        padding-bottom: 20px;
-    }
-</style>

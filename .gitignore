@@ -1,5 +1,4 @@
 node_modules/
-static/font-awesome/
 .output
 .vercel
 /.svelte-kit
