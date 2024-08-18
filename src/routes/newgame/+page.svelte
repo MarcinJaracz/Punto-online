@@ -1,3 +1,4 @@
+<!-- src/routes/newgame -->
 <body>
     <span>
         <h1>New Game page</h1>

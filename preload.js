@@ -1,3 +1,5 @@
-window.addEventListener('DOMContentLoaded', () => {
-  console.log('Preload script loaded');
+import { contextBridge, ipcRenderer } from 'electron';
+
+contextBridge.exposeInMainWorld('electron', {
+  doThing: () => ipcRenderer.invoke('do-thing'),
 });
