@@ -38,12 +38,13 @@
 
 <style>
     img {
-        text-align: center;
-        padding: 20px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width:200px;
-        height:200px;
+        text-align: center !important;
+        display: block !important;
+        margin: auto !important;
+        margin-top: 100px !important;
+        width:200px !important;
+        height:200px !important;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 30px;
     }
 </style>

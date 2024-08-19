@@ -14,17 +14,8 @@
 
 
 <style>
-    :global(span.main_menu) {
-        margin: 0;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-    }
     :global(span) {
-        margin: 0;
-        position: absolute;
+        margin: auto;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
