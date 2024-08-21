@@ -22,6 +22,9 @@
         text-align: center;
     }
     :global(body) {
+        width: 100%;
+        height: 100%;
+        display: grid;
         background-image: url('background.jpg') !important;
         background-color: rgba(255, 255, 255, 0.4) !important;
         background-repeat: no-repeat !important;
@@ -38,6 +41,7 @@
         text-decoration: inherit !important; 
     }
     :global(h1) {
-        padding-bottom: 20px;
+        padding: 20px;
+        text-align: center;
     }
 </style>

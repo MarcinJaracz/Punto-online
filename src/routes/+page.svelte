@@ -15,9 +15,11 @@
                 </a>
             </h3>
             <h3>
-                <i class="fa-regular fa-diamonds-4"></i>
-                Continue
-                <i class="fa-regular fa-diamonds-4"></i>
+                <a href="/continue">
+                    <i class="fa-regular fa-diamonds-4"></i>
+                    Continue
+                    <i class="fa-regular fa-diamonds-4"></i>
+                </a>
             </h3>
             <h3>
                 <a href="/about"><i class="fa-regular fa-diamonds-4"></i>

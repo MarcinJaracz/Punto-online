@@ -1,11 +1,16 @@
-<h3>
-    <a href="/"><h3 class="return">
-        <i class="fa-sharp fa-light fa-circle-arrow-left"></i>
-        return
-    </a>
-</h3>
+<div class="container">
+    <div class="nav justify-content-center">
+        <h3>
+            <a href="/">
+                <i class="fa-sharp fa-light fa-circle-arrow-left"/>return
+            </a>
+        </h3>
+    </div>
+</div>
+
 <style>
     .return {
         padding: 20px;
+        margin: auto;
     }
 </style>
