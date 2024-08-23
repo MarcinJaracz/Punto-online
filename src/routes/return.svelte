@@ -1,10 +1,9 @@
 <div class="container">
-    <div class="nav justify-content-center">
-        <h3>
-            <a href="/">
-                <i class="fa-sharp fa-light fa-circle-arrow-left"/>return
-            </a>
-        </h3>
-    </div>
+	<div class="nav justify-content-center">
+		<h3>
+			<a href="/">
+				<i class="fa-sharp fa-light fa-circle-arrow-left" />return
+			</a>
+		</h3>
+	</div>
 </div>
-

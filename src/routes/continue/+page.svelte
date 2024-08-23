@@ -1,12 +1,12 @@
 <!-- src/routes/continue -->
 <script>
-	import Return from "../return.svelte";
+	import Return from "../return.svelte"
 </script>
 
 <body>
 	<span>
 		<h1>Continue page</h1>
-		<Return/>
+		<Return />
 	</span>
 </body>
 

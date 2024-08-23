@@ -1,0 +1,17 @@
+{
+	"printWidth": 140,
+	"tabWidth": 4,
+	"useTabs": true,
+	"singleAttributePerLine": true,
+	"semi": false,
+	"embeddedLanguageFormatting": "auto",
+	"plugins": ["prettier-plugin-svelte"],
+	"overrides": [
+		{
+			"files": "*.svelte",
+			"options": {
+				"parser": "svelte"
+			}
+		}
+	]
+}
