@@ -8,9 +8,3 @@
     </div>
 </div>
 
-<style>
-    .return {
-        padding: 20px;
-        margin: auto;
-    }
-</style>
