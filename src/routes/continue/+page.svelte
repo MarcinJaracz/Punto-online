@@ -3,6 +3,10 @@
 	import Return from "../return.svelte"
 </script>
 
+<svelte:head>
+	<title>Continue</title>
+</svelte:head>
+
 <body>
 	<div class="container vh-100">
 		<div class="d-flex justify-content-center align-items-center h-100">

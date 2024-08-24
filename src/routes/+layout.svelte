@@ -4,8 +4,9 @@
 </script>
 
 <!-- src/routes/+layout.svelte -->
-
-<slot></slot>
+<main>
+	<slot />
+</main>
 
 <svelte:head>
 	<link

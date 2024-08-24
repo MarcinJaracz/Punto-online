@@ -1,4 +1,7 @@
 <!-- src/routes/main_page -->
+<script>
+	let activeGame = false
+</script>
 
 <body>
 	<div class="container vh-100">
@@ -22,8 +25,15 @@
 					</h3>
 				</div>
 				<div class="row justify-content-center display-disabled">
-					<h3 class="text-center">
-						<a href="/continue"> Continue </a>
+					<h3
+						class="text-center"
+						class:gray={!activeGame}
+					>
+						{#if activeGame}
+							<a href="/continue"> Continue </a>
+						{:else}
+							<span>Continue</span>
+						{/if}
 					</h3>
 				</div>
 				<div class="row justify-content-center">
@@ -52,5 +62,10 @@
 			0 4px 8px 0 rgba(0, 0, 0, 0.2),
 			0 6px 20px 0 rgba(0, 0, 0, 0.19);
 		border-radius: 30px;
+	}
+	.gray {
+		color: rgba(122, 122, 122, 0);
+		-webkit-text-stroke: 1px rgb(0, 0, 0);
+		cursor: not-allowed;
 	}
 </style>
