@@ -8,7 +8,7 @@
 		<div class="d-flex justify-content-center align-items-center h-100">
 			<div class="col-4">
 				<div class="row justify-content-center">
-					<h1>New Game</h1>
+					<h1 class="text-center">New Game</h1>
 				</div>
 				<div class="row justify-content-center py-5">
 					<div class="d-flex flex-row">

@@ -12,43 +12,36 @@
 					/>
 				</div>
 				<div class="row justify-content-center">
-					<h1>
+					<h1 class="text-center py-4">
 						<strong>Punto Online</strong>
 					</h1>
 				</div>
 				<div class="row justify-content-center">
 					<h3 class="text-center">
 						<a href="/newgame">
-							<i class="fa-regular fa-diamonds-4"></i>
 							New Game
-							<i class="fa-regular fa-diamonds-4"></i>
 						</a>
 					</h3>
 				</div>
-				<div class="row justify-content-center">
+				<div class="row justify-content-center display-disabled">
 					<h3 class="text-center">
 						<a href="/continue">
-							<i class="fa-regular fa-diamonds-4"></i>
 							Continue
-							<i class="fa-regular fa-diamonds-4"></i>
 						</a>
 					</h3>
 				</div>
 				<div class="row justify-content-center">
 					<h3 class="text-center">
 						<a href="/about"
-							><i class="fa-regular fa-diamonds-4"></i>
+							>
 							About
-							<i class="fa-regular fa-diamonds-4"></i>
 						</a>
 					</h3>
 				</div>
 				<div class="row justify-content-center">
 					<h3 class="text-center">
 						<a href="https://duckduckgo.com/">
-							<i class="fa-regular fa-diamonds-4"></i>
 							Exit
-							<i class="fa-regular fa-diamonds-4"></i>
 						</a>
 					</h3>
 				</div>

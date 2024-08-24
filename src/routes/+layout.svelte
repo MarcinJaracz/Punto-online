@@ -19,13 +19,6 @@
 </svelte:head>
 
 <style>
-	:global(span) {
-		margin: auto;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		text-align: center;
-	}
 	:global(body) {
 		width: 100%;
 		height: 100%;
@@ -44,9 +37,5 @@
 	:global(html body a) {
 		color: inherit !important;
 		text-decoration: inherit !important;
-	}
-	:global(h1) {
-		padding: 20px;
-		text-align: center;
 	}
 </style>

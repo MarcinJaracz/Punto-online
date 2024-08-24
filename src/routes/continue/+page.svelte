@@ -8,7 +8,7 @@
 		<div class="d-flex justify-content-center align-items-center h-100">
 			<div class="col-4">
 				<div class="row justify-content-center">
-					<h1>Continue page</h1>
+					<h1 class="text-center">Continue page</h1>
 				</div>
 				<div class="row justify-content-center">
 					<Return />

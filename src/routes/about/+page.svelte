@@ -15,7 +15,7 @@
 					/>
 				</div>
 				<div class="row justify-content-center">
-					<h1>About me</h1>
+					<h1 class="text-center">About me</h1>
 				</div>
 				<div class="row justify-content-center">
 					<h3 class="text-center">
