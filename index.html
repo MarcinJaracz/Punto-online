@@ -1,3 +1,4 @@
+<!-- src/routes/about -->
 <!doctype html>
 <html lang="en">
 	<head>
@@ -6,14 +7,19 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0"
 		/>
-		<title>My Electron App</title>
+		<link
+			rel="icon"
+			href="%sveltekit.assets%/Punto-Icon.ico"
+		/>
+		%sveltekit.head%
+		<title>Punto Online</title>
 		<meta
 			http-equiv="Content-Security-Policy"
-			content="default-src 'self'; script-src 'self';"
+			content="default-src 'self'"
 		/>
 	</head>
+
 	<body>
-		<h1>Hello Electron!</h1>
-		<script src="path/to/your/bundled.js"></script>
+		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>
