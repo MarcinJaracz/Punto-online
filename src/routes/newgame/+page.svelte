@@ -33,7 +33,6 @@
 									class="btn btn-primary"
 									for="option1">two</label
 								>
-
 								<input
 									type="radio"
 									class="btn-check"
@@ -45,7 +44,6 @@
 									class="btn btn-primary"
 									for="option2">three</label
 								>
-
 								<input
 									type="radio"
 									class="btn-check"

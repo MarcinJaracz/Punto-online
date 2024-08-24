@@ -18,31 +18,22 @@
 				</div>
 				<div class="row justify-content-center">
 					<h3 class="text-center">
-						<a href="/newgame">
-							New Game
-						</a>
+						<a href="/newgame"> New Game </a>
 					</h3>
 				</div>
 				<div class="row justify-content-center display-disabled">
 					<h3 class="text-center">
-						<a href="/continue">
-							Continue
-						</a>
+						<a href="/continue"> Continue </a>
 					</h3>
 				</div>
 				<div class="row justify-content-center">
 					<h3 class="text-center">
-						<a href="/about"
-							>
-							About
-						</a>
+						<a href="/about"> About </a>
 					</h3>
 				</div>
 				<div class="row justify-content-center">
 					<h3 class="text-center">
-						<a href="https://duckduckgo.com/">
-							Exit
-						</a>
+						<a href="https://duckduckgo.com/"> Exit </a>
 					</h3>
 				</div>
 			</div>
