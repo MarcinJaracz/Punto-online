@@ -13,11 +13,13 @@
 				<div class="row justify-content-center py-5">
 					<div class="d-flex flex-row">
 						<div class="col justify-content-center">
-							<span class="d-block p-2 bg-primary rounded inline-block text-white">Choose number of players</span>
+							<span class="d-block p-2 bg-primary rounded inline-block text-white position-relative"
+								>Choose number of players</span
+							>
 						</div>
 						<div class="col justify-content-center">
 							<div
-								class="btn-group"
+								class="btn-group h-100 w-100"
 								role="group"
 							>
 								<input
@@ -66,13 +68,3 @@
 		</div>
 	</div>
 </body>
-
-<style>
-	.d-block.p-2.bg-primary.text-white {
-		position: relative;
-	}
-	.btn-group {
-		width: 100%;
-		height: 100%;
-	}
-</style>

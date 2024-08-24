@@ -12,7 +12,7 @@
 		"electron-vite-dev": "electron-vite dev",
 		"start:electro-vite": "electron-vite preview",
 		"prebuild": "electron-vite build",
-		"format": "prettier  . --write .",
+		"format": "prettier  . --write",
 		"check": "prettier . --check"
 	},
 	"build": {

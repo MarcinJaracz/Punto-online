@@ -4,15 +4,16 @@
 </script>
 
 <body>
-	<span>
-		<h1>Continue page</h1>
-		<Return />
-	</span>
+	<div class="container vh-100">
+		<div class="d-flex justify-content-center align-items-center h-100">
+			<div class="col-4">
+				<div class="row justify-content-center">
+					<h1>Continue page</h1>
+				</div>
+				<div class="row justify-content-center">
+					<Return />
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
-
-<style>
-	body {
-		height: 100%;
-		display: grid;
-	}
-</style>
