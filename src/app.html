@@ -15,11 +15,12 @@
 		<title>Punto Online</title>
 		<meta
 			http-equiv="Content-Security-Policy"
-			content="default-src 'self'"
+			content="default-src 'self'; script-src 'self';"
 		/>
 	</head>
 
 	<body>
 		<div style="display: contents">%sveltekit.body%</div>
+		<script nonce="%sveltekit.nonce%"></script>
 	</body>
 </html>

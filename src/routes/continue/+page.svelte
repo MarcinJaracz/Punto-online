@@ -1,6 +1,6 @@
 <!-- src/routes/continue -->
 <script>
-	import Return from "../return.svelte"
+	import Return from "$components/return.svelte"
 </script>
 
 <svelte:head>

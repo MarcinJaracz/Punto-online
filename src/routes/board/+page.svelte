@@ -1,6 +1,7 @@
 <!-- src/routes/board -->
 <script>
-	import Return from "../return.svelte"
+	import Return from "$components/return.svelte"
+	import { noPlayers, cardGoal } from "$lib/store"
 </script>
 
 <svelte:head>
@@ -11,6 +12,8 @@
 	<div class="container vh-100">
 		<div class="d-flex justify-content-center align-items-center vh-100">
 			<div class="col-2">
+				onPlayer: {noPlayers}<br />
+				cardGoal: {cardGoal}
 				<Return />
 			</div>
 		</div>

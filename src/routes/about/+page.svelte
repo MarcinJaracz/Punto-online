@@ -1,6 +1,6 @@
 <!-- src/routes/aboutme -->
 <script>
-	import Return from "../return.svelte"
+	import Return from "$components/return.svelte"
 </script>
 
 <svelte:head>
@@ -12,7 +12,6 @@
 		<div class="d-flex justify-content-center align-items-center h-100">
 			<div class="col-4">
 				<div class="row justify-content-center">
-					<!-- svelte-ignore a11y-img-redundant-alt -->
 					<img
 						src="profilepicture.jpg"
 						alt="profile picture"

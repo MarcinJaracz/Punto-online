@@ -1,6 +1,15 @@
 <!-- src/routes/newgame -->
-<script>
-	import Return from "../return.svelte"
+<script lang="ts">
+	import { onMount } from "svelte"
+	import Return from "$components/return.svelte"
+	import { setNoPlayers, setCardGoal } from "$lib/store"
+
+	onMount(() => {
+		console.log("Component mounted")
+		if (Return) {
+			console.log("return działa")
+		}
+	})
 </script>
 
 <svelte:head>
@@ -17,9 +26,9 @@
 				<div class="row justify-content-center py-5">
 					<div class="d-flex flex-row py-1">
 						<div class="col justify-content-center">
-							<span class="d-block p-2 bg-primary rounded inline-block text-white position-relative"
-								>Choose number of players</span
-							>
+							<span class="d-block p-2 bg-primary rounded inline-block text-white position-relative">
+								Choose number of players
+							</span>
 						</div>
 						<div class="col justify-content-center">
 							<div
@@ -33,45 +42,54 @@
 									id="option1"
 									autocomplete="off"
 									checked
+									on:click={() => setNoPlayers(2)}
 								/>
 								<label
 									class="btn btn-primary"
-									for="option1"><i class="fas fa-person"></i><i class="fas fa-person-dress"></i></label
+									for="option1"
 								>
+									<i class="fas fa-person"></i><i class="fas fa-person-dress"></i>
+								</label>
+
 								<input
 									type="radio"
 									class="btn-check"
 									name="options"
 									id="option2"
 									autocomplete="off"
+									on:click={() => setNoPlayers(3)}
 								/>
 								<label
 									class="btn btn-primary"
 									for="option2"
-									><i class="fas fa-person"></i><i class="fas fa-person-dress"></i><i class="fas fa-person"></i></label
 								>
+									<i class="fas fa-person"></i><i class="fas fa-person-dress"></i><i class="fas fa-person"></i>
+								</label>
+
 								<input
 									type="radio"
 									class="btn-check"
 									name="options"
 									id="option3"
 									autocomplete="off"
+									on:click={() => setNoPlayers(4)}
 								/>
 								<label
 									class="btn btn-primary"
 									for="option3"
-									><i class="fas fa-person"></i><i class="fas fa-person-dress"></i><i class="fas fa-person"></i><i
-										class="fas fa-person-dress"
-									></i></label
 								>
+									<i class="fas fa-person"></i><i class="fas fa-person-dress"></i><i class="fas fa-person"></i><i
+										class="fas fa-person-dress"
+									></i>
+								</label>
 							</div>
 						</div>
 					</div>
 					<div class="d-flex flex-row py-1">
 						<div class="col justify-content-center">
-							<span class="d-block p-2 bg-primary rounded inline-block text-white position-relative"
-								>Choose how many cards is needed to win</span
-							>
+							<span class="d-block p-2 bg-primary rounded inline-block text-white position-relative">
+								Choose how many cards are needed to win
+							</span>
 						</div>
 						<div class="col justify-content-center">
 							<div
@@ -82,28 +100,42 @@
 									type="radio"
 									class="btn-check"
 									name="options2"
-									id="option5"
+									id="option2-1"
 									autocomplete="off"
 									checked
+									on:change={() => setCardGoal(4)}
 								/>
 								<label
 									class="btn btn-primary centered-label"
-									for="option5"
-									>5
+									for="option2-1"
+									>4
 								</label>
+
 								<input
 									type="radio"
 									class="btn-check"
 									name="options2"
-									id="option6"
+									id="option2-2"
 									autocomplete="off"
+									on:change={() => setCardGoal(5)}
 								/>
 								<label
 									class="btn btn-primary centered-label"
-									for="option6">6</label
-								>
+									for="option2-2"
+									>5
+								</label>
 							</div>
 						</div>
+					</div>
+				</div>
+				<div class="row justify-content-center py-1">
+					<div class="col-10 text-center">
+						<button
+							type="button"
+							class="btn btn-primary"
+						>
+							How to play <i class="fa-solid fa-question" />
+						</button>
 					</div>
 				</div>
 				<div class="row justify-content-center py-1">
@@ -112,7 +144,8 @@
 							<btn
 								type="button"
 								class="btn btn-primary"
-								><i class="fa-solid fa-play" />
+							>
+								<i class="fa-solid fa-play" />
 								Play
 							</btn>
 						</a>
