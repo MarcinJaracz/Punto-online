@@ -1,5 +1,5 @@
-import adapter from "@sveltejs/adapter-auto";
-import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+import adapter from "@sveltejs/adapter-node"
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte"
 
 /** @type {import('@sveltejs/kit').Config} */
 
@@ -13,9 +13,9 @@ const config = {
 		},
 	},
 	onwarn: (warning, handler) => {
-		if (warning.code.startsWith("a11y-")) return;
-		handler(warning);
+		if (warning.code.startsWith("a11y-")) return
+		handler(warning)
 	},
-};
+}
 
-export default config;
+export default config

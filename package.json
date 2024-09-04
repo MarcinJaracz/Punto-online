@@ -6,17 +6,8 @@
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
-		"start": "vite build && electron .",
-		"electron": "electron .",
-		"build:electro": "electron-builder",
-		"electron-vite-dev": "electron-vite dev",
-		"start:electro-vite": "electron-vite preview",
-		"prebuild": "electron-vite build",
 		"format": "prettier  . --write",
-		"check": "prettier . --check",
-		"test:unit": "vitest",
-		"test": "npm run test:unit -- --run",
-		"lint": "eslint . && prettier --check ."
+		"check": "prettier . --check"
 	},
 	"build": {
 		"appId": "com.JarMar.Punto-Online",

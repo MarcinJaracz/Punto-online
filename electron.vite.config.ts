@@ -6,8 +6,8 @@ export default defineConfig({
 		outDir: "dist-electron",
 		rollupOptions: {
 			input: {
-				main: resolve(__dirname, "src/main.js"),
-				preload: resolve(__dirname, "src/preload.js"),
+				main: resolve(__dirname, "./main.js"),
+				preload: resolve(__dirname, "./preload.js"),
 			},
 			external: ["electron"],
 		},
