@@ -1,8 +1,10 @@
 import adapter from "@sveltejs/adapter-auto";
-import { sveltePreprocess } from 'svelte-preprocess';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+
 /** @type {import('@sveltejs/kit').Config} */
 
 const config = {
+	preprocess: [vitePreprocess()],
 	kit: {
 		adapter: adapter(),
 		alias: {
@@ -10,12 +12,8 @@ const config = {
 			$components: "./src/lib/components",
 		},
 	},
-	preprocess: sveltePreprocess(), 
-
 	onwarn: (warning, handler) => {
 		if (warning.code.startsWith("a11y-")) return;
-		if (warning.code.startsWith("Cannot find module '$")) return;
-		if (warning.code.startsWith("js(2307)")) return;
 		handler(warning);
 	},
 };

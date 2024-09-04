@@ -1,15 +1,6 @@
-<!-- src/routes/newgame -->
-<script lang="ts">
-	import { onMount } from "svelte"
+<script>
 	import Return from "$components/return.svelte"
 	import { setNoPlayers, setCardGoal } from "$lib/store"
-
-	onMount(() => {
-		console.log("Component mounted")
-		if (Return) {
-			console.log("return działa")
-		}
-	})
 </script>
 
 <svelte:head>
@@ -140,7 +131,10 @@
 				</div>
 				<div class="row justify-content-center py-1">
 					<div class="col-10 text-center">
-						<a href="/board">
+						<a
+							href="/board"
+							data-sveltekit-preload-data="tap"
+						>
 							<btn
 								type="button"
 								class="btn btn-primary"

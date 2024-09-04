@@ -3,7 +3,6 @@
 	import "bootstrap/dist/css/bootstrap.min.css"
 </script>
 
-<!-- src/routes/+layout.svelte -->
 <main>
 	<slot />
 </main>

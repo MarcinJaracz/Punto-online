@@ -1,4 +1,3 @@
-<!-- src/routes/aboutme -->
 <script>
 	import Return from "$components/return.svelte"
 </script>

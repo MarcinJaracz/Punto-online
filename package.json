@@ -27,6 +27,7 @@
 	},
 	"main": "main.js",
 	"devDependencies": {
+		"@rollup/plugin-replace": "^5.0.7",
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/adapter-node": "^5.2.2",
 		"@sveltejs/kit": "^2.0.0",
@@ -53,6 +54,7 @@
 	"type": "module",
 	"dependencies": {
 		"@popperjs/core": "^2.11.8",
+		"@sentry/node": "^8.27.0",
 		"@sveltejs/adapter-static": "^3.0.4",
 		"bootstrap": "^5.3.3",
 		"eslint-plugin-svelte": "^2.43.0",

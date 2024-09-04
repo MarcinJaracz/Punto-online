@@ -1,4 +1,3 @@
-<!-- src/routes/main_page -->
 <script>
 	let activeGame = false
 </script>
@@ -8,7 +7,6 @@
 		<div class="d-flex justify-content-center align-items-center vh-100">
 			<div class="col-4">
 				<div class="row justify-content-center">
-					<!-- svelte-ignore a11y-img-redundant-alt -->
 					<img
 						src="./Punto-Icon.png"
 						alt="Punto logo"
@@ -21,7 +19,12 @@
 				</div>
 				<div class="row justify-content-center">
 					<h3 class="text-center">
-						<a href="/newgame"> New Game </a>
+						<a
+							href="/newgame"
+							data-sveltekit-preload-data="tap"
+						>
+							New Game
+						</a>
 					</h3>
 				</div>
 				<div class="row justify-content-center display-disabled">
@@ -30,7 +33,12 @@
 						class:gray={!activeGame}
 					>
 						{#if activeGame}
-							<a href="/continue"> Continue </a>
+							<a
+								href="/continue"
+								data-sveltekit-preload-data="tap"
+							>
+								Continue
+							</a>
 						{:else}
 							<span>Continue</span>
 						{/if}
@@ -38,7 +46,12 @@
 				</div>
 				<div class="row justify-content-center">
 					<h3 class="text-center">
-						<a href="/about"> About </a>
+						<a
+							href="/about"
+							data-sveltekit-preload-data="tap"
+						>
+							About
+						</a>
 					</h3>
 				</div>
 				<div class="row justify-content-center">
