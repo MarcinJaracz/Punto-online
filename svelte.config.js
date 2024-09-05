@@ -5,6 +5,9 @@ import { vitePreprocess } from "@sveltejs/vite-plugin-svelte"
 
 const config = {
 	preprocess: [vitePreprocess()],
+	build: {
+		outDir: 'docs'
+	},
 	kit: {
 		adapter: adapter(),
 		alias: {

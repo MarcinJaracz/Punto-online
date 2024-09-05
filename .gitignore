@@ -3,6 +3,7 @@ node_modules/
 .vercel
 /.svelte-kit
 .vscode/
+build/
 # OS
 .DS_Store
 Thumbs.db

@@ -9,9 +9,4 @@ export default defineConfig({
 			$lib: "/src/lib",
 		},
 	},
-	server: {
-		fs: {
-			allow: [".."],
-		},
-	},
 })

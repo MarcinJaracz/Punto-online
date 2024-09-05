@@ -1,6 +1,11 @@
 <script>
 	/** @type {import('./$types').LayoutData} */
 	import "bootstrap/dist/css/bootstrap.min.css"
+	import { afterNavigate } from "$app/navigation"
+
+	afterNavigate(() => {
+		console.log("Aktualna ścieżka:", window.location.pathname)
+	})
 </script>
 
 <main>
