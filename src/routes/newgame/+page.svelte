@@ -1,6 +1,27 @@
 <script>
 	import Return from "$components/return.svelte"
-	import { setNoPlayers, setCardGoal } from "$lib/store"
+	import { setNoPlayers, setCardGoal } from "$lib/store.js"
+
+	function showPDF() {
+		var overlay = document.getElementById("pdf-overlay")
+		var pdfFrame = document.getElementById("pdf-frame")
+		var pdfUrl = "./user_manual.pdf"
+		overlay.style.display = "block"
+		pdfFrame.src = pdfUrl
+		document.addEventListener("keydown", handleEscape)
+	}
+
+	function closePDF() {
+		var overlay = document.getElementById("pdf-overlay")
+		overlay.style.display = "none"
+		document.removeEventListener("keydown", handleEscape)
+	}
+
+	function handleEscape(event) {
+		if (event.key === "Escape") {
+			closePDF()
+		}
+	}
 </script>
 
 <svelte:head>
@@ -10,14 +31,14 @@
 <body>
 	<div class="container vh-100">
 		<div class="d-flex justify-content-center align-items-center h-100">
-			<div class="col-4">
+			<div class="col-5">
 				<div class="row justify-content-center">
 					<h1 class="text-center">New Game</h1>
 				</div>
 				<div class="row justify-content-center py-5">
 					<div class="d-flex flex-row py-1">
 						<div class="col justify-content-center">
-							<span class="d-block p-2 bg-primary rounded inline-block text-white position-relative">
+							<span class="d-block p-2 bg-primary rounded text-white h-100 text-center align-middle">
 								Choose number of players
 							</span>
 						</div>
@@ -39,7 +60,8 @@
 									class="btn btn-primary"
 									for="option1"
 								>
-									<i class="fas fa-person"></i><i class="fas fa-person-dress"></i>
+									<i class="fas fa-user" />
+									<i class="fas fa-user" />
 								</label>
 
 								<input
@@ -54,7 +76,9 @@
 									class="btn btn-primary"
 									for="option2"
 								>
-									<i class="fas fa-person"></i><i class="fas fa-person-dress"></i><i class="fas fa-person"></i>
+									<i class="fas fa-user" /><br />
+									<i class="fas fa-user" />
+									<i class="fas fa-user" />
 								</label>
 
 								<input
@@ -69,9 +93,10 @@
 									class="btn btn-primary"
 									for="option3"
 								>
-									<i class="fas fa-person"></i><i class="fas fa-person-dress"></i><i class="fas fa-person"></i><i
-										class="fas fa-person-dress"
-									></i>
+									<i class="fas fa-user" />
+									<i class="fas fa-user" /><br />
+									<i class="fas fa-user" />
+									<i class="fas fa-user" />
 								</label>
 							</div>
 						</div>
@@ -124,9 +149,30 @@
 						<button
 							type="button"
 							class="btn btn-primary"
+							on:click={showPDF}
 						>
 							How to play <i class="fa-solid fa-question" />
 						</button>
+					</div>
+				</div>
+				<!-- Overlay -->
+				<div
+					id="pdf-overlay"
+					class="overlay"
+				>
+					<div class="overlay-content">
+						<button
+							class="close-btn"
+							on:click={closePDF}
+							aria-label="Close PDF viewer"><i class="fas fa-xmark" /></button
+						>
+
+						<iframe
+							title="overlay pdf"
+							id="pdf-frame"
+							style="width: 100%; height: 100%;"
+							frameborder="0"
+						></iframe>
 					</div>
 				</div>
 				<div class="row justify-content-center py-1">
@@ -160,5 +206,47 @@
 		align-items: center;
 		height: 100%;
 		font-size: 25px;
+	}
+
+	.overlay {
+		display: none;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.8);
+		z-index: 9999;
+	}
+
+	.overlay-content {
+		position: relative;
+		margin: auto;
+		top: 5%;
+		width: 75%;
+		height: 90%;
+		padding: 0px;
+		z-index: 10000;
+	}
+
+	.close-btn {
+		position: absolute;
+		font-size: 20px;
+		top: 10px;
+		right: 10px;
+		width: 40px;
+		height: 40px;
+		padding: 0px;
+		cursor: pointer;
+		background-color: rgb(50, 54, 57);
+		color: rgb(241, 241, 241);
+		z-index: 10001;
+		text-align: center;
+		justify-content: center;
+		border-radius: 5px;
+		border: 0 solid;
+	}
+	.close-btn:hover {
+		color: red;
 	}
 </style>

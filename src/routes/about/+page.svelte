@@ -17,13 +17,16 @@
 					/>
 				</div>
 				<div class="row justify-content-center">
-					<h1 class="text-center">About me</h1>
+					<h1 class="text-center py-3">About me</h1>
 				</div>
 				<div class="row justify-content-center">
 					<h3 class="text-center">
 						<a
 							href="https://github.com/MarcinJaracz"
 							target="_blank"
+							data-bs-toggle="tooltip"
+							data-placement="right"
+							title="Go visit my Github page"
 						>
 							<i class="fa-brands fa-github"></i>
 							My GitHub
@@ -35,8 +38,23 @@
 						<a
 							href="https://www.linkedin.com/in/marcin-jaracz/"
 							target="_blank"
+							data-bs-toggle="tooltip"
+							data-placement="right"
+							title="Check out my LinkedIn profile"
 							><i class="fa-brands fa-linkedin"></i>
 							My LinkedIn
+						</a>
+					</h3>
+				</div>
+				<div class="row justify-content-center">
+					<h3 class="text-center">
+						<a
+							href="https://www.gamefactory-games.com/en/spiele/646214"
+							target="_blank"
+							data-bs-toggle="tooltip"
+							data-placement="right"
+							title="Visit creator's website"
+							><i class="fas fa-dice" /> About the game
 						</a>
 					</h3>
 				</div>
