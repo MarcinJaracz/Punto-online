@@ -17,16 +17,19 @@
 						<strong>Punto Online</strong>
 					</h1>
 				</div>
-				<div class="row justify-content-center">
+				<span class="row justify-content-center">
 					<h3 class="text-center">
 						<a
 							href="/newgame"
 							data-sveltekit-preload-data="tap"
+							style="border-radius:10px;"
+							onmouseover="this.style.backgroundColor='#007bff';"
+							onmouseout="this.style.backgroundColor='';"
 						>
 							New Game
 						</a>
 					</h3>
-				</div>
+				</span>
 				<div class="row justify-content-center display-disabled">
 					<h3
 						class="text-center"
@@ -36,11 +39,21 @@
 							<a
 								href="/continue"
 								data-sveltekit-preload-data="tap"
+								style="border-radius:10px;"
+								onmouseover="this.style.backgroundColor='#ffc107';"
+								onmouseout="this.style.backgroundColor='';"
 							>
 								Continue
 							</a>
 						{:else}
-							<span>Continue</span>
+							<span
+								data-bs-toggle="tooltip"
+								data-placement="right"
+								title="There is no active game"
+								style="border-radius:10px;"
+								onmouseover="this.style.backgroundColor='#ffc107';"
+								onmouseout="this.style.backgroundColor='';">Continue</span
+							>
 						{/if}
 					</h3>
 				</div>
@@ -49,6 +62,9 @@
 						<a
 							href="/about"
 							data-sveltekit-preload-data="tap"
+							style="border-radius:10px;"
+							onmouseover="this.style.backgroundColor='#28a745';"
+							onmouseout="this.style.backgroundColor='';"
 						>
 							About
 						</a>
@@ -56,7 +72,14 @@
 				</div>
 				<div class="row justify-content-center">
 					<h3 class="text-center">
-						<a href="https://duckduckgo.com/"> Exit </a>
+						<a
+							href="https://duckduckgo.com/"
+							style="border-radius:10px;"
+							onmouseover="this.style.backgroundColor='#dc3545';"
+							onmouseout="this.style.backgroundColor='';"
+						>
+							Exit
+						</a>
 					</h3>
 				</div>
 			</div>

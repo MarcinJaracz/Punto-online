@@ -6,7 +6,7 @@ import { vitePreprocess } from "@sveltejs/vite-plugin-svelte"
 const config = {
 	preprocess: [vitePreprocess()],
 	build: {
-		outDir: 'docs'
+		outDir: "docs",
 	},
 	kit: {
 		adapter: adapter(),
@@ -17,6 +17,8 @@ const config = {
 	},
 	onwarn: (warning, handler) => {
 		if (warning.code.startsWith("a11y-")) return
+		if (warning.code.startsWith("css-unused-selector")) return
+
 		handler(warning)
 	},
 }

@@ -6,6 +6,9 @@
 				data-bs-toggle="tooltip"
 				data-placement="right"
 				title="Go back to main page"
+				style="border-radius:10px;"
+				onmouseover="this.style.backgroundColor='#dc3545';"
+				onmouseout="this.style.backgroundColor='';"
 			>
 				<i class="fa-sharp fa-light fa-circle-arrow-left" /> return
 			</a>

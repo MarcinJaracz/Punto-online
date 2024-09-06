@@ -27,6 +27,9 @@
 							data-bs-toggle="tooltip"
 							data-placement="right"
 							title="Go visit my Github page"
+							style="border-radius:10px;"
+							onmouseover="this.style.backgroundColor='#007bff';"
+							onmouseout="this.style.backgroundColor='';"
 						>
 							<i class="fa-brands fa-github"></i>
 							My GitHub
@@ -41,6 +44,9 @@
 							data-bs-toggle="tooltip"
 							data-placement="right"
 							title="Check out my LinkedIn profile"
+							style="border-radius:10px;"
+							onmouseover="this.style.backgroundColor='#ffc107';"
+							onmouseout="this.style.backgroundColor='';"
 							><i class="fa-brands fa-linkedin"></i>
 							My LinkedIn
 						</a>
@@ -54,6 +60,9 @@
 							data-bs-toggle="tooltip"
 							data-placement="right"
 							title="Visit creator's website"
+							style="border-radius:10px;"
+							onmouseover="this.style.backgroundColor='#28a745';"
+							onmouseout="this.style.backgroundColor='';"
 							><i class="fas fa-dice" /> About the game
 						</a>
 					</h3>

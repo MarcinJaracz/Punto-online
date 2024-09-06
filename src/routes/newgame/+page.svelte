@@ -1,27 +1,10 @@
 <script>
 	import Return from "$components/return.svelte"
-	import { setNoPlayers, setCardGoal } from "$lib/store.js"
-
-	function showPDF() {
-		var overlay = document.getElementById("pdf-overlay")
-		var pdfFrame = document.getElementById("pdf-frame")
-		var pdfUrl = "./user_manual.pdf"
-		overlay.style.display = "block"
-		pdfFrame.src = pdfUrl
-		document.addEventListener("keydown", handleEscape)
-	}
-
-	function closePDF() {
-		var overlay = document.getElementById("pdf-overlay")
-		overlay.style.display = "none"
-		document.removeEventListener("keydown", handleEscape)
-	}
-
-	function handleEscape(event) {
-		if (event.key === "Escape") {
-			closePDF()
-		}
-	}
+	import { setNoPlayers, setcardsToWin } from "$lib/store.js"
+	export let data
+	let handleEscape = data.handleEscape
+	let closePDF = data.closePDF
+	let showPDF = data.showPDF
 </script>
 
 <svelte:head>
@@ -119,7 +102,7 @@
 									id="option2-1"
 									autocomplete="off"
 									checked
-									on:change={() => setCardGoal(4)}
+									on:change={() => setcardsToWin(4)}
 								/>
 								<label
 									class="btn btn-primary centered-label"
@@ -133,7 +116,7 @@
 									name="options2"
 									id="option2-2"
 									autocomplete="off"
-									on:change={() => setCardGoal(5)}
+									on:change={() => setcardsToWin(5)}
 								/>
 								<label
 									class="btn btn-primary centered-label"
@@ -150,6 +133,9 @@
 							type="button"
 							class="btn btn-primary"
 							on:click={showPDF}
+							data-bs-toggle="tooltip"
+							data-placement="right"
+							title="Show user's manual"
 						>
 							How to play <i class="fa-solid fa-question" />
 						</button>
@@ -232,10 +218,10 @@
 	.close-btn {
 		position: absolute;
 		font-size: 20px;
-		top: 10px;
-		right: 10px;
-		width: 40px;
-		height: 40px;
+		top: 12px;
+		right: 17px;
+		width: 32px;
+		height: 32px;
 		padding: 0px;
 		cursor: pointer;
 		background-color: rgb(50, 54, 57);
@@ -243,10 +229,11 @@
 		z-index: 10001;
 		text-align: center;
 		justify-content: center;
-		border-radius: 5px;
+		border-radius: 50%;
 		border: 0 solid;
 	}
 	.close-btn:hover {
 		color: red;
+		background-color: rgb(66, 70, 73);
 	}
 </style>
