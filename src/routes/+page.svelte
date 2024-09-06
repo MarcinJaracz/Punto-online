@@ -1,5 +1,5 @@
 <script>
-	let activeGame = false
+	let activeGame = true
 </script>
 
 <body>
@@ -37,7 +37,7 @@
 					>
 						{#if activeGame}
 							<a
-								href="/continue"
+								href="/board"
 								data-sveltekit-preload-data="tap"
 								style="border-radius:10px;"
 								onmouseover="this.style.backgroundColor='#ffc107';"
