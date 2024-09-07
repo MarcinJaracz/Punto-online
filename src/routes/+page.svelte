@@ -1,91 +1,122 @@
 <script>
+	import { playClickSound } from "$lib/click"
+
 	let activeGame = true
+	export let data
+	const colors = data.colors
+	let handleMouseOver = data.handleMouseOver
+	let handleMouseOut = data.handleMouseOut
+	let handleFocus = data.handleFocus
+	let handleBlur = data.handleBlur
 </script>
 
-<body>
-	<div class="container vh-100">
-		<div class="d-flex justify-content-center align-items-center vh-100">
-			<div class="col-4">
-				<div class="row justify-content-center">
-					<img
-						src="./Punto-Icon.png"
-						alt="Punto logo"
-					/>
-				</div>
-				<div class="row justify-content-center">
-					<h1 class="text-center py-4">
-						<strong>Punto Online</strong>
-					</h1>
-				</div>
-				<span class="row justify-content-center">
-					<h3 class="text-center">
-						<a
-							href="/newgame"
-							data-sveltekit-preload-data="tap"
-							style="border-radius:10px;"
-							onmouseover="this.style.backgroundColor='#007bff';"
-							onmouseout="this.style.backgroundColor='';"
-						>
-							New Game
-						</a>
-					</h3>
-				</span>
-				<div class="row justify-content-center display-disabled">
-					<h3
-						class="text-center"
-						class:gray={!activeGame}
+<div class="container vh-100">
+	<div class="d-flex justify-content-center align-items-center vh-100">
+		<div class="col-4">
+			<div class="row justify-content-center">
+				<img
+					src="./Punto-Icon.png"
+					alt="Punto logo"
+				/>
+			</div>
+			<div class="row justify-content-center">
+				<h1 class="text-center py-4">
+					<strong>Punto Online</strong>
+				</h1>
+			</div>
+			<span class="row justify-content-center">
+				<h3
+					class="text-center"
+					on:mousedown={playClickSound}
+				>
+					<a
+						id="newGame"
+						href="/newgame"
+						data-sveltekit-preload-data="tap"
+						style="border-radius:10px;"
+						on:mouseover={(e) => handleMouseOver(e, colors.newGame)}
+						on:mouseout={handleMouseOut}
+						on:focus={(e) => handleFocus(e, colors.newGame)}
+						on:blur={handleBlur}
+						tabindex="0"
 					>
-						{#if activeGame}
-							<a
-								href="/board"
-								data-sveltekit-preload-data="tap"
-								style="border-radius:10px;"
-								onmouseover="this.style.backgroundColor='#ffc107';"
-								onmouseout="this.style.backgroundColor='';"
-							>
-								Continue
-							</a>
-						{:else}
-							<span
-								data-bs-toggle="tooltip"
-								data-placement="right"
-								title="There is no active game"
-								style="border-radius:10px;"
-								onmouseover="this.style.backgroundColor='#ffc107';"
-								onmouseout="this.style.backgroundColor='';">Continue</span
-							>
-						{/if}
-					</h3>
-				</div>
-				<div class="row justify-content-center">
-					<h3 class="text-center">
+						New Game
+					</a>
+				</h3>
+			</span>
+			<div class="row justify-content-center display-disabled">
+				<h3
+					class="text-center"
+					class:gray={!activeGame}
+					on:mousedown={playClickSound}
+				>
+					{#if activeGame}
 						<a
-							href="/about"
+							id="continue"
+							href="/board"
 							data-sveltekit-preload-data="tap"
 							style="border-radius:10px;"
-							onmouseover="this.style.backgroundColor='#28a745';"
-							onmouseout="this.style.backgroundColor='';"
+							on:mouseover={(e) => handleMouseOver(e, colors.continue)}
+							on:mouseout={handleMouseOut}
+							on:focus={(e) => handleFocus(e, colors.continue)}
+							on:blur={handleBlur}
+							tabindex="0"
 						>
-							About
+							Continue
 						</a>
-					</h3>
-				</div>
-				<div class="row justify-content-center">
-					<h3 class="text-center">
-						<a
-							href="https://duckduckgo.com/"
-							style="border-radius:10px;"
-							onmouseover="this.style.backgroundColor='#dc3545';"
-							onmouseout="this.style.backgroundColor='';"
+					{:else}
+						<span
+							data-bs-toggle="tooltip"
+							data-placement="right"
+							title="There is no active game"
 						>
-							Exit
-						</a>
-					</h3>
-				</div>
+							Continue
+						</span>
+					{/if}
+				</h3>
+			</div>
+			<div class="row justify-content-center">
+				<h3
+					class="text-center"
+					on:mousedown={playClickSound}
+				>
+					<a
+						id="about"
+						href="/about"
+						data-sveltekit-preload-data="tap"
+						style="border-radius:10px;"
+						on:mouseover={(e) => handleMouseOver(e, colors.about)}
+						on:mouseout={handleMouseOut}
+						on:focus={(e) => handleFocus(e, colors.about)}
+						on:blur={handleBlur}
+						tabindex="0"
+					>
+						About
+					</a>
+				</h3>
+			</div>
+			<div class="row justify-content-center">
+				<h3
+					class="text-center"
+					on:mousedown={playClickSound}
+				>
+					<a
+						id="exit"
+						href="https://duckduckgo.com/"
+						style="border-radius:10px;"
+						on:mouseover={(e) => handleMouseOver(e, colors.exit)}
+						on:mouseout={handleMouseOut}
+						on:focus={(e) => handleFocus(e, colors.exit)}
+						on:blur={handleBlur}
+						tabindex="0"
+					>
+						Exit
+					</a>
+				</h3>
 			</div>
 		</div>
 	</div>
-</body>
+</div>
 
 <style>
 	img {

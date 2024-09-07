@@ -13,6 +13,7 @@ const config = {
 		alias: {
 			$lib: "./src/lib",
 			$components: "./src/lib/components",
+			$sounds: "./src/lib/sounds",
 		},
 	},
 	onwarn: (warning, handler) => {

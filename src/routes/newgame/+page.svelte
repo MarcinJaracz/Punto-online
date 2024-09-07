@@ -21,7 +21,7 @@
 				<div class="row justify-content-center py-5">
 					<div class="d-flex flex-row py-1">
 						<div class="col justify-content-center">
-							<span class="d-block p-2 bg-primary rounded text-white h-100 text-center align-middle">
+							<span class="d-block p-2 bg-danger rounded text-white h-100 text-center align-middle">
 								Choose number of players
 							</span>
 						</div>
@@ -40,7 +40,7 @@
 									on:click={() => setNoPlayers(2)}
 								/>
 								<label
-									class="btn btn-primary"
+									class="btn btn-danger"
 									for="option1"
 								>
 									<i class="fas fa-user" />
@@ -56,7 +56,7 @@
 									on:click={() => setNoPlayers(3)}
 								/>
 								<label
-									class="btn btn-primary"
+									class="btn btn-danger"
 									for="option2"
 								>
 									<i class="fas fa-user" /><br />
@@ -73,7 +73,7 @@
 									on:click={() => setNoPlayers(4)}
 								/>
 								<label
-									class="btn btn-primary"
+									class="btn btn-danger"
 									for="option3"
 								>
 									<i class="fas fa-user" />
@@ -86,7 +86,7 @@
 					</div>
 					<div class="d-flex flex-row py-1">
 						<div class="col justify-content-center">
-							<span class="d-block p-2 bg-primary rounded inline-block text-white position-relative">
+							<span class="d-block p-2 bg-success rounded inline-block text-white position-relative">
 								Choose how many cards are needed to win
 							</span>
 						</div>
@@ -105,7 +105,7 @@
 									on:change={() => setcardsToWin(4)}
 								/>
 								<label
-									class="btn btn-primary centered-label"
+									class="btn btn-success centered-label"
 									for="option2-1"
 									>4
 								</label>
@@ -119,7 +119,7 @@
 									on:change={() => setcardsToWin(5)}
 								/>
 								<label
-									class="btn btn-primary centered-label"
+									class="btn btn-success centered-label"
 									for="option2-2"
 									>5
 								</label>
@@ -131,7 +131,7 @@
 					<div class="col-10 text-center">
 						<button
 							type="button"
-							class="btn btn-primary"
+							class="btn btn-warning"
 							on:click={showPDF}
 							data-bs-toggle="tooltip"
 							data-placement="right"

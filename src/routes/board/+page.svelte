@@ -1,163 +1,65 @@
 <script>
 	import Return from "$components/return.svelte"
-	// import { noPlayers, cardsToWin } from "$lib/store"
-	export let data
-	const board = data.board
+	import { noPlayers } from "$lib/store"
+
+	const playerColors = ["primary", "success", "warning", "danger"]
 </script>
 
 <svelte:head>
 	<title>Board</title>
 </svelte:head>
+
 <body>
-	<div class="container">
-		<div class="d-flex justify-content-center align-items-center">
+	<div class="container-fluid">
+		<div class="d-flex justify-content-evenly">
+			<!-- Kolumna 1 -->
+			<div class="col-1 d-flex flex-column justify-content-evenly">
+				{#each Array(Math.min($noPlayers, 2)).fill(0) as _, i}
+					<div class="row">
+						<div class="player-container">
+							<div class="d-grid align-items-center justify-content-evenly">
+								<div class="d-block p-2 bg-{playerColors[i]} rounded text-white fs-4 text-center mb-2">
+									Player {i + 1}
+								</div>
+								<div
+									class="box"
+									id="player{i + 1}"
+								></div>
+							</div>
+						</div>
+					</div>
+				{/each}
+			</div>
+
+			<!-- Plansza -->
 			<div class="col-7 mt-5">
 				<div class="board">
-					<div
-						class="box"
-						id="cell1"
-					></div>
-					<div
-						class="box"
-						id="cell2"
-					></div>
-					<div
-						class="box"
-						id="cell3"
-					></div>
-					<div
-						class="box"
-						id="cell4"
-					></div>
-					<div
-						class="box"
-						id="cell5"
-					></div>
-					<div
-						class="box"
-						id="cell6"
-					></div>
-					<div
-						class="box"
-						id="cell7"
-					></div>
-					<div
-						class="box"
-						id="cell8"
-					></div>
-					<div
-						class="box"
-						id="cell9"
-					></div>
-					<div
-						class="box"
-						id="cell10"
-					></div>
-					<div
-						class="box"
-						id="cell11"
-					></div>
-					<div
-						class="box"
-						id="cell12"
-					></div>
-					<div
-						class="box"
-						id="cell13"
-					></div>
-					<div
-						class="box"
-						id="cell14"
-					></div>
-					<div
-						class="box"
-						id="cell15"
-					></div>
-					<div
-						class="box"
-						id="cell16"
-					></div>
-					<div
-						class="box"
-						id="cell17"
-					></div>
-					<div
-						class="box"
-						id="cell18"
-					></div>
-					<div
-						class="box"
-						id="cell19"
-					></div>
-					<div
-						class="box"
-						id="cell20"
-					></div>
-					<div
-						class="box"
-						id="cell21"
-					></div>
-					<div
-						class="box"
-						id="cell22"
-					></div>
-					<div
-						class="box"
-						id="cell23"
-					></div>
-					<div
-						class="box"
-						id="cell24"
-					></div>
-					<div
-						class="box"
-						id="cell25"
-					></div>
-					<div
-						class="box"
-						id="cell26"
-					></div>
-					<div
-						class="box"
-						id="cell27"
-					></div>
-					<div
-						class="box"
-						id="cell28"
-					></div>
-					<div
-						class="box"
-						id="cell29"
-					></div>
-					<div
-						class="box"
-						id="cell30"
-					></div>
-					<div
-						class="box"
-						id="cell31"
-					></div>
-					<div
-						class="box"
-						id="cell32"
-					></div>
-					<div
-						class="box"
-						id="cell33"
-					></div>
-					<div
-						class="box"
-						id="cell34"
-					></div>
-					<div
-						class="box"
-						id="cell35"
-					></div>
-					<div
-						class="box"
-						id="cell36"
-					></div>
+					{#each Array(36).fill(0) as _, i}
+						<div
+							class="box"
+							id="cell{i + 1}"
+						></div>
+					{/each}
 				</div>
+			</div>
+
+			<!-- Kolumna 2 -->
+			<div class="col-1 d-flex flex-column justify-content-evenly">
+				{#each Array(Math.max(0, $noPlayers - 2)).fill(0) as _, i}
+					<div class="row">
+						<div class="player-container">
+							<div class="d-grid align-items-center justify-content-evenly">
+								<div class="d-block p-2 bg-{playerColors[i + 2]} rounded text-white fs-4 text-center mb-2">
+									Player {i + 3}
+								</div>
+								<div
+									class="box"
+									id="player{i + 3}"
+								></div>
+							</div>
+						</div>
+					</div>
+				{/each}
 			</div>
 		</div>
 		<Return />
@@ -172,6 +74,7 @@
 		max-width: 640px;
 		margin: 0 auto;
 	}
+
 	.box {
 		display: flex;
 		align-items: center;
@@ -187,5 +90,18 @@
 		box-shadow:
 			0 4px 8px 0 rgba(0, 0, 0, 0.1),
 			0 6px 20px 0 rgba(0, 0, 0, 0.1);
+	}
+
+	.bg-primary {
+		background-color: #0d6efd !important;
+	}
+	.bg-success {
+		background-color: #198754 !important;
+	}
+	.bg-warning {
+		background-color: #ffc107 !important;
+	}
+	.bg-danger {
+		background-color: #dc3545 !important;
 	}
 </style>
