@@ -1,5 +1,13 @@
 <script>
 	import Return from "$components/return.svelte"
+	import { playClickSound } from "$lib/click"
+
+	export let data
+	const colors = data.colors
+	let handleMouseOver = data.handleMouseOver
+	let handleMouseOut = data.handleMouseOut
+	let handleFocus = data.handleFocus
+	let handleBlur = data.handleBlur
 </script>
 
 <svelte:head>
@@ -20,7 +28,10 @@
 					<h1 class="text-center py-3">About me</h1>
 				</div>
 				<div class="row justify-content-center">
-					<h3 class="text-center">
+					<h3
+						class="text-center"
+						on:mousedown={playClickSound}
+					>
 						<a
 							href="https://github.com/MarcinJaracz"
 							target="_blank"
@@ -28,8 +39,11 @@
 							data-placement="right"
 							title="Go visit my Github page"
 							style="border-radius:10px;"
-							onmouseover="this.style.backgroundColor='#007bff';"
-							onmouseout="this.style.backgroundColor='';"
+							on:mouseover={(e) => handleMouseOver(e, colors.gitHub)}
+							on:mouseout={handleMouseOut}
+							on:focus={(e) => handleFocus(e, colors.newGame)}
+							on:blur={handleBlur}
+							tabindex="0"
 						>
 							<i class="fa-brands fa-github"></i>
 							My GitHub
@@ -37,23 +51,32 @@
 					</h3>
 				</div>
 				<div class="row justify-content-center">
-					<h3 class="text-center">
+					<h3
+						class="text-center"
+						on:mousedown={playClickSound}
+					>
 						<a
-							href="https://www.linkedin.com/in/marcin-jaracz/"
+							href="https://www.linkedin.com/in/marcin-jaracz/Punto-online"
 							target="_blank"
 							data-bs-toggle="tooltip"
 							data-placement="right"
 							title="Check out my LinkedIn profile"
 							style="border-radius:10px;"
-							onmouseover="this.style.backgroundColor='#ffc107';"
-							onmouseout="this.style.backgroundColor='';"
+							on:mouseover={(e) => handleMouseOver(e, colors.linkedIn)}
+							on:mouseout={handleMouseOut}
+							on:focus={(e) => handleFocus(e, colors.newGame)}
+							on:blur={handleBlur}
+							tabindex="0"
 							><i class="fa-brands fa-linkedin"></i>
 							My LinkedIn
 						</a>
 					</h3>
 				</div>
 				<div class="row justify-content-center">
-					<h3 class="text-center">
+					<h3
+						class="text-center"
+						on:mousedown={playClickSound}
+					>
 						<a
 							href="https://www.gamefactory-games.com/en/spiele/646214"
 							target="_blank"
@@ -61,8 +84,11 @@
 							data-placement="right"
 							title="Visit creator's website"
 							style="border-radius:10px;"
-							onmouseover="this.style.backgroundColor='#28a745';"
-							onmouseout="this.style.backgroundColor='';"
+							on:mouseover={(e) => handleMouseOver(e, colors.about)}
+							on:mouseout={handleMouseOut}
+							on:focus={(e) => handleFocus(e, colors.newGame)}
+							on:blur={handleBlur}
+							tabindex="0"
 							><i class="fas fa-dice" /> About the game
 						</a>
 					</h3>

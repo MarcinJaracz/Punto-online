@@ -1,5 +1,6 @@
 <script>
 	import Return from "$components/return.svelte"
+	import { playClickSound } from "$lib/click"
 	import { setNoPlayers, setcardsToWin, setGameExistState } from "$lib/store.js"
 	export let data
 	setNoPlayers(2)
@@ -39,7 +40,10 @@
 									id="option1"
 									autocomplete="off"
 									checked
-									on:click={() => setNoPlayers(2)}
+									on:click={() => {
+										setNoPlayers(2)
+										playClickSound()
+									}}
 								/>
 								<label
 									class="btn btn-danger"
@@ -55,7 +59,10 @@
 									name="options"
 									id="option2"
 									autocomplete="off"
-									on:click={() => setNoPlayers(3)}
+									on:click={() => {
+										setNoPlayers(3)
+										playClickSound()
+									}}
 								/>
 								<label
 									class="btn btn-danger"
@@ -72,7 +79,10 @@
 									name="options"
 									id="option3"
 									autocomplete="off"
-									on:click={() => setNoPlayers(4)}
+									on:click={() => {
+										setNoPlayers(4)
+										playClickSound()
+									}}
 								/>
 								<label
 									class="btn btn-danger"
@@ -104,7 +114,10 @@
 									id="option2-1"
 									autocomplete="off"
 									checked
-									on:change={() => setcardsToWin(4)}
+									on:change={() => {
+										setcardsToWin(4)
+										playClickSound()
+									}}
 								/>
 								<label
 									class="btn btn-success centered-label"
@@ -118,7 +131,10 @@
 									name="options2"
 									id="option2-2"
 									autocomplete="off"
-									on:change={() => setcardsToWin(5)}
+									on:change={() => {
+										setcardsToWin(5)
+										playClickSound()
+									}}
 								/>
 								<label
 									class="btn btn-success centered-label"
@@ -134,7 +150,10 @@
 						<button
 							type="button"
 							class="btn btn-warning"
-							on:click={showPDF}
+							on:click={() => {
+								showPDF()
+								playClickSound()
+							}}
 							data-bs-toggle="tooltip"
 							data-placement="right"
 							title="Show user's manual"
@@ -151,7 +170,10 @@
 					<div class="overlay-content">
 						<button
 							class="close-btn"
-							on:click={closePDF}
+							on:click={() => {
+								closePDF()
+								playClickSound()
+							}}
 							aria-label="Close PDF viewer"><i class="fas fa-xmark" /></button
 						>
 
@@ -172,7 +194,10 @@
 							<button
 								type="button"
 								class="btn btn-primary"
-								on:click={() => setGameExistState(true)}
+								on:click={() => {
+									setGameExistState(true)
+									playClickSound()
+								}}
 							>
 								<i class="fa-solid fa-play" />
 								Play

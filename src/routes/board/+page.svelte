@@ -1,6 +1,7 @@
 <script>
 	import Return from "$components/return.svelte"
 	import { noPlayers, setGameExistState } from "$lib/store"
+	import { playClickSound } from "$lib/click"
 
 	const playerColors = ["primary", "success", "warning", "danger"]
 </script>
@@ -72,6 +73,7 @@
 					title="Go back to main page"
 					style="border-radius:10px;"
 					on:click={() => setGameExistState(false)}
+					on:mousedown={playClickSound}
 				>
 					<i class="fa-sharp fa-light fa-circle-arrow-left" /> finish this game and exit
 				</a>
