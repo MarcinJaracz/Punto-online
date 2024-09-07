@@ -1,6 +1,6 @@
 <script>
 	import Return from "$components/return.svelte"
-	import { noPlayers } from "$lib/store"
+	import { noPlayers, setGameExistState } from "$lib/store"
 
 	const playerColors = ["primary", "success", "warning", "danger"]
 </script>
@@ -63,6 +63,20 @@
 			</div>
 		</div>
 		<Return />
+		<div class="nav justify-content-center pt-4">
+			<h3>
+				<a
+					href="/"
+					data-bs-toggle="tooltip"
+					data-placement="right"
+					title="Go back to main page"
+					style="border-radius:10px;"
+					on:click={() => setGameExistState(false)}
+				>
+					<i class="fa-sharp fa-light fa-circle-arrow-left" /> finish this game and exit
+				</a>
+			</h3>
+		</div>
 	</div>
 </body>
 

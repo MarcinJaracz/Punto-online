@@ -1,7 +1,7 @@
 <script>
 	import { playClickSound } from "$lib/click"
+	import { doesTheGameExist } from "$lib/store.js"
 
-	let activeGame = true
 	export let data
 	const colors = data.colors
 	let handleMouseOver = data.handleMouseOver
@@ -47,10 +47,9 @@
 			<div class="row justify-content-center display-disabled">
 				<h3
 					class="text-center"
-					class:gray={!activeGame}
-					on:mousedown={playClickSound}
+					class:gray={!$doesTheGameExist}
 				>
-					{#if activeGame}
+					{#if $doesTheGameExist}
 						<a
 							id="continue"
 							href="/board"
@@ -60,7 +59,7 @@
 							on:mouseout={handleMouseOut}
 							on:focus={(e) => handleFocus(e, colors.continue)}
 							on:blur={handleBlur}
-							tabindex="0"
+							on:mousedown={playClickSound}
 						>
 							Continue
 						</a>

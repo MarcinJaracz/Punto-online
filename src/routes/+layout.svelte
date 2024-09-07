@@ -9,7 +9,7 @@
 	})
 
 	afterNavigate(() => {
-		console.log("Aktualna ścieżka:", window.location.pathname)
+		console.log("Aktualna strona:", window.location.pathname)
 	})
 </script>
 

@@ -1,7 +1,9 @@
 <script>
 	import Return from "$components/return.svelte"
-	import { setNoPlayers, setcardsToWin } from "$lib/store.js"
+	import { setNoPlayers, setcardsToWin, setGameExistState } from "$lib/store.js"
 	export let data
+	setNoPlayers(2)
+	setcardsToWin(4)
 	let handleEscape = data.handleEscape
 	let closePDF = data.closePDF
 	let showPDF = data.showPDF
@@ -167,13 +169,14 @@
 							href="/board"
 							data-sveltekit-preload-data="tap"
 						>
-							<btn
+							<button
 								type="button"
 								class="btn btn-primary"
+								on:click={() => setGameExistState(true)}
 							>
 								<i class="fa-solid fa-play" />
 								Play
-							</btn>
+							</button>
 						</a>
 					</div>
 				</div>
