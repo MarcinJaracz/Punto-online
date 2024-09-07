@@ -4,6 +4,8 @@ export function load() {
 		continue: "#ffc107",
 		about: "#28a745",
 		exit: "#dc3545",
+		settings: "#007bff",
+
 	}
 
 	function handleMouseOver(event, color) {

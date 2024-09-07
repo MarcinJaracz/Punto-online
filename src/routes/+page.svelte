@@ -100,6 +100,26 @@
 					on:mousedown={playClickSound}
 				>
 					<a
+						id="settings"
+						href="/settings"
+						data-sveltekit-preload-data="tap"
+						style="border-radius:10px;"
+						on:mouseover={(e) => handleMouseOver(e, colors.settings)}
+						on:mouseout={handleMouseOut}
+						on:focus={(e) => handleFocus(e, colors.settings)}
+						on:blur={handleBlur}
+						tabindex="0"
+					>
+						Settings
+					</a>
+				</h3>
+			</div>
+			<div class="row justify-content-center">
+				<h3
+					class="text-center"
+					on:mousedown={playClickSound}
+				>
+					<a
 						id="exit"
 						href="https://duckduckgo.com/"
 						style="border-radius:10px;"

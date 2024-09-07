@@ -4,7 +4,7 @@
 	import { setNoPlayers, setcardsToWin, setGameExistState } from "$lib/store.js"
 	export let data
 	setNoPlayers(2)
-	setcardsToWin(4)
+	setcardsToWin(5)
 	let handleEscape = data.handleEscape
 	let closePDF = data.closePDF
 	let showPDF = data.showPDF
@@ -113,7 +113,6 @@
 									name="options2"
 									id="option2-1"
 									autocomplete="off"
-									checked
 									on:change={() => {
 										setcardsToWin(4)
 										playClickSound()
@@ -131,6 +130,7 @@
 									name="options2"
 									id="option2-2"
 									autocomplete="off"
+									checked
 									on:change={() => {
 										setcardsToWin(5)
 										playClickSound()
