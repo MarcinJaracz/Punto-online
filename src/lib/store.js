@@ -14,15 +14,15 @@ export function setcardsToWin(amount) {
 	// console.log("cardsToWin set to:", amount)
 }
 // game state
-export const doesTheGameExist = writable(false);
+export const doesTheGameExist = writable(false)
 
 export function setGameExistState(bool) {
 	doesTheGameExist.set(bool)
 }
 
 // sounds
-export const soundsEnabled = writable(true);
+export const soundsEnabled = writable(true)
 
 export function toggleSounds() {
-	soundsEnabled.update(currentValue => !currentValue);
+	soundsEnabled.update((currentValue) => !currentValue)
 }

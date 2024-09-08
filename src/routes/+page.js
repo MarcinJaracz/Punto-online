@@ -5,7 +5,6 @@ export function load() {
 		about: "#28a745",
 		exit: "#dc3545",
 		settings: "#007bff",
-
 	}
 
 	function handleMouseOver(event, color) {
@@ -23,5 +22,5 @@ export function load() {
 	function handleBlur(event) {
 		event.target.style.backgroundColor = ""
 	}
-	return {colors, handleMouseOver, handleMouseOut, handleFocus, handleBlur}
+	return { colors, handleMouseOver, handleMouseOut, handleFocus, handleBlur }
 }
