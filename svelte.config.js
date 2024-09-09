@@ -10,11 +10,11 @@ const config = {
 	},
 	kit: {
 		adapter: adapter({
-			pages: 'build',
-			assets: 'build',
+			pages: "build",
+			assets: "build",
 			fallback: "index.html",
 			precompress: false,
-			strict: true
+			strict: true,
 		}),
 		alias: {
 			$lib: "./src/lib",
@@ -22,8 +22,8 @@ const config = {
 			$sounds: "./src/lib/sounds",
 		},
 		paths: {
-			base: process.argv.includes('dev') ? '' : process.env.BASE_PATH
-		}
+			base: process.argv.includes("dev") ? "" : process.env.BASE_PATH,
+		},
 	},
 	onwarn: (warning, handler) => {
 		if (warning.code.startsWith("a11y-")) return

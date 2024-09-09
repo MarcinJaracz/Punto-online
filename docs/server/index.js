@@ -103,7 +103,7 @@ const options = {
   root: Root,
   service_worker: false,
   templates: {
-    app: ({ head, body, assets: assets2, nonce, env }) => '<!doctype html>\n<html lang="en">\n	<head>\n		<meta charset="UTF-8" />\n		<meta\n			name="viewport"\n			content="width=device-width, initial-scale=1.0"\n		/>\n		<title>Punto Online</title>\n\n		' + head + '\n		<link\n			rel="icon"\n			href="' + assets2 + '/Punto-Icon.ico"\n		/>\n	</head>\n	<body>\n		<div style="display: contents">' + body + "</div>\n	</body>\n</html>\n",
+    app: ({ head, body, assets: assets2, nonce, env }) => '<!doctype html>\n<html lang="en">\n	<head>\n		<meta charset="UTF-8" />\n		<meta\n			name="viewport"\n			content="width=device-width, initial-scale=1.0"\n		/>\n		<title>Punto Online</title>\n\n		' + head + '\n		<link\n			rel="icon"\n			href="' + assets2 + '/favicon.ico"\n		/>\n	</head>\n	<body>\n		<div style="display: contents">' + body + "</div>\n	</body>\n</html>\n",
     error: ({ status, message }) => '<!doctype html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<title>' + message + `</title>
 
 		<style>

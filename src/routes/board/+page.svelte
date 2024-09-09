@@ -25,7 +25,14 @@
 								<div
 									class="box"
 									id="player{i + 1}"
-								></div>
+								>
+									<img
+										src="/card_head.svg"
+										alt="Player 1 Icon"
+										width="100"
+										height="100"
+									/>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -56,7 +63,14 @@
 								<div
 									class="box"
 									id="player{i + 3}"
-								></div>
+								>
+									<img
+										src="/card_head.svg"
+										alt="Player 1 Icon"
+										width="100"
+										height="100"
+									/>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -97,17 +111,22 @@
 		justify-content: center;
 		width: 100px;
 		height: 100px;
-		border: 1px solid rgba(31, 31, 31, 0.137);
-		background-color: rgba(79, 79, 79, 0.366);
+		border: 1px solid #1f1f1f23;
+		background-color: #4f4f4f5d;
 		border-radius: 10px;
 		font-size: 10px;
 		font-weight: bold;
 		cursor: default;
 		box-shadow:
-			0 4px 8px 0 rgba(0, 0, 0, 0.1),
-			0 6px 20px 0 rgba(0, 0, 0, 0.1);
+			0 4px 8px 0 #0000001a,
+			0 6px 20px 0 #0000001a;
 	}
-
+	.box img {
+		border-radius: 10px;
+	}
+	.box:hover {
+		background-color: #4f4f4f9a;
+	}
 	.bg-primary {
 		background-color: #0d6efd !important;
 	}
