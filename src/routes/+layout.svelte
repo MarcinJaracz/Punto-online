@@ -34,7 +34,7 @@
 		height: 100%;
 		display: grid;
 		background-image: url("/background.jpg");
-		background-color: rgba(255, 255, 255, 0.4) !important;
+		background-color: #ffffff66 !important;
 		background-repeat: no-repeat !important;
 		background-attachment: fixed !important;
 		background-size: cover !important;

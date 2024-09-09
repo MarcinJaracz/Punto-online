@@ -15,7 +15,7 @@
 		<div class="col-4">
 			<div class="row justify-content-center">
 				<img
-					src="./Punto-Icon.png"
+					src="./card_head.svg"
 					alt="Punto logo"
 				/>
 			</div>
@@ -145,13 +145,13 @@
 		height: 200px !important;
 		padding: 0%;
 		box-shadow:
-			0 4px 8px 0 rgba(0, 0, 0, 0.2),
-			0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			0 4px 8px 0 #00000033,
+			0 6px 20px 0 #00000030;
 		border-radius: 30px;
 	}
 	.gray {
-		color: rgba(122, 122, 122, 0);
-		-webkit-text-stroke: 1px rgb(0, 0, 0);
+		color: #7a7a7a00;
+		-webkit-text-stroke: 1px #000000;
 		cursor: not-allowed;
 	}
 </style>

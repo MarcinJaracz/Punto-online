@@ -2,6 +2,7 @@
 	import Return from "$components/return.svelte"
 	import { noPlayers, setGameExistState } from "$lib/store"
 	import { playClickSound } from "$lib/click"
+	//FIXME Ater refreash app sets parameters to defaul t=> noPlayers=2 and existinggame=false
 
 	const playerColors = ["primary", "success", "warning", "danger"]
 </script>
@@ -9,7 +10,6 @@
 <svelte:head>
 	<title>Board</title>
 </svelte:head>
-
 <body>
 	<div class="container-fluid">
 		<div class="d-flex justify-content-evenly">
@@ -126,6 +126,7 @@
 	}
 	.box:hover {
 		background-color: #4f4f4f9a;
+		cursor: pointer;
 	}
 	.bg-primary {
 		background-color: #0d6efd !important;

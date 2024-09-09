@@ -30,6 +30,6 @@
 		border-radius: 15px;
 		border-width: 4px;
 		border-style: solid;
-		background-color: rgba(255, 255, 255, 0.5);
+		background-color: #ffffff80;
 	}
 </style>
