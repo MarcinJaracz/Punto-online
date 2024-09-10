@@ -15,6 +15,7 @@
 					<div class="row justify-content-center">
 						<h3
 							class="text-center"
+							style="cursor:pointer;"
 							on:mousedown={toggleSounds}
 						>
 							sounds

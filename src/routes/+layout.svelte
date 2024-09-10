@@ -55,4 +55,7 @@
 		color: inherit !important;
 		text-decoration: inherit !important;
 	}
+	:global(h1) {
+		cursor: default;
+	}
 </style>
