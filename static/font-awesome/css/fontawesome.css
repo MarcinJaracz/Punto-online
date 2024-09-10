@@ -137,20 +137,12 @@
 .fa-spin {
   -webkit-animation-name: fa-spin;
           animation-name: fa-spin;
-  -webkit-animation-direction: normal;
-          animation-direction: normal;
   -webkit-animation-direction: var(--fa-spin-direction, normal);
           animation-direction: var(--fa-spin-direction, normal);
-  -webkit-animation-duration: 2s;
-          animation-duration: 2s;
   -webkit-animation-duration: var(--fa-spin-duration, 2s);
           animation-duration: var(--fa-spin-duration, 2s);
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
   -webkit-animation-iteration-count: var(--fa-spin-iteration-count, infinite);
           animation-iteration-count: var(--fa-spin-iteration-count, infinite);
-  -webkit-animation-timing-function: linear;
-          animation-timing-function: linear;
   -webkit-animation-timing-function: var(--fa-spin-timing, linear);
           animation-timing-function: var(--fa-spin-timing, linear); }
 
@@ -161,20 +153,12 @@
 .fa-spin-pulse {
   -webkit-animation-name: fa-spin;
           animation-name: fa-spin;
-  -webkit-animation-direction: normal;
-          animation-direction: normal;
   -webkit-animation-direction: var(--fa-spin-direction, normal);
           animation-direction: var(--fa-spin-direction, normal);
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
   -webkit-animation-duration: var(--fa-spin-duration, 1s);
           animation-duration: var(--fa-spin-duration, 1s);
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
   -webkit-animation-iteration-count: var(--fa-spin-iteration-count, infinite);
           animation-iteration-count: var(--fa-spin-iteration-count, infinite);
-  -webkit-animation-timing-function: steps(8);
-          animation-timing-function: steps(8);
   -webkit-animation-timing-function: var(--fa-spin-timing, steps(8));
           animation-timing-function: var(--fa-spin-timing, steps(8)); }
 
@@ -220,8 +204,6 @@
           transform: scale(-1, -1); }
 
 .fa-rotate-by {
-  -webkit-transform: rotate(none);
-          transform: rotate(none);
   -webkit-transform: rotate(var(--fa-rotate-angle, none));
           transform: rotate(var(--fa-rotate-angle, none)); }
 

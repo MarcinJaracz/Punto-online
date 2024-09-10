@@ -140,8 +140,6 @@ svg:not(:root).svg-inline--fa {
   text-overflow: ellipsis;
   top: 0;
   top: var(--fa-top, 0);
-  -webkit-transform: scale(0.25);
-          transform: scale(0.25);
   -webkit-transform: scale(var(--fa-counter-scale, 0.25));
           transform: scale(var(--fa-counter-scale, 0.25));
   -webkit-transform-origin: top right;
@@ -153,8 +151,6 @@ svg:not(:root).svg-inline--fa {
   right: 0;
   right: var(--fa-right, 0);
   top: auto;
-  -webkit-transform: scale(0.25);
-          transform: scale(0.25);
   -webkit-transform: scale(var(--fa-layers-scale, 0.25));
           transform: scale(var(--fa-layers-scale, 0.25));
   -webkit-transform-origin: bottom right;
@@ -167,8 +163,6 @@ svg:not(:root).svg-inline--fa {
   left: var(--fa-left, 0);
   right: auto;
   top: auto;
-  -webkit-transform: scale(0.25);
-          transform: scale(0.25);
   -webkit-transform: scale(var(--fa-layers-scale, 0.25));
           transform: scale(var(--fa-layers-scale, 0.25));
   -webkit-transform-origin: bottom left;
@@ -179,8 +173,6 @@ svg:not(:root).svg-inline--fa {
   top: var(--fa-top, 0);
   right: 0;
   right: var(--fa-right, 0);
-  -webkit-transform: scale(0.25);
-          transform: scale(0.25);
   -webkit-transform: scale(var(--fa-layers-scale, 0.25));
           transform: scale(var(--fa-layers-scale, 0.25));
   -webkit-transform-origin: top right;
@@ -192,8 +184,6 @@ svg:not(:root).svg-inline--fa {
   right: auto;
   top: 0;
   top: var(--fa-top, 0);
-  -webkit-transform: scale(0.25);
-          transform: scale(0.25);
   -webkit-transform: scale(var(--fa-layers-scale, 0.25));
           transform: scale(var(--fa-layers-scale, 0.25));
   -webkit-transform-origin: top left;
@@ -305,20 +295,12 @@ svg:not(:root).svg-inline--fa {
 .fa-spin {
   -webkit-animation-name: fa-spin;
           animation-name: fa-spin;
-  -webkit-animation-direction: normal;
-          animation-direction: normal;
   -webkit-animation-direction: var(--fa-spin-direction, normal);
           animation-direction: var(--fa-spin-direction, normal);
-  -webkit-animation-duration: 2s;
-          animation-duration: 2s;
   -webkit-animation-duration: var(--fa-spin-duration, 2s);
           animation-duration: var(--fa-spin-duration, 2s);
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
   -webkit-animation-iteration-count: var(--fa-spin-iteration-count, infinite);
           animation-iteration-count: var(--fa-spin-iteration-count, infinite);
-  -webkit-animation-timing-function: linear;
-          animation-timing-function: linear;
   -webkit-animation-timing-function: var(--fa-spin-timing, linear);
           animation-timing-function: var(--fa-spin-timing, linear); }
 
@@ -329,20 +311,12 @@ svg:not(:root).svg-inline--fa {
 .fa-spin-pulse {
   -webkit-animation-name: fa-spin;
           animation-name: fa-spin;
-  -webkit-animation-direction: normal;
-          animation-direction: normal;
   -webkit-animation-direction: var(--fa-spin-direction, normal);
           animation-direction: var(--fa-spin-direction, normal);
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
   -webkit-animation-duration: var(--fa-spin-duration, 1s);
           animation-duration: var(--fa-spin-duration, 1s);
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
   -webkit-animation-iteration-count: var(--fa-spin-iteration-count, infinite);
           animation-iteration-count: var(--fa-spin-iteration-count, infinite);
-  -webkit-animation-timing-function: steps(8);
-          animation-timing-function: steps(8);
   -webkit-animation-timing-function: var(--fa-spin-timing, steps(8));
           animation-timing-function: var(--fa-spin-timing, steps(8)); }
 
@@ -388,8 +362,6 @@ svg:not(:root).svg-inline--fa {
           transform: scale(-1, -1); }
 
 .fa-rotate-by {
-  -webkit-transform: rotate(none);
-          transform: rotate(none);
   -webkit-transform: rotate(var(--fa-rotate-angle, none));
           transform: rotate(var(--fa-rotate-angle, none)); }
 
