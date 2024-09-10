@@ -144,10 +144,12 @@
 		width: 200px !important;
 		height: 200px !important;
 		padding: 0%;
+		margin: 0%;
 		box-shadow:
 			0 4px 8px 0 #00000033,
 			0 6px 20px 0 #00000030;
 		border-radius: 30px;
+		/* FIXME Find out why image shrinks after changing the window size */
 	}
 	.gray {
 		color: #7a7a7a00;

@@ -2,8 +2,6 @@
 	import Return from "$components/return.svelte"
 	import { noPlayers, setGameExistState } from "$lib/store"
 	import { playClickSound } from "$lib/click"
-	//FIXME Ater refreash app sets parameters to defaul t=> noPlayers=2 and existinggame=false
-
 	const playerColors = ["primary", "success", "warning", "danger"]
 </script>
 
@@ -12,9 +10,15 @@
 </svelte:head>
 <body>
 	<div class="container-fluid">
-		<div class="d-flex justify-content-evenly">
+		<div
+			class="d-flex justify-content-evenly"
+			style="overflow-x: hidden;"
+		>
 			<!-- Kolumna 1 -->
-			<div class="col-1 d-flex flex-column justify-content-evenly">
+			<div
+				class="col-1 d-flex flex-column justify-content-evenly"
+				style="flex-shrink: 0; min-width: 100px;"
+			>
 				{#each Array(Math.min($noPlayers, 2)).fill(0) as _, i}
 					<div class="row">
 						<div class="player-container">
@@ -40,7 +44,10 @@
 			</div>
 
 			<!-- Plansza -->
-			<div class="col-7 mt-5">
+			<div
+				class="col-7 mt-5 d-flex flex-column"
+				style="flex-shrink: 0; min-width: 700px;"
+			>
 				<div class="board">
 					{#each Array(36).fill(0) as _, i}
 						<div
@@ -52,7 +59,10 @@
 			</div>
 
 			<!-- Kolumna 2 -->
-			<div class="col-1 d-flex flex-column justify-content-evenly">
+			<div
+				class="col-1 d-flex flex-column justify-content-evenly"
+				style="flex-shrink: 0; min-width: 100px;"
+			>
 				{#each Array(Math.max(0, $noPlayers - 2)).fill(0) as _, i}
 					<div class="row">
 						<div class="player-container">

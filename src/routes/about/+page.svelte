@@ -112,5 +112,6 @@
 		box-shadow:
 			0 4px 8px 0 #00000033,
 			0 6px 20px 0 #00000033;
+		/* FIXME Find out why image shrinks after changing the window size */
 	}
 </style>
