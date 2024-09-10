@@ -23,7 +23,10 @@
 					<div class="row">
 						<div class="player-container">
 							<div class="d-grid align-items-center justify-content-evenly">
-								<div class="d-block p-2 bg-{playerColors[i]} rounded text-white fs-4 text-center mb-2">
+								<div
+									class="d-block p-2 bg-{playerColors[i]} rounded text-white fs-4 text-center mb-2"
+									style="cursor: default;"
+								>
 									Player {i + 1}
 								</div>
 								<div
@@ -67,7 +70,10 @@
 					<div class="row">
 						<div class="player-container">
 							<div class="d-grid align-items-center justify-content-evenly">
-								<div class="d-block p-2 bg-{playerColors[i + 2]} rounded text-white fs-4 text-center mb-2">
+								<div
+									class="d-block p-2 bg-{playerColors[i + 2]} rounded text-white fs-4 text-center mb-2"
+									style="cursor: default;"
+								>
 									Player {i + 3}
 								</div>
 								<div
@@ -95,7 +101,7 @@
 					data-bs-toggle="tooltip"
 					data-placement="right"
 					title="Go back to main page"
-					style="border-radius:10px;"
+					style="--hover-color: #dc3545;"
 					on:click={() => setGameExistState(false)}
 					on:mousedown={playClickSound}
 				>

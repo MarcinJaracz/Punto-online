@@ -41,10 +41,17 @@
 		background-blend-mode: lighten !important;
 	}
 	:global(a) {
-		color: inherit !important;
-		text-decoration: inherit !important;
+		display: inline-block;
+		text-decoration: none;
+		color: inherit;
+		transition: background-color 0.3s ease;
+		border-radius: 10px;
+		padding: 5px 10px;
 	}
-	:global(html body a) {
+	:global(a:hover) {
+		background-color: var(--hover-color);
+	}
+	:global(html body) {
 		color: inherit !important;
 		text-decoration: inherit !important;
 	}

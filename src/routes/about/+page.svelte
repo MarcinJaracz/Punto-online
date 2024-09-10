@@ -1,13 +1,6 @@
 <script>
 	import Return from "$components/return.svelte"
 	import { playClickSound } from "$lib/click"
-
-	export let data
-	const colors = data.colors
-	let handleMouseOver = data.handleMouseOver
-	let handleMouseOut = data.handleMouseOut
-	let handleFocus = data.handleFocus
-	let handleBlur = data.handleBlur
 </script>
 
 <svelte:head>
@@ -34,16 +27,11 @@
 					>
 						<a
 							href="https://github.com/MarcinJaracz"
+							style="--hover-color: #007bff;"
 							target="_blank"
 							data-bs-toggle="tooltip"
 							data-placement="right"
 							title="Go visit my Github page"
-							style="border-radius:10px;"
-							on:mouseover={(e) => handleMouseOver(e, colors.gitHub)}
-							on:mouseout={handleMouseOut}
-							on:focus={(e) => handleFocus(e, colors.newGame)}
-							on:blur={handleBlur}
-							tabindex="0"
 						>
 							<i class="fa-brands fa-github"></i>
 							My GitHub
@@ -57,16 +45,11 @@
 					>
 						<a
 							href="https://www.linkedin.com/in/marcin-jaracz/Punto-online"
+							style="--hover-color: #ffc107;"
 							target="_blank"
 							data-bs-toggle="tooltip"
 							data-placement="right"
 							title="Check out my LinkedIn profile"
-							style="border-radius:10px;"
-							on:mouseover={(e) => handleMouseOver(e, colors.linkedIn)}
-							on:mouseout={handleMouseOut}
-							on:focus={(e) => handleFocus(e, colors.newGame)}
-							on:blur={handleBlur}
-							tabindex="0"
 							><i class="fa-brands fa-linkedin"></i>
 							My LinkedIn
 						</a>
@@ -79,16 +62,11 @@
 					>
 						<a
 							href="https://www.gamefactory-games.com/en/spiele/646214"
+							style="--hover-color: #28a745;"
 							target="_blank"
 							data-bs-toggle="tooltip"
 							data-placement="right"
 							title="Visit creator's website"
-							style="border-radius:10px;"
-							on:mouseover={(e) => handleMouseOver(e, colors.about)}
-							on:mouseout={handleMouseOut}
-							on:focus={(e) => handleFocus(e, colors.newGame)}
-							on:blur={handleBlur}
-							tabindex="0"
 							><i class="fas fa-dice" /> About the game
 						</a>
 					</h3>

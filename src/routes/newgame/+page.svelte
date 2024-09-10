@@ -24,7 +24,10 @@
 				<div class="row justify-content-center py-5">
 					<div class="d-flex flex-row py-1">
 						<div class="col justify-content-center">
-							<span class="d-block p-2 bg-danger rounded text-white h-100 text-center align-items-center">
+							<span
+								class="d-block p-2 bg-danger rounded text-white h-100 text-center align-items-center"
+								style="cursor: default;"
+							>
 								Choose number of players
 							</span>
 						</div>
@@ -98,7 +101,10 @@
 					</div>
 					<div class="d-flex flex-row py-1">
 						<div class="col justify-content-center">
-							<span class="d-block p-2 bg-success rounded text-white text-center align-items-center">
+							<span
+								class="d-block p-2 bg-success rounded text-white text-center align-items-center"
+								style="cursor: default;"
+							>
 								Choose how many cards are needed to win
 							</span>
 						</div>

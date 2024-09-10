@@ -10,6 +10,7 @@
 				data-bs-toggle="tooltip"
 				data-placement="right"
 				title="Go back to main page"
+				style="--hover-color: #dc3545;"
 				on:mousedown={playClickSound}
 			>
 				<i class="fa-sharp fa-light fa-circle-arrow-left" /> return
@@ -17,10 +18,3 @@
 		</h3>
 	</div>
 </div>
-
-<style>
-	h3:hover {
-		background-color: #dc3545;
-		border-radius: 10px;
-	}
-</style>
