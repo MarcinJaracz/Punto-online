@@ -1,16 +1,6 @@
 <script>
 	/** @type {import('./$types').LayoutData} */
 	import "bootstrap/dist/css/bootstrap.min.css"
-	import { afterNavigate } from "$app/navigation"
-	import { onMount } from "svelte"
-
-	onMount(async () => {
-		const bootstrap = await import("bootstrap/dist/js/bootstrap.bundle.min.js")
-	})
-
-	afterNavigate(() => {
-		console.log("Aktualna strona:", window.location.pathname)
-	})
 </script>
 
 <main>

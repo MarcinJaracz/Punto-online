@@ -8,7 +8,6 @@
 
 Web aplication hosted at - ![Static Badge](https://img.shields.io/badge/Punto--online-website-%235333ED?style=plastic&link=https%3A%2F%2Fpunto-online-fm5xw.kinsta.page%2F)
 
-
 ## To download this project clone or fork this repo.
 
 ```git

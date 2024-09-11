@@ -139,10 +139,10 @@
 	}
 	.box img {
 		border-radius: 10px;
+		cursor: grab;
 	}
 	.box:hover {
 		background-color: #4f4f4f9a;
-		cursor: pointer;
 	}
 	.bg-primary {
 		background-color: #0d6efd !important;

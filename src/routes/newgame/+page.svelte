@@ -1,13 +1,29 @@
 <script>
 	import Return from "$components/return.svelte"
+	import { slide } from "svelte/transition"
 	import { playClickSound } from "$lib/click"
-	import { setNoPlayers, setcardsToWin, setGameExistState } from "$lib/store.js"
+	import { setNoPlayers, setcardsToWin, setGameExistState, doesTheGameExist } from "$lib/store.js"
 	export let data
 	setNoPlayers(2)
 	setcardsToWin(5)
 	let handleEscape = data.handleEscape
 	let closePDF = data.closePDF
 	let showPDF = data.showPDF
+	let showModal = false
+
+	function handlePlayClick() {
+		if ($doesTheGameExist) {
+			showModal = true
+		} else {
+			setGameExistState(true)
+			playClickSound()
+			window.location.href = "/board"
+		}
+	}
+
+	function closeModal() {
+		showModal = false
+	}
 </script>
 
 <svelte:head>
@@ -191,26 +207,70 @@
 						></iframe>
 					</div>
 				</div>
+				<!-- WIP Add popup of pending game to avoid overreading -->
+				{#if showModal}
+					<!-- Overlay -->
+					<!-- [ ] Add animation slide:in and slide:out -->
+					<!-- [ ] Center Modal in Y axis -->
+					<div
+						class="modal fade show"
+						id="staticBackdrop"
+						tabindex="-1"
+						aria-labelledby="staticBackdropLabel"
+						aria-hidden="true"
+						style="display: block;"
+					>
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h1
+										class="modal-title fs-5"
+										id="staticBackdropLabel"
+									>
+										Game exists
+									</h1>
+									<button
+										type="button"
+										class="btn-close"
+										on:click={closeModal}
+									></button>
+								</div>
+								<div class="modal-body">There is already a pending game.</div>
+								<div class="modal-footer">
+									<button
+										type="button"
+										class="btn btn-secondary"
+										on:click={closeModal}>Cancel</button
+									>
+									<button
+										type="button"
+										class="btn btn-danger"
+										on:click={() => {
+											closeModal()
+											window.location.href = "/board"
+										}}
+									>
+										<i class="fa-solid fa-play"></i> Play new game
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Backdrop -->
+					<div class="modal-backdrop fade show"></div>
+				{/if}
 				<div class="row justify-content-center py-1">
 					<div class="col-10 text-center">
-						<a
-							href="/board"
-							data-sveltekit-preload-data="tap"
+						<button
+							type="button"
+							class="btn btn-primary"
+							on:click={handlePlayClick}
 						>
-							<button
-								type="button"
-								class="btn btn-primary"
-								on:click={() => {
-									setGameExistState(true)
-									playClickSound()
-								}}
-							>
-								<i class="fa-solid fa-play" />
-								Play
-							</button>
-						</a>
+							<i class="fa-solid fa-play"></i> Play
+						</button>
 					</div>
 				</div>
+
 				<div class="row justify-content-center">
 					<Return />
 				</div>
@@ -266,9 +326,16 @@
 		border-radius: 50%;
 		border: 0 solid;
 	}
+
 	.close-btn:hover {
 		color: red;
 		background-color: #424649;
 		cursor: pointer;
+	}
+
+	.modal-backdrop {
+		background-color: #00000081;
+		backdrop-filter: blur(50px);
+		z-index: 1040;
 	}
 </style>
