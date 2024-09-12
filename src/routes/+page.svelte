@@ -1,6 +1,11 @@
 <script>
 	import { playClickSound } from "$lib/click"
 	import { doesTheGameExist } from "$lib/store.js"
+	const text = "Punto Online"
+
+	const colors = ["#dc3545", "#007bff", "#ffc107", "#28a745"]
+
+	let letters = text.split("")
 </script>
 
 <div class="container vh-100">
@@ -13,8 +18,17 @@
 				/>
 			</div>
 			<div class="row justify-content-center">
-				<h1 class="text-center py-4">
-					<strong>Punto Online</strong>
+				<h1
+					class="text-center py-4"
+					style="font-family: 'Century Gothic Paneuropean'"
+				>
+					<strong>
+						{#each letters as letter, index}
+							<span style="color: {colors[index % colors.length]}; text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);"
+								>{letter}</span
+							>
+						{/each}
+					</strong>
 				</h1>
 			</div>
 			<div class="row justify-content-center">

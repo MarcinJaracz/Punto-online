@@ -1,6 +1,7 @@
 <script>
 	import Return from "$components/return.svelte"
-	import { slide } from "svelte/transition"
+	import { fade } from "svelte/transition"
+	import { sineInOut } from "svelte/easing"
 	import { playClickSound } from "$lib/click"
 	import { setNoPlayers, setcardsToWin, setGameExistState, doesTheGameExist } from "$lib/store.js"
 	export let data
@@ -207,11 +208,11 @@
 						></iframe>
 					</div>
 				</div>
-				<!-- WIP Add popup of pending game to avoid overreading -->
+				<!-- [x] Add popup of pending game to avoid overreading -->
 				{#if showModal}
 					<!-- Overlay -->
-					<!-- [ ] Add animation slide:in and slide:out -->
-					<!-- [ ] Center Modal in Y axis -->
+					<!-- [x] Add animation slide:in and slide:out -->
+					<!-- [x] Center Modal in Y axis -->
 					<div
 						class="modal fade show"
 						id="staticBackdrop"
@@ -219,8 +220,9 @@
 						aria-labelledby="staticBackdropLabel"
 						aria-hidden="true"
 						style="display: block;"
+						transition:fade={{ delay: 250, duration: 400, easing: sineInOut }}
 					>
-						<div class="modal-dialog">
+						<div class="modal-dialog modal-dialog-centered">
 							<div class="modal-content">
 								<div class="modal-header">
 									<h1
@@ -235,7 +237,9 @@
 										on:click={closeModal}
 									></button>
 								</div>
-								<div class="modal-body">There is already a pending game.</div>
+								<div class="modal-body">
+									There is already a pending game.<br />Are You sure You want to begin a new game?
+								</div>
 								<div class="modal-footer">
 									<button
 										type="button"

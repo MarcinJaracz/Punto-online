@@ -48,4 +48,10 @@
 	:global(h1) {
 		cursor: default;
 	}
+	@font-face {
+		font-family: "Century Gothic Paneuropean";
+		src: url("/fonts/century-gothic-paneuropean/CenturyGothicPaneuropeanExtraBold.ttf") format("truetype");
+		font-weight: normal;
+		font-style: normal;
+	}
 </style>
