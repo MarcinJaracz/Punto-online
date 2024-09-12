@@ -208,11 +208,8 @@
 						></iframe>
 					</div>
 				</div>
-				<!-- [x] Add popup of pending game to avoid overreading -->
 				{#if showModal}
 					<!-- Overlay -->
-					<!-- [x] Add animation slide:in and slide:out -->
-					<!-- [x] Center Modal in Y axis -->
 					<div
 						class="modal fade show"
 						id="staticBackdrop"

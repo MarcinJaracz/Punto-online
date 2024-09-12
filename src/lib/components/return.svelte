@@ -11,6 +11,7 @@
 				data-placement="right"
 				title="Go back to main page"
 				style="--hover-color: #dc3545;"
+				data-sveltekit-preload-data="tap"
 				on:mousedown={playClickSound}
 			>
 				<i class="fa-sharp fa-light fa-circle-arrow-left" /> return

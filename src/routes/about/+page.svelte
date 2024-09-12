@@ -72,6 +72,19 @@
 					</h3>
 				</div>
 				<div class="row justify-content-center">
+					<h3
+						class="text-center"
+						on:mousedown={playClickSound}
+					>
+						<a
+							href="/authors"
+							style="--hover-color: #dc3545;"
+						>
+							<i class="fa-regular fa-users"></i> About the authors
+						</a>
+					</h3>
+				</div>
+				<div class="row justify-content-center">
 					<Return />
 				</div>
 			</div>
