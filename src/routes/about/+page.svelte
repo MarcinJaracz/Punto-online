@@ -21,10 +21,7 @@
 					<h1 class="text-center py-3">About me</h1>
 				</div>
 				<div class="row justify-content-center">
-					<h3
-						class="text-center"
-						on:mousedown={playClickSound}
-					>
+					<h3 class="text-center">
 						<a
 							href="https://github.com/MarcinJaracz"
 							style="--hover-color: #007bff;"
@@ -32,6 +29,7 @@
 							data-bs-toggle="tooltip"
 							data-placement="right"
 							title="Go visit my Github page"
+							on:mousedown={playClickSound}
 						>
 							<i class="fa-brands fa-github"></i>
 							My GitHub
@@ -39,10 +37,7 @@
 					</h3>
 				</div>
 				<div class="row justify-content-center">
-					<h3
-						class="text-center"
-						on:mousedown={playClickSound}
-					>
+					<h3 class="text-center">
 						<a
 							href="https://www.linkedin.com/in/marcin-jaracz/Punto-online"
 							style="--hover-color: #ffc107;"
@@ -50,16 +45,14 @@
 							data-bs-toggle="tooltip"
 							data-placement="right"
 							title="Check out my LinkedIn profile"
+							on:mousedown={playClickSound}
 							><i class="fa-brands fa-linkedin"></i>
 							My LinkedIn
 						</a>
 					</h3>
 				</div>
 				<div class="row justify-content-center">
-					<h3
-						class="text-center"
-						on:mousedown={playClickSound}
-					>
+					<h3 class="text-center">
 						<a
 							href="https://www.gamefactory-games.com/en/spiele/646214"
 							style="--hover-color: #28a745;"
@@ -67,18 +60,17 @@
 							data-bs-toggle="tooltip"
 							data-placement="right"
 							title="Visit creator's website"
+							on:mousedown={playClickSound}
 							><i class="fas fa-dice" /> About the game
 						</a>
 					</h3>
 				</div>
 				<div class="row justify-content-center">
-					<h3
-						class="text-center"
-						on:mousedown={playClickSound}
-					>
+					<h3 class="text-center">
 						<a
 							href="/authors"
 							style="--hover-color: #dc3545;"
+							on:mousedown={playClickSound}
 						>
 							<i class="fa-regular fa-users"></i> About the authors
 						</a>

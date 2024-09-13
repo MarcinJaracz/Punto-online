@@ -1,10 +1,9 @@
 <script>
 	import { playClickSound } from "$lib/click"
 	import { doesTheGameExist } from "$lib/store.js"
+
 	const text = "Punto Online"
-
 	const colors = ["#dc3545", "#007bff", "#ffc107", "#28a745"]
-
 	let letters = text.split("")
 </script>
 
@@ -32,15 +31,13 @@
 				</h1>
 			</div>
 			<div class="row justify-content-center">
-				<h3
-					class="text-center"
-					on:mousedown={playClickSound}
-				>
+				<h3 class="text-center">
 					<a
 						id="newGame"
 						href="/newgame"
 						data-sveltekit-preload-data="tap"
 						style="--hover-color: #007bff;"
+						on:mousedown={playClickSound}
 					>
 						New Game
 					</a>
@@ -50,7 +47,6 @@
 				<h3
 					class="text-center"
 					class:gray={!$doesTheGameExist}
-					on:mousedown={playClickSound}
 				>
 					{#if $doesTheGameExist}
 						<a
@@ -58,6 +54,7 @@
 							href="/board"
 							data-sveltekit-preload-data="tap"
 							style="--hover-color: #ffc107;"
+							on:mousedown={playClickSound}
 						>
 							Continue
 						</a>
@@ -73,44 +70,38 @@
 				</h3>
 			</div>
 			<div class="row justify-content-center">
-				<h3
-					class="text-center"
-					on:mousedown={playClickSound}
-				>
+				<h3 class="text-center">
 					<a
 						id="about"
 						href="/about"
 						data-sveltekit-preload-data="tap"
 						style="--hover-color: #28a745;"
+						on:mousedown={playClickSound}
 					>
 						About
 					</a>
 				</h3>
 			</div>
 			<div class="row justify-content-center">
-				<h3
-					class="text-center"
-					on:mousedown={playClickSound}
-				>
+				<h3 class="text-center">
 					<a
 						id="settings"
 						href="/settings"
 						data-sveltekit-preload-data="tap"
 						style="--hover-color: #007bff;"
+						on:mousedown={playClickSound}
 					>
 						Settings
 					</a>
 				</h3>
 			</div>
 			<div class="row justify-content-center">
-				<h3
-					class="text-center"
-					on:mousedown={playClickSound}
-				>
+				<h3 class="text-center">
 					<a
 						id="exit"
 						href="https://duckduckgo.com/"
 						style="--hover-color: #dc3545;"
+						on:mousedown={playClickSound}
 					>
 						Exit
 					</a>
@@ -127,7 +118,6 @@
 		width: 200px !important;
 		height: 200px !important;
 		padding: 0%;
-		margin: 0%;
 		box-shadow:
 			0 4px 8px 0 #00000033,
 			0 6px 20px 0 #00000030;

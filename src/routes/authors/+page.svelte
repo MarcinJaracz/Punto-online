@@ -1,13 +1,11 @@
-<!-- TODO Add page about authors -->
 <script>
 	import Return from "$components/return.svelte"
-	import { playClickSound } from "$lib/click"
 </script>
 
 <body>
 	<div class="container">
 		<div class="d-flex justify-content-center align-items-center mt-3">
-			<div class="col-6">
+			<div class="col-7">
 				<div class="row justify-content-center">
 					<div class="mb-4">
 						<h3 class="text-center mb-1">About the project</h3>
@@ -35,13 +33,13 @@
 							PUNTO sums it up: minimum rules, maximum fun. Cleverness and luck will bring you victory. Reveal a card of your color,
 							place it next to an existing card. If a card on the table shows less points, you can cover it up. If you get 4 of
 							your own color in a row, you win the round. <i class="fas fa-quote-right" />
+							<a
+								href="https://www.gamefactory-games.com/en/spiele/646214"
+								target="_blank"
+							>
+								~gamefactory-games.com
+							</a>
 						</p>
-						<a
-							href="https://www.gamefactory-games.com/en/spiele/646214"
-							target="_blank"
-						>
-							~https://www.gamefactory-games.com/en/spiele/646214
-						</a>
 					</div>
 					<div class="text-center justify-content-center">
 						<h3>Authors</h3>
@@ -81,7 +79,7 @@
 		font-size: larger;
 		padding-top: 0%;
 	}
-	.col-6 {
+	.col-7 {
 		background-color: #ffffff60;
 		border-radius: 10px;
 		padding: 20px;
@@ -98,12 +96,10 @@
 	table {
 		margin: 0 auto;
 	}
-
 	td:first-child {
 		text-align: right;
 		font-size: larger;
 	}
-
 	td:last-child {
 		text-align: left;
 		padding-left: 10px;
