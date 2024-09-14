@@ -3,7 +3,7 @@
 	import { playClickSound } from "$lib/click"
 	import { colorHead } from "$lib/coloredtext"
 
-	const coloredText = colorHead("Punto Online")
+	const coloredText = colorHead("About me")
 </script>
 
 <svelte:head>

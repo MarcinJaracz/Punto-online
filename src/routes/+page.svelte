@@ -53,14 +53,14 @@
 							Continue
 						</a>
 					{:else}
-						<a
+						<span
 							data-bs-toggle="tooltip"
 							data-placement="right"
 							title="There is no active game"
 							class:gray={!$doesTheGameExist}
 						>
 							Continue
-						</a>
+						</span>
 					{/if}
 				</h3>
 			</div>
@@ -125,10 +125,11 @@
 	}
 	.gray:hover {
 		border: 4px solid #464646;
+		border-radius: 10px;
 		margin: 0px;
 		padding: 1px;
 	}
-	a {
-		transition: background-color 0.3s ease;
+	span {
+		transition: border 0.2s ease;
 	}
 </style>
