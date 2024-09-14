@@ -8,6 +8,10 @@
 </main>
 
 <svelte:head>
+	<meta
+		name="description"
+		content="This is an online verison of a card game called Punto, designed by Game Factory"
+	/>
 	<link
 		href="/font-awesome/css/all.min.css"
 		rel="stylesheet"
@@ -23,7 +27,7 @@
 		width: 100%;
 		height: 100%;
 		display: grid;
-		background-image: url("/background.jpg");
+		background-image: url("/background.webp");
 		background-color: #ffffff66 !important;
 		background-repeat: no-repeat !important;
 		background-attachment: fixed !important;

@@ -207,7 +207,6 @@
 							}}
 							aria-label="Close PDF viewer"><i class="fas fa-xmark" /></button
 						>
-
 						<iframe
 							title="overlay pdf"
 							id="pdf-frame"
@@ -289,6 +288,11 @@
 </body>
 
 <style>
+	.col-5 {
+		background-color: #ffffff96;
+		border-radius: 10px;
+		padding: 20px;
+	}
 	.centered-label {
 		display: flex;
 		justify-content: center;

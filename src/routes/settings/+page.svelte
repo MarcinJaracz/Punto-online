@@ -15,7 +15,7 @@
 		<div class="d-flex justify-content-center align-items-center h-100">
 			<div class="col-4">
 				<div class="row justify-content-center">
-					<div class="row justify-content-center">
+					<div class="row justify-content-center py-3">
 						<h1
 							class="text-center py-4"
 							style="font-family: 'Century Gothic Paneuropean'"
@@ -41,3 +41,11 @@
 		</div>
 	</div>
 </main>
+
+<style>
+	.col-4 {
+		background-color: #ffffff96;
+		border-radius: 10px;
+		padding: 20px;
+	}
+</style>

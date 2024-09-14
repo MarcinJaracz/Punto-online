@@ -29,6 +29,7 @@
 		"@types/eslint": "^9.6.0",
 		"@types/node": "^22.5.1",
 		"copyfiles": "^2.4.1",
+		"dropcss": "^1.0.16",
 		"electron": "^31.4.0",
 		"electron-builder": "^24.13.3",
 		"electron-vite": "^2.3.0",

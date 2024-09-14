@@ -10,14 +10,13 @@
 					<div class="mb-4">
 						<div>
 							<img
-								src="punto-box.png"
+								src="punto-box.webp"
 								alt="punto-box"
-								width="392px"
-								height="432px"
+								width="251px"
+								height="277px"
 							/>
 						</div>
 						<h3 class="text-center mb-3">Description</h3>
-
 						<p>
 							<i class="fas fa-quote-left" />
 							PUNTO sums it up: minimum rules, maximum fun. Cleverness and luck will bring you victory. Reveal a card of your color,
@@ -33,7 +32,6 @@
 					</div>
 					<div class="mb-4">
 						<h3 class="text-center mb-3">About the project</h3>
-
 						<p>
 							&emsp;This project includes images and graphics to which I do not hold any rights. All visual elements are used
 							solely for illustrative purposes, and no claim is made to their ownership. The project is purely a fun and
@@ -60,9 +58,9 @@
 						</table>
 					</div>
 				</div>
+				<Return />
 			</div>
 		</div>
-		<Return />
 	</div>
 </body>
 

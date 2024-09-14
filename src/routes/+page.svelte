@@ -15,7 +15,7 @@
 		<div class="col-4">
 			<div class="row justify-content-center">
 				<img
-					src="./Punto-Icon.png"
+					src="./Punto-Icon.webp"
 					alt="Punto logo"
 				/>
 			</div>
@@ -120,16 +120,16 @@
 		/* FIXME Find out why image shrinks after changing the window size */
 	}
 	.gray {
-		color: #464646;
+		color: #464646a6;
 		cursor: not-allowed;
-	}
-	.gray:hover {
-		border: 4px solid #464646;
-		border-radius: 10px;
-		margin: 0px;
-		padding: 1px;
 	}
 	span {
 		transition: border 0.2s ease;
+	}
+	.col-4 {
+		background-color: #ffffff96;
+		border-radius: 10px;
+		padding: 20px;
+		/* height: 100%; */
 	}
 </style>

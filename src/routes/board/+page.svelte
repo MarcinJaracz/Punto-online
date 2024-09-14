@@ -34,7 +34,7 @@
 									id="player{i + 1}"
 								>
 									<img
-										src="/Punto-Icon.png"
+										src="/Punto-Icon.webp"
 										alt="Player 1 Icon"
 										width="100"
 										height="100"
@@ -81,7 +81,7 @@
 									id="player{i + 3}"
 								>
 									<img
-										src="/Punto-Icon.png"
+										src="/Punto-Icon.webp"
 										alt="Player 1 Icon"
 										width="100"
 										height="100"

@@ -4,7 +4,11 @@ import { vitePreprocess } from "@sveltejs/vite-plugin-svelte"
 /** @type {import('@sveltejs/kit').Config} */
 
 const config = {
-	preprocess: [vitePreprocess()],
+	preprocess: [
+		vitePreprocess({
+			postcss: true,
+		}),
+	],
 	build: {
 		outDir: "docs",
 	},
@@ -13,7 +17,7 @@ const config = {
 			pages: "build",
 			assets: "build",
 			fallback: "index.html",
-			precompress: false,
+			precompress: true,
 			strict: true,
 		}),
 		alias: {

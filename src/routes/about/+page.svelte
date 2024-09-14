@@ -16,7 +16,7 @@
 			<div class="col-4">
 				<div class="row justify-content-center">
 					<img
-						src="profilepicture.jpg"
+						src="profilepicture.webp"
 						alt="profile picture"
 					/>
 				</div>
@@ -93,6 +93,11 @@
 </body>
 
 <style>
+	.col-4 {
+		background-color: #ffffff96;
+		border-radius: 10px;
+		padding: 20px;
+	}
 	img {
 		text-align: center !important;
 		width: 200px !important;
