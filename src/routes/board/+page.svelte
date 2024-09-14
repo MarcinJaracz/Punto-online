@@ -34,7 +34,7 @@
 									id="player{i + 1}"
 								>
 									<img
-										src="/card_head.svg"
+										src="/Punto-Icon.png"
 										alt="Player 1 Icon"
 										width="100"
 										height="100"
@@ -81,7 +81,7 @@
 									id="player{i + 3}"
 								>
 									<img
-										src="/card_head.svg"
+										src="/Punto-Icon.png"
 										alt="Player 1 Icon"
 										width="100"
 										height="100"
@@ -120,7 +120,6 @@
 		max-width: 640px;
 		margin: 0 auto;
 	}
-
 	.box {
 		display: flex;
 		align-items: center;

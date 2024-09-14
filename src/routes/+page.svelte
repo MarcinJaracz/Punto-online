@@ -1,18 +1,21 @@
 <script>
 	import { playClickSound } from "$lib/click"
 	import { doesTheGameExist } from "$lib/store.js"
+	import { colorHead } from "$lib/coloredtext"
 
-	const text = "Punto Online"
-	const colors = ["#dc3545", "#007bff", "#ffc107", "#28a745"]
-	let letters = text.split("")
+	const coloredText = colorHead("Punto Online")
 </script>
+
+<svelte:head>
+	<title>Punto Online</title>
+</svelte:head>
 
 <div class="container vh-100">
 	<div class="d-flex justify-content-center align-items-center vh-100">
 		<div class="col-4">
 			<div class="row justify-content-center">
 				<img
-					src="./card_head.svg"
+					src="./Punto-Icon.png"
 					alt="Punto logo"
 				/>
 			</div>
@@ -21,13 +24,7 @@
 					class="text-center py-4"
 					style="font-family: 'Century Gothic Paneuropean'"
 				>
-					<strong>
-						{#each letters as letter, index}
-							<span style="color: {colors[index % colors.length]}; text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);"
-								>{letter}</span
-							>
-						{/each}
-					</strong>
+					{@html coloredText}
 				</h1>
 			</div>
 			<div class="row justify-content-center">
@@ -44,10 +41,7 @@
 				</h3>
 			</div>
 			<div class="row justify-content-center display-disabled">
-				<h3
-					class="text-center"
-					class:gray={!$doesTheGameExist}
-				>
+				<h3 class="text-center">
 					{#if $doesTheGameExist}
 						<a
 							id="continue"
@@ -59,27 +53,15 @@
 							Continue
 						</a>
 					{:else}
-						<div
+						<a
 							data-bs-toggle="tooltip"
 							data-placement="right"
 							title="There is no active game"
+							class:gray={!$doesTheGameExist}
 						>
 							Continue
-						</div>
+						</a>
 					{/if}
-				</h3>
-			</div>
-			<div class="row justify-content-center">
-				<h3 class="text-center">
-					<a
-						id="about"
-						href="/about"
-						data-sveltekit-preload-data="tap"
-						style="--hover-color: #28a745;"
-						on:mousedown={playClickSound}
-					>
-						About
-					</a>
 				</h3>
 			</div>
 			<div class="row justify-content-center">
@@ -88,10 +70,23 @@
 						id="settings"
 						href="/settings"
 						data-sveltekit-preload-data="tap"
-						style="--hover-color: #007bff;"
+						style="--hover-color: #28a745;"
 						on:mousedown={playClickSound}
 					>
 						Settings
+					</a>
+				</h3>
+			</div>
+			<div class="row justify-content-center">
+				<h3 class="text-center">
+					<a
+						id="about"
+						href="/about"
+						data-sveltekit-preload-data="tap"
+						style="--hover-color: #007bff;"
+						on:mousedown={playClickSound}
+					>
+						About
 					</a>
 				</h3>
 			</div>
@@ -125,8 +120,15 @@
 		/* FIXME Find out why image shrinks after changing the window size */
 	}
 	.gray {
-		color: #7a7a7a00;
-		-webkit-text-stroke: 1px #000000;
+		color: #464646;
 		cursor: not-allowed;
+	}
+	.gray:hover {
+		border: 4px solid #464646;
+		margin: 0px;
+		padding: 1px;
+	}
+	a {
+		transition: background-color 0.3s ease;
 	}
 </style>

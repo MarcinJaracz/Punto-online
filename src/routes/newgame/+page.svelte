@@ -4,6 +4,9 @@
 	import { sineInOut } from "svelte/easing"
 	import { playClickSound } from "$lib/click"
 	import { setNoPlayers, setcardsToWin, setGameExistState, doesTheGameExist } from "$lib/store.js"
+	import { colorHead } from "$lib/coloredtext"
+
+	const coloredText = colorHead("New Game")
 	export let data
 	setNoPlayers(2)
 	setcardsToWin(5)
@@ -36,19 +39,24 @@
 		<div class="d-flex justify-content-center align-items-center h-100">
 			<div class="col-5">
 				<div class="row justify-content-center">
-					<h1 class="text-center">New Game</h1>
+					<h1
+						class="text-center py-4"
+						style="font-family: 'Century Gothic Paneuropean'"
+					>
+						{@html coloredText}
+					</h1>
 				</div>
 				<div class="row justify-content-center py-5">
 					<div class="d-flex flex-row py-1">
 						<div class="col justify-content-center">
-							<span
-								class="d-block p-2 bg-danger rounded text-white h-100 text-center align-items-center"
+							<div
+								class="d-flex p-2 bg-danger rounded text-white h-100 text-center align-items-center justify-content-center"
 								style="cursor: default;"
 							>
 								Choose number of players
-							</span>
+							</div>
 						</div>
-						<div class="col justify-content-center">
+						<div class="col d-flex justify-content-center">
 							<div
 								class="btn-group h-100 w-100"
 								role="group"
@@ -66,7 +74,7 @@
 									}}
 								/>
 								<label
-									class="btn btn-danger"
+									class="btn btn-danger d-flex align-items-center justify-content-center"
 									for="option1"
 								>
 									<i class="fas fa-user" />
@@ -181,7 +189,7 @@
 							data-placement="right"
 							title="Show user's manual"
 						>
-							How to play <i class="fa-solid fa-question" />
+							<i class="fas fa-book-open-reader" /> How to play
 						</button>
 					</div>
 				</div>

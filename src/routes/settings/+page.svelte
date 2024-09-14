@@ -1,6 +1,9 @@
 <script>
 	import Return from "$components/return.svelte"
 	import { soundsEnabled, toggleSounds } from "$lib/store"
+	import { colorHead } from "$lib/coloredtext"
+
+	const coloredText = colorHead("Settings")
 </script>
 
 <svelte:head>
@@ -13,6 +16,12 @@
 			<div class="col-4">
 				<div class="row justify-content-center">
 					<div class="row justify-content-center">
+						<h1
+							class="text-center py-4"
+							style="font-family: 'Century Gothic Paneuropean'"
+						>
+							{@html coloredText}
+						</h1>
 						<h3
 							class="text-center"
 							style="cursor:pointer;"

@@ -1,6 +1,9 @@
 <script>
 	import Return from "$components/return.svelte"
 	import { playClickSound } from "$lib/click"
+	import { colorHead } from "$lib/coloredtext"
+
+	const coloredText = colorHead("Punto Online")
 </script>
 
 <svelte:head>
@@ -18,7 +21,12 @@
 					/>
 				</div>
 				<div class="row justify-content-center">
-					<h1 class="text-center py-3">About me</h1>
+					<h1
+						class="text-center py-4"
+						style="font-family: 'Century Gothic Paneuropean'"
+					>
+						{@html coloredText}
+					</h1>
 				</div>
 				<div class="row justify-content-center">
 					<h3 class="text-center">
