@@ -2,6 +2,10 @@
 	import Return from "$components/return.svelte"
 </script>
 
+<svelte:head>
+	<title>About the project</title>
+</svelte:head>
+
 <body>
 	<div class="container">
 		<div class="d-flex justify-content-center align-items-center mt-3">
@@ -9,6 +13,7 @@
 				<div class="row justify-content-center">
 					<div class="mb-4">
 						<div>
+							<h3 class="text-center mb-3">Description</h3>
 							<img
 								src="punto-box.webp"
 								alt="punto-box"
@@ -16,7 +21,6 @@
 								height="277px"
 							/>
 						</div>
-						<h3 class="text-center mb-3">Description</h3>
 						<p>
 							<i class="fas fa-quote-left" />
 							PUNTO sums it up: minimum rules, maximum fun. Cleverness and luck will bring you victory. Reveal a card of your color,
