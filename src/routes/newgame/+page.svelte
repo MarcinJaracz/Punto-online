@@ -37,7 +37,8 @@
 <body>
 	<div class="container vh-100">
 		<div class="d-flex justify-content-center align-items-center h-100">
-			<div class="col-5">
+			<div class="col-7">
+				<!-- title of the page -->
 				<div class="row justify-content-center">
 					<h1
 						class="text-center py-4"
@@ -46,11 +47,14 @@
 						{@html coloredText}
 					</h1>
 				</div>
+				<!-- pickers -->
 				<div class="row justify-content-center py-5">
-					<div class="d-flex flex-row py-1">
+					<!-- numper of players -->
+					<div class="d-flex flex-row py-2">
 						<div class="col justify-content-center">
+							<!-- FIXME adjust te size of this div to stay in border of col-5 -->
 							<div
-								class="d-flex p-2 bg-danger rounded text-white h-100 text-center align-items-center justify-content-center"
+								class="d-flex p-2 bg-success fs-3 rounded text-white h-100 text-center align-items-center justify-content-center shadow"
 								style="cursor: default;"
 							>
 								Choose number of players
@@ -58,7 +62,7 @@
 						</div>
 						<div class="col d-flex justify-content-center">
 							<div
-								class="btn-group h-100 w-100"
+								class="btn-group h-100 w-100 shadow"
 								role="group"
 							>
 								<input
@@ -74,7 +78,7 @@
 									}}
 								/>
 								<label
-									class="btn btn-danger d-flex align-items-center justify-content-center"
+									class="btn btn-success d-flex align-items-center justify-content-center"
 									for="option1"
 								>
 									<i class="fas fa-user" />
@@ -93,7 +97,7 @@
 									}}
 								/>
 								<label
-									class="btn btn-danger"
+									class="btn btn-success"
 									for="option2"
 								>
 									<i class="fas fa-user" /><br />
@@ -113,7 +117,7 @@
 									}}
 								/>
 								<label
-									class="btn btn-danger"
+									class="btn btn-success"
 									for="option3"
 								>
 									<i class="fas fa-user" />
@@ -124,10 +128,11 @@
 							</div>
 						</div>
 					</div>
-					<div class="d-flex flex-row py-1">
+					<!-- number of cards to -->
+					<div class="d-flex flex-row py-2">
 						<div class="col justify-content-center">
 							<span
-								class="d-block p-2 bg-success rounded text-white text-center align-items-center"
+								class="d-block p-2 fs-3 bg-success rounded text-white text-center align-items-center shadow"
 								style="cursor: default;"
 							>
 								Choose how many cards are needed to win
@@ -135,7 +140,7 @@
 						</div>
 						<div class="col justify-content-center">
 							<div
-								class="btn-group h-100 w-100"
+								class="btn-group h-100 w-100 shadow"
 								role="group"
 							>
 								<input
@@ -176,27 +181,37 @@
 						</div>
 					</div>
 				</div>
-				<div class="row justify-content-center py-1">
-					<div class="col-10 text-center">
-						<button
-							type="button"
-							class="btn btn-warning"
-							on:click={() => {
-								showPDF()
-								playClickSound()
-							}}
-							data-bs-toggle="tooltip"
-							data-placement="right"
-							title="Show user's manual"
-						>
-							<i class="fas fa-book-open-reader" /> How to play
-						</button>
+				<!--buttons -->
+				<div class="d-flex justify-content-evenly align-items-center py-1">
+					<div class="d-inline-block align-self-center bg-danger rounded">
+						<Return />
 					</div>
+					<button
+						type="button"
+						class="btn btn-warning shadow fs-3"
+						on:click={() => {
+							showPDF()
+							playClickSound()
+						}}
+						data-bs-toggle="tooltip"
+						data-placement="right"
+						title="Show user's manual"
+					>
+						<i class="fas fa-book-open-reader" /> How to play
+					</button>
+
+					<button
+						type="button"
+						class="btn btn-primary shadow fs-3"
+						on:click={handlePlayClick}
+					>
+						<i class="fa-solid fa-play"></i> Play
+					</button>
 				</div>
 				<!-- Overlay -->
 				<div
 					id="pdf-overlay"
-					class="overlay"
+					class="overlay shadow"
 				>
 					<div class="overlay-content">
 						<button
@@ -215,8 +230,8 @@
 						></iframe>
 					</div>
 				</div>
+				<!-- Overlay -->
 				{#if showModal}
-					<!-- Overlay -->
 					<div
 						class="modal fade show"
 						id="staticBackdrop"
@@ -267,28 +282,13 @@
 					<!-- Backdrop -->
 					<div class="modal-backdrop fade show"></div>
 				{/if}
-				<div class="row justify-content-center py-1">
-					<div class="col-10 text-center">
-						<button
-							type="button"
-							class="btn btn-primary"
-							on:click={handlePlayClick}
-						>
-							<i class="fa-solid fa-play"></i> Play
-						</button>
-					</div>
-				</div>
-
-				<div class="row justify-content-center">
-					<Return />
-				</div>
 			</div>
 		</div>
 	</div>
 </body>
 
 <style>
-	.col-5 {
+	.col-7 {
 		background-color: #ffffff96;
 		border-radius: 10px;
 		padding: 20px;

@@ -62,7 +62,9 @@
 						</table>
 					</div>
 				</div>
-				<Return />
+				<div class="nav justify-content-center pt-4">
+					<Return />
+				</div>
 			</div>
 		</div>
 	</div>

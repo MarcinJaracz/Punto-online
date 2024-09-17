@@ -2,9 +2,12 @@
 	import { playClickSound } from "$lib/click"
 </script>
 
-<div class="container">
-	<div class="nav justify-content-center pt-4">
-		<h3>
+<div
+	class="container"
+	style="padding: 6px 12px;"
+>
+	<div class="nav justify-content-center">
+		<h3 class="m-0">
 			<a
 				href="/"
 				data-bs-toggle="tooltip"

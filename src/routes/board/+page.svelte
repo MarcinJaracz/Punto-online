@@ -25,7 +25,7 @@
 						<div class="player-container">
 							<div class="d-grid align-items-center justify-content-evenly">
 								<div
-									class="d-block p-2 bg-{playerColors[i]} rounded text-white fs-4 text-center mb-2"
+									class="d-block p-2 bg-{playerColors[i]} rounded text-white fs-4 text-center mb-2 shadow"
 									style="cursor: default;"
 								>
 									Player {i + 1}
@@ -72,7 +72,7 @@
 						<div class="player-container">
 							<div class="d-grid align-items-center justify-content-evenly">
 								<div
-									class="d-block p-2 bg-{playerColors[i + 2]} rounded text-white fs-4 text-center mb-2"
+									class="d-block p-2 bg-{playerColors[i + 2]} rounded text-white fs-4 text-center mb-2 shadow"
 									style="cursor: default;"
 								>
 									Player {i + 3}
@@ -94,7 +94,9 @@
 				{/each}
 			</div>
 		</div>
-		<Return />
+		<div class="nav justify-content-center pt-4">
+			<Return />
+		</div>
 		<div class="nav justify-content-center pt-4">
 			<h3>
 				<a
