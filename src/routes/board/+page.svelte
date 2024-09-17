@@ -3,6 +3,7 @@
 	import { noPlayers, setGameExistState } from "$lib/store"
 	import { playClickSound } from "$lib/click"
 	const playerColors = ["primary", "success", "warning", "danger"]
+	import Cards from "$lib/components/cards.svelte"
 </script>
 
 <svelte:head>
@@ -109,6 +110,9 @@
 				</a>
 			</h3>
 		</div>
+	</div>
+	<div class="nav justify-content-center pt-1">
+		<!-- <Cards /> -->
 	</div>
 </body>
 

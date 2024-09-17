@@ -1,41 +1,60 @@
 <script>
 	import { onMount } from "svelte"
-	export let numColumns = 18
-	export let numRows = 4
-	export let cardWidth = 100
-	export let cardHeight = 100
-	export let cardsDataUrl = "/cards.json"
+
+	export let color = null
 
 	let cards = []
-
-	async function loadCards() {
-		const response = await fetch(cardsDataUrl)
-		if (response.ok) {
-			const allCards = await response.json()
-			cards = allCards
-		}
-	}
+	let filteredCards = []
 
 	onMount(() => {
 		loadCards()
 	})
 
-	function getBackgroundPosition(index) {
-		const row = Math.floor(index / numColumns)
-		const col = index % numColumns
-		const x = col * cardWidth
-		const y = row * cardHeight
+	async function loadCards() {
+		try {
+			const response = await fetch("/cards.json")
+			if (response.ok) {
+				let allCards = await response.json()
+				cards = allCards
+				filterCards() // Filter cards after loading
+			} else {
+				console.error("Failed to load cards:", response.statusText)
+			}
+		} catch (error) {
+			console.error("Error loading cards:", error)
+		}
+	}
+
+	function getBackgroundPosition(card) {
+		const x = card.position.col * 100
+		const y = card.position.row * 100
 		return `-${x}px -${y}px`
 	}
 
 	function flipCard(card) {
-		card.flipped = !card.flipped
-		cards = [...cards]
+		// console.log(`Flipping card: ${card.name} | Current flipped state: ${card.flipped}`) // Debug log to check if flipCard is called
+		const updatedCards = cards.map((c) => (c.name === card.name ? { ...c, flipped: !c.flipped } : c))
+		cards = updatedCards
+
+		filterCards()
+	}
+
+	function filterCards() {
+		if (color === null) {
+			filteredCards = cards
+		} else {
+			filteredCards = cards.filter((card) => card.color === color)
+		}
+	}
+
+	$: {
+		filterCards()
+		// console.log("Filtered Cards:", filteredCards) // Debug output
 	}
 </script>
 
-<div class="cards-container justify-content-center">
-	{#each cards as card, index}
+<div class="cards-container">
+	{#each filteredCards as card}
 		<div
 			class="flip-card"
 			on:click={() => flipCard(card)}
@@ -43,7 +62,7 @@
 			<div class="flip-card-inner {card.flipped ? 'flipped' : ''}">
 				<div
 					class="flip-card-front"
-					style="background-position: {getBackgroundPosition(index)};"
+					style="background-position: {getBackgroundPosition(card)};"
 				></div>
 				<div class="flip-card-back"></div>
 			</div>
@@ -53,9 +72,8 @@
 
 <style>
 	.cards-container {
-		margin-top: 100px;
 		display: grid;
-		grid-template-columns: repeat(var(--columns, 9), 100px);
+		grid-template-columns: repeat(9, 100px);
 		gap: 10px;
 	}
 

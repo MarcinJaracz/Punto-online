@@ -1,515 +1,77 @@
-{
-	"yellow": [
-	{
-		"id": "yellow_1",
-		"name": "Yellow 1",
-		"points": 1,
-		"position": { "row": 1, "col": 1 },
-		"flipped": false
+[
+    { "id": "yellow_1", "name": "Yellow 1", "points": 1, "position": { "row": 0, "col": 0 }, "flipped": false, "color": "yellow" },
+    { "id": "yellow_2", "name": "Yellow 2", "points": 2, "position": { "row": 0, "col": 1 }, "flipped": false, "color": "yellow" },
+    { "id": "yellow_3", "name": "Yellow 3", "points": 3, "position": { "row": 0, "col": 2 }, "flipped": false, "color": "yellow" },
+    { "id": "yellow_4", "name": "Yellow 4", "points": 4, "position": { "row": 0, "col": 3 }, "flipped": false, "color": "yellow" },
+    { "id": "yellow_5", "name": "Yellow 5", "points": 5, "position": { "row": 0, "col": 4 }, "flipped": false, "color": "yellow" },
+    { "id": "yellow_6", "name": "Yellow 6", "points": 6, "position": { "row": 0, "col": 5 }, "flipped": false, "color": "yellow" },
+    { "id": "yellow_7", "name": "Yellow 7", "points": 7, "position": { "row": 0, "col": 6 }, "flipped": false, "color": "yellow" },
+    { "id": "yellow_8", "name": "Yellow 8", "points": 8, "position": { "row": 0, "col": 7 }, "flipped": false, "color": "yellow" },
+    { "id": "yellow_9", "name": "Yellow 9", "points": 9, "position": { "row": 0, "col": 8 }, "flipped": false, "color": "yellow" },
+    { "id": "yellow_10", "name": "Yellow 10", "points": 1, "position": { "row": 0, "col": 0 }, "flipped": false, "color": "yellow" },
+    { "id": "yellow_11", "name": "Yellow 11", "points": 2, "position": { "row": 0, "col": 1 }, "flipped": false, "color": "yellow" },
+    { "id": "yellow_12", "name": "Yellow 12", "points": 3, "position": { "row": 0, "col": 2 }, "flipped": false, "color": "yellow" },
+    { "id": "yellow_13", "name": "Yellow 13", "points": 4, "position": { "row": 0, "col": 3 }, "flipped": false, "color": "yellow" },
+    { "id": "yellow_14", "name": "Yellow 14", "points": 5, "position": { "row": 0, "col": 4 }, "flipped": false, "color": "yellow" },
+    { "id": "yellow_15", "name": "Yellow 15", "points": 6, "position": { "row": 0, "col": 5 }, "flipped": false, "color": "yellow" },
+    { "id": "yellow_16", "name": "Yellow 16", "points": 7, "position": { "row": 0, "col": 6 }, "flipped": false, "color": "yellow" },
+    { "id": "yellow_17", "name": "Yellow 17", "points": 8, "position": { "row": 0, "col": 7 }, "flipped": false, "color": "yellow" },
+    { "id": "yellow_18", "name": "Yellow 18", "points": 9, "position": { "row": 0, "col": 8 }, "flipped": false, "color": "yellow" },
 
-	},
-	{
-		"id": "yellow_2",
-		"name": "Yellow 2",
-		"points": 2,
-		"position": { "row": 1, "col": 2 },
-		"flipped": false
-	},
-	{
-		"id": "yellow_3",
-		"name": "Yellow 3",
-		"points": 3,
-		"position": { "row": 1, "col": 3 },
-		"flipped": false
-	},
-	{
-		"id": "yellow_4",
-		"name": "Yellow 4",
-		"points": 4,
-		"position": { "row": 1, "col": 4 },
-		"flipped": false
-	},
-	{
-		"id": "yellow_5",
-		"name": "Yellow 5",
-		"points": 5,
-		"position": { "row": 1, "col": 5 },
-		"flipped": false
-	},
-	{
-		"id": "yellow_6",
-		"name": "Yellow 6",
-		"points": 6,
-		"position": { "row": 1, "col": 6 },
-		"flipped": false
-	},
-	{
-		"id": "yellow_7",
-		"name": "Yellow 7",
-		"points": 7,
-		"position": { "row": 1, "col": 7 },
-		"flipped": false
-	},
-	{
-		"id": "yellow_8",
-		"name": "Yellow 8",
-		"points": 8,
-		"position": { "row": 1, "col": 8 },
-		"flipped": false
-	},
-	{
-		"id": "yellow_9",
-		"name": "Yellow 9",
-		"points": 9,
-		"position": { "row": 1, "col": 9 },
-		"flipped": false
-	},
-	{
-		"id": "yellow_10",
-		"name": "Yellow 1",
-		"points": 1,
-		"position": { "row": 1, "col": 1 },
-		"flipped": false
-	},
-	{
-		"id": "yellow_11",
-		"name": "Yellow 2",
-		"points": 2,
-		"position": { "row": 1, "col": 2 },
-		"flipped": false
-	},
-	{
-		"id": "yellow_12",
-		"name": "Yellow 3",
-		"points": 3,
-		"position": { "row": 1, "col": 3 },
-		"flipped": false
-	},
-	{
-		"id": "yellow_13",
-		"name": "Yellow 4",
-		"points": 4,
-		"position": { "row": 1, "col": 4 },
-		"flipped": false
-	},
-	{
-		"id": "yellow_14",
-		"name": "Yellow 5",
-		"points": 5,
-		"position": { "row": 1, "col": 5 },
-		"flipped": false
-	},
-	{
-		"id": "yellow_15",
-		"name": "Yellow 6",
-		"points": 6,
-		"position": { "row": 1, "col": 6 },
-		"flipped": false
-	},
-	{
-		"id": "yellow_16",
-		"name": "Yellow 7",
-		"points": 7,
-		"position": { "row": 1, "col": 7 },
-		"flipped": false
-	},
-	{
-		"id": "yellow_17",
-		"name": "Yellow 8",
-		"points": 8,
-		"position": { "row": 1, "col": 8 },
-		"flipped": false
-	},
-	{
-		"id": "yellow_18",
-		"name": "Yellow 9",
-		"points": 9,
-		"position": { "row": 1, "col": 9 },
-		"flipped": false
-	}
-],
-	"green": [
-	{
-		"id": "green_1",
-		"name": "Green 1",
-		"points": 1,
-		"position": { "row": 2, "col": 1 },
-		"flipped": false
-	},
-	{
-		"id": "green_2",
-		"name": "Green 2",
-		"points": 2,
-		"position": { "row": 2, "col": 2 },
-		"flipped": false
-	},
-	{
-		"id": "green_3",
-		"name": "Green 3",
-		"points": 3,
-		"position": { "row": 2, "col": 3 },
-		"flipped": false
-	},
-	{
-		"id": "green_4",
-		"name": "Green 4",
-		"points": 4,
-		"position": { "row": 2, "col": 4 },
-		"flipped": false
-	},
-	{
-		"id": "green_5",
-		"name": "Green 5",
-		"points": 5,
-		"position": { "row": 2, "col": 5 },
-		"flipped": false
-	},
-	{
-		"id": "green_6",
-		"name": "Green 6",
-		"points": 6,
-		"position": { "row": 2, "col": 6 },
-		"flipped": false
-	},
-	{
-		"id": "green_7",
-		"name": "Green 7",
-		"points": 7,
-		"position": { "row": 2, "col": 7 },
-		"flipped": false
-	},
-	{
-		"id": "green_8",
-		"name": "Green 8",
-		"points": 8,
-		"position": { "row": 2, "col": 8 },
-		"flipped": false
-	},
-	{
-		"id": "green_9",
-		"name": "Green 9",
-		"points": 9,
-		"position": { "row": 2, "col": 9 },
-		"flipped": false
-	},
-	{
-		"id": "green_10",
-		"name": "Green 1",
-		"points": 1,
-		"position": { "row": 2, "col": 1 },
-		"flipped": false
-	},
-	{
-		"id": "green_11",
-		"name": "Green 2",
-		"points": 2,
-		"position": { "row": 2, "col": 2 },
-		"flipped": false
-	},
-	{
-		"id": "green_12",
-		"name": "Green 3",
-		"points": 3,
-		"position": { "row": 2, "col": 3 },
-		"flipped": false
-	},
-	{
-		"id": "green_13",
-		"name": "Green 4",
-		"points": 4,
-		"position": { "row": 2, "col": 4 },
-		"flipped": false
-	},
-	{
-		"id": "green_14",
-		"name": "Green 5",
-		"points": 5,
-		"position": { "row": 2, "col": 5 },
-		"flipped": false
-	},
-	{
-		"id": "green_15",
-		"name": "Green 6",
-		"points": 6,
-		"position": { "row": 2, "col": 6 },
-		"flipped": false
-	},
-	{
-		"id": "green_16",
-		"name": "Green 7",
-		"points": 7,
-		"position": { "row": 2, "col": 7 },
-		"flipped": false
-	},
-	{
-		"id": "green_17",
-		"name": "Green 8",
-		"points": 8,
-		"position": { "row": 2, "col": 8 },
-		"flipped": false
-	},
-	{
-		"id": "green_18",
-		"name": "Green 9",
-		"points": 9,
-		"position": { "row": 2, "col": 9 },
-		"flipped": false
-	}
-],
-	"blue": [
-	{
-		"id": "blue_1",
-		"name": "Blue 1",
-		"points": 1,
-		"position": { "row": 3, "col": 1 },
-		"flipped": false
-	},
-	{
-		"id": "blue_2",
-		"name": "Blue 2",
-		"points": 2,
-		"position": { "row": 3, "col": 2 },
-		"flipped": false
-	},
-	{
-		"id": "blue_3",
-		"name": "Blue 3",
-		"points": 3,
-		"position": { "row": 3, "col": 3 },
-		"flipped": false
-	},
-	{
-		"id": "blue_4",
-		"name": "Blue 4",
-		"points": 4,
-		"position": { "row": 3, "col": 4 },
-		"flipped": false
-	},
-	{
-		"id": "blue_5",
-		"name": "Blue 5",
-		"points": 5,
-		"position": { "row": 3, "col": 5 },
-		"flipped": false
-	},
-	{
-		"id": "blue_6",
-		"name": "Blue 6",
-		"points": 6,
-		"position": { "row": 3, "col": 6 },
-		"flipped": false
-	},
-	{
-		"id": "blue_7",
-		"name": "Blue 7",
-		"points": 7,
-		"position": { "row": 3, "col": 7 },
-		"flipped": false
-	},
-	{
-		"id": "blue_8",
-		"name": "Blue 8",
-		"points": 8,
-		"position": { "row": 3, "col": 8 },
-		"flipped": false
-	},
-	{
-		"id": "blue_9",
-		"name": "Blue 9",
-		"points": 9,
-		"position": { "row": 3, "col": 9 },
-		"flipped": false
-	},
-	{
-		"id": "blue_10",
-		"name": "Blue 1",
-		"points": 1,
-		"position": { "row": 3, "col": 1 },
-		"flipped": false
-	},
-	{
-		"id": "blue_11",
-		"name": "Blue 2",
-		"points": 2,
-		"position": { "row": 3, "col": 2 },
-		"flipped": false
-	},
-	{
-		"id": "blue_12",
-		"name": "Blue 3",
-		"points": 3,
-		"position": { "row": 3, "col": 3 },
-		"flipped": false
-	},
-	{
-		"id": "blue_13",
-		"name": "Blue 4",
-		"points": 4,
-		"position": { "row": 3, "col": 4 },
-		"flipped": false
-	},
-	{
-		"id": "blue_14",
-		"name": "Blue 5",
-		"points": 5,
-		"position": { "row": 3, "col": 5 },
-		"flipped": false
-	},
-	{
-		"id": "blue_15",
-		"name": "Blue 6",
-		"points": 6,
-		"position": { "row": 3, "col": 6 },
-		"flipped": false
-	},
-	{
-		"id": "blue_16",
-		"name": "Blue 7",
-		"points": 7,
-		"position": { "row": 3, "col": 7 },
-		"flipped": false
-	},
-	{
-		"id": "blue_17",
-		"name": "Blue 8",
-		"points": 8,
-		"position": { "row": 3, "col": 8 },
-		"flipped": false
-	},
-	{
-		"id": "blue_18",
-		"name": "Blue 9",
-		"points": 9,
-		"position": { "row": 3, "col": 9 },
-		"flipped": false
-	}
-],
-	"red": [
-	{
-		"id": "red_1",
-		"name": "Red 1",
-		"points": 1,
-		"position": { "row": 4, "col": 1 },
-		"flipped": false
-	},
-	{
-		"id": "red_2",
-		"name": "Red 2",
-		"points": 2,
-		"position": { "row": 4, "col": 2 },
-		"flipped": false
-	},
-	{
-		"id": "red_3",
-		"name": "Red 3",
-		"points": 3,
-		"position": { "row": 4, "col": 3 },
-		"flipped": false
-	},
-	{
-		"id": "red_4",
-		"name": "Red 4",
-		"points": 4,
-		"position": { "row": 4, "col": 4 },
-		"flipped": false
-	},
-	{
-		"id": "red_5",
-		"name": "Red 5",
-		"points": 5,
-		"position": { "row": 4, "col": 5 },
-		"flipped": false
-	},
-	{
-		"id": "red_6",
-		"name": "Red 6",
-		"points": 6,
-		"position": { "row": 4, "col": 6 },
-		"flipped": false
-	},
-	{
-		"id": "red_7",
-		"name": "Red 7",
-		"points": 7,
-		"position": { "row": 4, "col": 7 },
-		"flipped": false
-	},
-	{
-		"id": "red_8",
-		"name": "Red 8",
-		"points": 8,
-		"position": { "row": 4, "col": 8 },
-		"flipped": false
-	},
-	{
-		"id": "red_9",
-		"name": "Red 9",
-		"points": 9,
-		"position": { "row": 4, "col": 9 },
-		"flipped": false
-	},
-	{
-		"id": "red_10",
-		"name": "Red 1",
-		"points": 1,
-		"position": { "row": 4, "col": 1 },
-		"flipped": false
-	},
-	{
-		"id": "red_11",
-		"name": "Red 2",
-		"points": 2,
-		"position": { "row": 4, "col": 2 },
-		"flipped": false
-	},
-	{
-		"id": "red_12",
-		"name": "Red 3",
-		"points": 3,
-		"position": { "row": 4, "col": 3 },
-		"flipped": false
-	},
-	{
-		"id": "red_13",
-		"name": "Red 4",
-		"points": 4,
-		"position": { "row": 4, "col": 4 },
-		"flipped": false
-	},
-	{
-		"id": "red_14",
-		"name": "Red 5",
-		"points": 5,
-		"position": { "row": 4, "col": 5 },
-		"flipped": false
-	},
-	{
-		"id": "red_15",
-		"name": "Red 6",
-		"points": 6,
-		"position": { "row": 4, "col": 6 },
-		"flipped": false
-	},
-	{
-		"id": "red_16",
-		"name": "Red 7",
-		"points": 7,
-		"position": { "row": 4, "col": 7 },
-		"flipped": false
-	},
-	{
-		"id": "red_17",
-		"name": "Red 8",
-		"points": 8,
-		"position": { "row": 4, "col": 8 },
-		"flipped": false
-	},
-	{
-		"id": "red_18",
-		"name": "Red 9",
-		"points": 9,
-		"position": { "row": 4, "col": 9 },
-		"flipped": false
-	}
+    { "id": "green_1", "name": "Green 1", "points": 1, "position": { "row": 1, "col": 0 }, "flipped": false, "color": "green" },
+    { "id": "green_2", "name": "Green 2", "points": 2, "position": { "row": 1, "col": 1 }, "flipped": false, "color": "green" },
+    { "id": "green_3", "name": "Green 3", "points": 3, "position": { "row": 1, "col": 2 }, "flipped": false, "color": "green" },
+    { "id": "green_4", "name": "Green 4", "points": 4, "position": { "row": 1, "col": 3 }, "flipped": false, "color": "green" },
+    { "id": "green_5", "name": "Green 5", "points": 5, "position": { "row": 1, "col": 4 }, "flipped": false, "color": "green" },
+    { "id": "green_6", "name": "Green 6", "points": 6, "position": { "row": 1, "col": 5 }, "flipped": false, "color": "green" },
+    { "id": "green_7", "name": "Green 7", "points": 7, "position": { "row": 1, "col": 6 }, "flipped": false, "color": "green" },
+    { "id": "green_8", "name": "Green 8", "points": 8, "position": { "row": 1, "col": 7 }, "flipped": false, "color": "green" },
+    { "id": "green_9", "name": "Green 9", "points": 9, "position": { "row": 1, "col": 8 }, "flipped": false, "color": "green" },
+    { "id": "green_10", "name": "Green 10", "points": 1, "position": { "row": 1, "col": 0 }, "flipped": false, "color": "green" },
+    { "id": "green_11", "name": "Green 11", "points": 2, "position": { "row": 1, "col": 1 }, "flipped": false, "color": "green" },
+    { "id": "green_12", "name": "Green 12", "points": 3, "position": { "row": 1, "col": 2 }, "flipped": false, "color": "green" },
+    { "id": "green_13", "name": "Green 13", "points": 4, "position": { "row": 1, "col": 3 }, "flipped": false, "color": "green" },
+    { "id": "green_14", "name": "Green 14", "points": 5, "position": { "row": 1, "col": 4 }, "flipped": false, "color": "green" },
+    { "id": "green_15", "name": "Green 15", "points": 6, "position": { "row": 1, "col": 5 }, "flipped": false, "color": "green" },
+    { "id": "green_16", "name": "Green 16", "points": 7, "position": { "row": 1, "col": 6 }, "flipped": false, "color": "green" },
+    { "id": "green_17", "name": "Green 17", "points": 8, "position": { "row": 1, "col": 7 }, "flipped": false, "color": "green" },
+    { "id": "green_18", "name": "Green 18", "points": 9, "position": { "row": 1, "col": 8 }, "flipped": false, "color": "green" },
+
+    { "id": "blue_1", "name": "Blue 1", "points": 1, "position": { "row": 2, "col": 0 }, "flipped": false, "color": "blue" },
+    { "id": "blue_2", "name": "Blue 2", "points": 2, "position": { "row": 2, "col": 1 }, "flipped": false, "color": "blue" },
+    { "id": "blue_3", "name": "Blue 3", "points": 3, "position": { "row": 2, "col": 2 }, "flipped": false, "color": "blue" },
+    { "id": "blue_4", "name": "Blue 4", "points": 4, "position": { "row": 2, "col": 3 }, "flipped": false, "color": "blue" },
+    { "id": "blue_5", "name": "Blue 5", "points": 5, "position": { "row": 2, "col": 4 }, "flipped": false, "color": "blue" },
+    { "id": "blue_6", "name": "Blue 6", "points": 6, "position": { "row": 2, "col": 5 }, "flipped": false, "color": "blue" },
+    { "id": "blue_7", "name": "Blue 7", "points": 7, "position": { "row": 2, "col": 6 }, "flipped": false, "color": "blue" },
+    { "id": "blue_8", "name": "Blue 8", "points": 8, "position": { "row": 2, "col": 7 }, "flipped": false, "color": "blue" },
+    { "id": "blue_9", "name": "Blue 9", "points": 9, "position": { "row": 2, "col": 8 }, "flipped": false, "color": "blue" },
+    { "id": "blue_10", "name": "Blue 10", "points": 1, "position": { "row": 2, "col": 0 }, "flipped": false, "color": "blue" },
+    { "id": "blue_11", "name": "Blue 11", "points": 2, "position": { "row": 2, "col": 1 }, "flipped": false, "color": "blue" },
+    { "id": "blue_12", "name": "Blue 12", "points": 3, "position": { "row": 2, "col": 2 }, "flipped": false, "color": "blue" },
+    { "id": "blue_13", "name": "Blue 13", "points": 4, "position": { "row": 2, "col": 3 }, "flipped": false, "color": "blue" },
+    { "id": "blue_14", "name": "Blue 14", "points": 5, "position": { "row": 2, "col": 4 }, "flipped": false, "color": "blue" },
+    { "id": "blue_15", "name": "Blue 15", "points": 6, "position": { "row": 2, "col": 5 }, "flipped": false, "color": "blue" },
+    { "id": "blue_16", "name": "Blue 16", "points": 7, "position": { "row": 2, "col": 6 }, "flipped": false, "color": "blue" },
+    { "id": "blue_17", "name": "Blue 17", "points": 8, "position": { "row": 2, "col": 7 }, "flipped": false, "color": "blue" },
+    { "id": "blue_18", "name": "Blue 18", "points": 9, "position": { "row": 2, "col": 8 }, "flipped": false, "color": "blue" },
+
+    { "id": "red_1", "name": "Red 1", "points": 1, "position": { "row": 3, "col": 0 }, "flipped": false, "color": "red" },
+    { "id": "red_2", "name": "Red 2", "points": 2, "position": { "row": 3, "col": 1 }, "flipped": false, "color": "red" },
+    { "id": "red_3", "name": "Red 3", "points": 3, "position": { "row": 3, "col": 2 }, "flipped": false, "color": "red" },
+    { "id": "red_4", "name": "Red 4", "points": 4, "position": { "row": 3, "col": 3 }, "flipped": false, "color": "red" },
+    { "id": "red_5", "name": "Red 5", "points": 5, "position": { "row": 3, "col": 4 }, "flipped": false, "color": "red" },
+    { "id": "red_6", "name": "Red 6", "points": 6, "position": { "row": 3, "col": 5 }, "flipped": false, "color": "red" },
+    { "id": "red_7", "name": "Red 7", "points": 7, "position": { "row": 3, "col": 6 }, "flipped": false, "color": "red" },
+    { "id": "red_8", "name": "Red 8", "points": 8, "position": { "row": 3, "col": 7 }, "flipped": false, "color": "red" },
+    { "id": "red_9", "name": "Red 9", "points": 9, "position": { "row": 3, "col": 8 }, "flipped": false, "color": "red" },
+    { "id": "red_10", "name": "Red 10", "points": 1, "position": { "row": 3, "col": 0 }, "flipped": false, "color": "red" },
+    { "id": "red_11", "name": "Red 11", "points": 2, "position": { "row": 3, "col": 1 }, "flipped": false, "color": "red" },
+    { "id": "red_12", "name": "Red 12", "points": 3, "position": { "row": 3, "col": 2 }, "flipped": false, "color": "red" },
+    { "id": "red_13", "name": "Red 13", "points": 4, "position": { "row": 3, "col": 3 }, "flipped": false, "color": "red" },
+    { "id": "red_14", "name": "Red 14", "points": 5, "position": { "row": 3, "col": 4 }, "flipped": false, "color": "red" },
+    { "id": "red_15", "name": "Red 15", "points": 6, "position": { "row": 3, "col": 5 }, "flipped": false, "color": "red" },
+    { "id": "red_16", "name": "Red 16", "points": 7, "position": { "row": 3, "col": 6 }, "flipped": false, "color": "red" },
+    { "id": "red_17", "name": "Red 17", "points": 8, "position": { "row": 3, "col": 7 }, "flipped": false, "color": "red" },
+    { "id": "red_18", "name": "Red 18", "points": 9, "position": { "row": 3, "col": 8 }, "flipped": false, "color": "red" }
 ]
-}
