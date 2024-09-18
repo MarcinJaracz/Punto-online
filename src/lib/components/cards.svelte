@@ -1,18 +1,30 @@
 <script>
-	import { onMount } from "svelte"
+	import { onMount, onDestroy } from "svelte"
 
 	export let color = null
 
 	let cards = []
 	let filteredCards = []
+	let controller // To control fetch cancellation
 
 	onMount(() => {
 		loadCards()
 	})
 
+	onDestroy(() => {
+		// Abort the fetch request if the component is destroyed
+		if (controller) {
+			controller.abort()
+		}
+	})
+
 	async function loadCards() {
+		// Initialize the AbortController for the fetch request
+		controller = new AbortController()
+		const signal = controller.signal
+
 		try {
-			const response = await fetch("/cards.json")
+			const response = await fetch("/cards.json", { signal })
 			if (response.ok) {
 				let allCards = await response.json()
 				cards = allCards
@@ -21,7 +33,12 @@
 				console.error("Failed to load cards:", response.statusText)
 			}
 		} catch (error) {
-			console.error("Error loading cards:", error)
+			// Check if the fetch was aborted
+			if (error.name === "AbortError") {
+				console.log("Fetch aborted")
+			} else {
+				console.error("Error loading cards:", error)
+			}
 		}
 	}
 

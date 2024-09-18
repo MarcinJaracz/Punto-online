@@ -117,7 +117,6 @@
 			0 4px 8px 0 #00000033,
 			0 6px 20px 0 #00000030;
 		border-radius: 30px;
-		/* FIXME Find out why image shrinks after changing the window size */
 	}
 	.gray {
 		color: #464646a6;
@@ -130,6 +129,7 @@
 		background-color: #ffffff96;
 		border-radius: 10px;
 		padding: 20px;
-		/* height: 100%; */
+		width: min(300px, 90%);
+		backdrop-filter: blur(5px);
 	}
 </style>

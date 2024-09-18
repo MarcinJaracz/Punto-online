@@ -52,7 +52,6 @@
 					<!-- numper of players -->
 					<div class="d-flex flex-row py-2">
 						<div class="col justify-content-center">
-							<!-- FIXME adjust te size of this div to stay in border of col-5 -->
 							<div
 								class="d-flex p-2 bg-success fs-3 rounded text-white h-100 text-center align-items-center justify-content-center shadow"
 								style="cursor: default;"
@@ -97,7 +96,7 @@
 									}}
 								/>
 								<label
-									class="btn btn-success"
+									class="btn btn-success d-flex align-items-center justify-content-center"
 									for="option2"
 								>
 									<i class="fas fa-user" /><br />
@@ -117,7 +116,7 @@
 									}}
 								/>
 								<label
-									class="btn btn-success"
+									class="btn btn-success d-flex align-items-center justify-content-center"
 									for="option3"
 								>
 									<i class="fas fa-user" />
@@ -155,7 +154,7 @@
 									}}
 								/>
 								<label
-									class="btn btn-success centered-label"
+									class="btn btn-success fs-3 centered-label"
 									for="option2-1"
 									>4
 								</label>
@@ -173,7 +172,7 @@
 									}}
 								/>
 								<label
-									class="btn btn-success centered-label"
+									class="btn btn-success fs-3 centered-label"
 									for="option2-2"
 									>5
 								</label>
@@ -292,6 +291,8 @@
 		background-color: #ffffff96;
 		border-radius: 10px;
 		padding: 20px;
+		width: min(800px, 90%);
+		backdrop-filter: blur(5px);
 	}
 	.centered-label {
 		display: flex;

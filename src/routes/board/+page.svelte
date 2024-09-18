@@ -49,7 +49,7 @@
 
 			<!-- Plansza -->
 			<div
-				class="col-7 mt-5 d-flex flex-column"
+				class="col-7 mt-2 d-flex flex-column"
 				style="flex-shrink: 0; min-width: 700px;"
 			>
 				<div class="board">
@@ -113,8 +113,8 @@
 			</h3>
 		</div>
 	</div>
-	<div class="nav justify-content-center pt-1">
-		<!-- <Cards /> -->
+	<div class="nav justify-content-center py-3">
+		<!-- <Cards color="blue" /> -->
 	</div>
 </body>
 
@@ -123,8 +123,11 @@
 		display: grid;
 		grid-template-columns: repeat(6, 1fr);
 		grid-gap: 10px;
-		max-width: 640px;
 		margin: 0 auto;
+		padding: 20px;
+		background-color: #ffffff96;
+		border-radius: 10px;
+		backdrop-filter: blur(5px);
 	}
 	.box {
 		display: flex;

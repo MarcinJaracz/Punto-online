@@ -47,5 +47,6 @@
 		background-color: #ffffff96;
 		border-radius: 10px;
 		padding: 20px;
+		backdrop-filter: blur(5px);
 	}
 </style>

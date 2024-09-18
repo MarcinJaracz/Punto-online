@@ -97,6 +97,8 @@
 		background-color: #ffffff96;
 		border-radius: 10px;
 		padding: 20px;
+		width: min(400px, 90%);
+		backdrop-filter: blur(5px);
 	}
 	img {
 		text-align: center !important;
@@ -108,6 +110,5 @@
 		box-shadow:
 			0 4px 8px 0 #00000033,
 			0 6px 20px 0 #00000033;
-		/* FIXME Find out why image shrinks after changing the window size */
 	}
 </style>
