@@ -33,6 +33,7 @@
 		background-attachment: fixed !important;
 		background-size: cover !important;
 		background-blend-mode: lighten !important;
+		background-position: center;
 	}
 	:global(a) {
 		display: inline-block;
