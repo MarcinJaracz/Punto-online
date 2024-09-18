@@ -29,8 +29,7 @@
 							<a
 								href="https://www.gamefactory-games.com/en/spiele/646214"
 								target="_blank"
-							>
-								~gamefactory-games.com
+								><span> ~gamefactory-games.com</span>
 							</a>
 						</p>
 					</div>
@@ -112,5 +111,10 @@
 		text-align: left;
 		padding-left: 10px;
 		font-size: larger;
+	}
+	span {
+		background: linear-gradient(to right, #dc3545, #007bff, #ffc107, #28a745);
+		background-clip: text;
+		color: transparent;
 	}
 </style>

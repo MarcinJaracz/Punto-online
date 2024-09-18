@@ -48,5 +48,6 @@
 		border-radius: 10px;
 		padding: 20px;
 		backdrop-filter: blur(5px);
+		width: min(300px, 90%);
 	}
 </style>

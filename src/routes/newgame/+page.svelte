@@ -207,81 +207,81 @@
 						<i class="fa-solid fa-play"></i> Play
 					</button>
 				</div>
-				<!-- Overlay -->
-				<div
-					id="pdf-overlay"
-					class="overlay shadow"
-				>
-					<div class="overlay-content">
-						<button
-							class="close-btn"
-							on:click={() => {
-								closePDF()
-								playClickSound()
-							}}
-							aria-label="Close PDF viewer"><i class="fas fa-xmark" /></button
-						>
-						<iframe
-							title="overlay pdf"
-							id="pdf-frame"
-							style="width: 100%; height: 100%;"
-							frameborder="0"
-						></iframe>
-					</div>
-				</div>
-				<!-- Overlay -->
-				{#if showModal}
-					<div
-						class="modal fade show"
-						id="staticBackdrop"
-						tabindex="-1"
-						aria-labelledby="staticBackdropLabel"
-						aria-hidden="true"
-						style="display: block;"
-						transition:fade={{ delay: 250, duration: 400, easing: sineInOut }}
+			</div>
+			<!-- Overlay pdf -->
+			<div
+				id="pdf-overlay"
+				class="overlay"
+			>
+				<div class="overlay-content">
+					<button
+						class="close-btn"
+						on:click={() => {
+							closePDF()
+							playClickSound()
+						}}
+						aria-label="Close PDF viewer"><i class="fas fa-xmark" /></button
 					>
-						<div class="modal-dialog modal-dialog-centered">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h1
-										class="modal-title fs-5"
-										id="staticBackdropLabel"
-									>
-										Game exists
-									</h1>
-									<button
-										type="button"
-										class="btn-close"
-										on:click={closeModal}
-									></button>
-								</div>
-								<div class="modal-body">
-									There is already a pending game.<br />Are You sure You want to begin a new game?
-								</div>
-								<div class="modal-footer">
-									<button
-										type="button"
-										class="btn btn-secondary"
-										on:click={closeModal}>Cancel</button
-									>
-									<button
-										type="button"
-										class="btn btn-danger"
-										on:click={() => {
-											closeModal()
-											window.location.href = "/board"
-										}}
-									>
-										<i class="fa-solid fa-play"></i> Play new game
-									</button>
-								</div>
+					<iframe
+						title="overlay pdf"
+						id="pdf-frame"
+						style="width: 100%; height: 100%;"
+						frameborder="0"
+					></iframe>
+				</div>
+			</div>
+			<!-- Overlay modal -->
+			{#if showModal}
+				<div
+					class="modal fade show"
+					id="staticBackdrop"
+					tabindex="-1"
+					aria-labelledby="staticBackdropLabel"
+					aria-hidden="true"
+					style="display: block;"
+					transition:fade={{ delay: 250, duration: 400, easing: sineInOut }}
+				>
+					<div class="modal-dialog modal-dialog-centered">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h1
+									class="modal-title fs-5"
+									id="staticBackdropLabel"
+								>
+									Game exists
+								</h1>
+								<button
+									type="button"
+									class="btn-close"
+									on:click={closeModal}
+								></button>
+							</div>
+							<div class="modal-body">
+								There is already a pending game.<br />Are You sure You want to begin a new game?
+							</div>
+							<div class="modal-footer">
+								<button
+									type="button"
+									class="btn btn-secondary"
+									on:click={closeModal}>Cancel</button
+								>
+								<button
+									type="button"
+									class="btn btn-danger"
+									on:click={() => {
+										closeModal()
+										window.location.href = "/board"
+									}}
+								>
+									<i class="fa-solid fa-play"></i> Play new game
+								</button>
 							</div>
 						</div>
 					</div>
-					<!-- Backdrop -->
-					<div class="modal-backdrop fade show"></div>
-				{/if}
-			</div>
+				</div>
+				<!-- Backdrop -->
+				<div class="modal-backdrop fade show"></div>
+			{/if}
 		</div>
 	</div>
 </body>
