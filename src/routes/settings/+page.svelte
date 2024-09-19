@@ -49,5 +49,8 @@
 		padding: 20px;
 		backdrop-filter: blur(5px);
 		width: min(300px, 90%);
+		border-top: 1px solid rgba(255, 255, 255, 0.4);
+		border-left: 1px solid rgba(255, 255, 255, 0.4);
+		box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
 	}
 </style>

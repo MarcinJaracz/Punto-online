@@ -181,7 +181,7 @@
 					</div>
 				</div>
 				<!--buttons -->
-				<div class="d-flex justify-content-evenly align-items-center py-1">
+				<div class="d-flex justify-content-between align-items-center py-1">
 					<div class="d-inline-block align-self-center bg-danger rounded">
 						<Return />
 					</div>
@@ -293,6 +293,9 @@
 		padding: 20px;
 		width: min(800px, 90%);
 		backdrop-filter: blur(5px);
+		border-top: 1px solid rgba(255, 255, 255, 0.4);
+		border-left: 1px solid rgba(255, 255, 255, 0.4);
+		box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
 	}
 	.centered-label {
 		display: flex;

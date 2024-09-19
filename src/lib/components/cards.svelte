@@ -19,7 +19,6 @@
 	})
 
 	async function loadCards() {
-		// Initialize the AbortController for the fetch request
 		controller = new AbortController()
 		const signal = controller.signal
 
@@ -28,12 +27,12 @@
 			if (response.ok) {
 				let allCards = await response.json()
 				cards = allCards
-				filterCards() // Filter cards after loading
+				shuffle(cards)
+				filterCards()
 			} else {
 				console.error("Failed to load cards:", response.statusText)
 			}
 		} catch (error) {
-			// Check if the fetch was aborted
 			if (error.name === "AbortError") {
 				console.log("Fetch aborted")
 			} else {
@@ -64,6 +63,13 @@
 		}
 	}
 
+	function shuffle(array) {
+		for (let i = array.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1))
+			;[array[i], array[j]] = [array[j], array[i]] // Zamień miejscami elementy
+		}
+	}
+
 	$: {
 		filterCards()
 		// console.log("Filtered Cards:", filteredCards) // Debug output
@@ -71,10 +77,12 @@
 </script>
 
 <div class="cards-container">
-	{#each filteredCards as card}
+	{#each filteredCards as card, i (card.name)}
 		<div
 			class="flip-card"
+			draggable="true"
 			on:click={() => flipCard(card)}
+			style="top: {i * 5}px; left: {i * 5}px; z-index: {filteredCards.length - i};"
 		>
 			<div class="flip-card-inner {card.flipped ? 'flipped' : ''}">
 				<div

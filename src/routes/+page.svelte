@@ -12,7 +12,7 @@
 
 <div class="container vh-100">
 	<div class="d-flex justify-content-center align-items-center vh-100">
-		<div class="col-4">
+		<div class="col-5">
 			<div class="row justify-content-center">
 				<img
 					src="./Punto-Icon.webp"
@@ -125,11 +125,14 @@
 	span {
 		transition: border 0.2s ease;
 	}
-	.col-4 {
+	.col-5 {
 		background-color: #ffffff96;
 		border-radius: 10px;
 		padding: 20px;
 		width: min(300px, 90%);
 		backdrop-filter: blur(5px);
+		border-top: 1px solid rgba(255, 255, 255, 0.4);
+		border-left: 1px solid rgba(255, 255, 255, 0.4);
+		box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
 	}
 </style>

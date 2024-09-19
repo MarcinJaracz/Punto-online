@@ -15,7 +15,7 @@
 			class="d-flex justify-content-evenly"
 			style="overflow-x: hidden;"
 		>
-			<!-- Kolumna 1 -->
+			<!-- Column 1 -->
 			<div
 				class="col-1 d-flex flex-column justify-content-evenly"
 				style="flex-shrink: 0; min-width: 100px;"
@@ -47,7 +47,7 @@
 				{/each}
 			</div>
 
-			<!-- Plansza -->
+			<!-- board -->
 			<div
 				class="col-7 mt-2 d-flex flex-column"
 				style="flex-shrink: 0; min-width: 700px;"
@@ -62,7 +62,7 @@
 				</div>
 			</div>
 
-			<!-- Kolumna 2 -->
+			<!-- Column 2 -->
 			<div
 				class="col-1 d-flex flex-column justify-content-evenly"
 				style="flex-shrink: 0; min-width: 100px;"
@@ -128,6 +128,9 @@
 		background-color: #ffffff96;
 		border-radius: 10px;
 		backdrop-filter: blur(5px);
+		border-top: 1px solid rgba(255, 255, 255, 0.4);
+		border-left: 1px solid rgba(255, 255, 255, 0.4);
+		box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
 	}
 	.box {
 		display: flex;
