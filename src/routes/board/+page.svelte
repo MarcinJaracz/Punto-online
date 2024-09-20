@@ -1,9 +1,33 @@
 <script>
 	import Return from "$components/return.svelte"
+	import Cards from "$components/cards.svelte"
 	import { noPlayers, setGameExistState } from "$lib/store"
 	import { playClickSound } from "$lib/click"
-	const playerColors = ["primary", "success", "warning", "danger"]
-	import Cards from "$lib/components/cards.svelte"
+	import { dndzone } from "svelte-dnd-action"
+
+	let cardItems = []
+	let customStyle = { border: "1px solid #1f1f1f23;" }
+
+	let playerCards = {
+		player1: [],
+		player2: [],
+		player3: [],
+		player4: [],
+	}
+
+	function handleDragOver(event) {
+		event.preventDefault()
+	}
+
+	function handleDrop(event) {
+		event.preventDefault()
+		const cardId = event.dataTransfer.getData("text/plain")
+		const cardElement = document.getElementById(cardId)
+
+		if (cardElement && event.target.classList.contains("box")) {
+			event.target.appendChild(cardElement)
+		}
+	}
 </script>
 
 <svelte:head>
@@ -20,34 +44,48 @@
 				class="col-1 d-flex flex-column justify-content-evenly"
 				style="flex-shrink: 0; min-width: 100px;"
 			>
-				{#each Array(Math.min($noPlayers, 2)).fill(0) as _, i}
-					<div class="row">
-						<div class="player-container">
-							<div class="d-grid align-items-center justify-content-evenly">
-								<div
-									class="d-block p-2 bg-{playerColors[i]} rounded text-white fs-4 text-center mb-2 shadow"
-									style="cursor: default;"
-								>
-									Player {i + 1}
-								</div>
-								<div
-									class="box"
-									id="player{i + 1}"
-								>
-									<img
-										src="/Punto-Icon.webp"
-										alt="Player 1 Icon"
-										width="100"
-										height="100"
-									/>
-								</div>
+				<div class="row">
+					<div class="player-container">
+						<div class="d-grid align-items-center justify-content-evenly">
+							<div
+								class="d-block p-2 bg-primary rounded text-white fs-4 text-center mb-2 shadow"
+								style="cursor: default;"
+							>
+								Player 1
+							</div>
+							<div
+								class="box"
+								id="player1"
+								use:dndzone={{ items: playerCards.player1 }}
+							>
+								<Cards color="blue" />
 							</div>
 						</div>
 					</div>
-				{/each}
+				</div>
+
+				<div class="row">
+					<div class="player-container">
+						<div class="d-grid align-items-center justify-content-evenly">
+							<div
+								class="d-block p-2 bg-success rounded text-white fs-4 text-center mb-2 shadow"
+								style="cursor: default;"
+							>
+								Player 2
+							</div>
+							<div
+								class="box"
+								id="player2"
+								use:dndzone={{ items: playerCards.player2 }}
+							>
+								<Cards color="green" />
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 
-			<!-- board -->
+			<!-- Board -->
 			<div
 				class="col-7 mt-2 d-flex flex-column"
 				style="flex-shrink: 0; min-width: 700px;"
@@ -57,6 +95,9 @@
 						<div
 							class="box"
 							id="cell{i + 1}"
+							use:dndzone={{ items: cardItems, dropTargetStyle: customStyle }}
+							on:dragover={handleDragOver}
+							on:drop={handleDrop}
 						></div>
 					{/each}
 				</div>
@@ -67,31 +108,51 @@
 				class="col-1 d-flex flex-column justify-content-evenly"
 				style="flex-shrink: 0; min-width: 100px;"
 			>
-				{#each Array(Math.max(0, $noPlayers - 2)).fill(0) as _, i}
+				<!-- Player 3, displayed if numberOfPlayers > 2 -->
+				{#if $noPlayers > 2}
 					<div class="row">
 						<div class="player-container">
 							<div class="d-grid align-items-center justify-content-evenly">
 								<div
-									class="d-block p-2 bg-{playerColors[i + 2]} rounded text-white fs-4 text-center mb-2 shadow"
+									class="d-block p-2 bg-warning rounded text-white fs-4 text-center mb-2 shadow"
 									style="cursor: default;"
 								>
-									Player {i + 3}
+									Player 3
 								</div>
 								<div
 									class="box"
-									id="player{i + 3}"
+									id="player3"
+									use:dndzone={{ items: playerCards.player3 }}
 								>
-									<img
-										src="/Punto-Icon.webp"
-										alt="Player 1 Icon"
-										width="100"
-										height="100"
-									/>
+									<Cards color="yellow" />
 								</div>
 							</div>
 						</div>
 					</div>
-				{/each}
+				{/if}
+
+				<!-- Player 4, displayed if numberOfPlayers > 3 -->
+				{#if $noPlayers > 3}
+					<div class="row">
+						<div class="player-container">
+							<div class="d-grid align-items-center justify-content-evenly">
+								<div
+									class="d-block p-2 bg-danger rounded text-white fs-4 text-center mb-2 shadow"
+									style="cursor: default;"
+								>
+									Player 4
+								</div>
+								<div
+									class="box"
+									id="player4"
+									use:dndzone={{ items: playerCards.player4 }}
+								>
+									<Cards color="red" />
+								</div>
+							</div>
+						</div>
+					</div>
+				{/if}
 			</div>
 		</div>
 		<div class="nav justify-content-center pt-4">
@@ -113,9 +174,7 @@
 			</h3>
 		</div>
 	</div>
-	<div class="nav justify-content-center py-3">
-		<!-- <Cards color="blue" /> -->
-	</div>
+	<div class="nav justify-content-center py-3"></div>
 </body>
 
 <style>
@@ -148,23 +207,7 @@
 			0 4px 8px 0 #0000001a,
 			0 6px 20px 0 #0000001a;
 	}
-	.box img {
-		border-radius: 10px;
-		cursor: grab;
-	}
 	.box:hover {
 		background-color: #4f4f4f9a;
-	}
-	.bg-primary {
-		background-color: #0d6efd !important;
-	}
-	.bg-success {
-		background-color: #198754 !important;
-	}
-	.bg-warning {
-		background-color: #ffc107 !important;
-	}
-	.bg-danger {
-		background-color: #dc3545 !important;
 	}
 </style>
