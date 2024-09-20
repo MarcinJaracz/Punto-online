@@ -158,6 +158,7 @@
 		<div class="nav justify-content-center pt-4">
 			<Return />
 		</div>
+		<!-- buttons -->
 		<div class="nav justify-content-center pt-4">
 			<h3>
 				<a
@@ -174,7 +175,6 @@
 			</h3>
 		</div>
 	</div>
-	<div class="nav justify-content-center py-3"></div>
 </body>
 
 <style>
@@ -209,5 +209,17 @@
 	}
 	.box:hover {
 		background-color: #4f4f4f9a;
+	}
+	.player-container {
+		padding: 25px;
+		background-color: #ffffff96;
+		border-radius: 10px;
+		backdrop-filter: blur(5px);
+		border-top: 1px solid rgba(255, 255, 255, 0.4);
+		border-left: 1px solid rgba(255, 255, 255, 0.4);
+		box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 </style>

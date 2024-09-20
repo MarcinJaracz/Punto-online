@@ -35,9 +35,9 @@
 </svelte:head>
 
 <body>
-	<div class="container vh-100">
+	<div class="container">
 		<div class="d-flex justify-content-center align-items-center h-100">
-			<div class="col-7">
+			<div class="col-7 my-3">
 				<!-- title of the page -->
 				<div class="row justify-content-center">
 					<h1

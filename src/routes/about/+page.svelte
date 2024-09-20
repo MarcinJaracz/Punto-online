@@ -11,9 +11,9 @@
 </svelte:head>
 
 <body>
-	<div class="container vh-100">
+	<div class="container">
 		<div class="d-flex justify-content-center align-items-center h-100">
-			<div class="col-4">
+			<div class="col-4 my-3">
 				<div class="row justify-content-center">
 					<img
 						src="profilepicture.webp"
@@ -98,6 +98,7 @@
 		border-radius: 10px;
 		padding: 20px;
 		width: min(400px, 90%);
+		transform: translate(0, 0%);
 		backdrop-filter: blur(5px);
 		border-top: 1px solid rgba(255, 255, 255, 0.4);
 		border-left: 1px solid rgba(255, 255, 255, 0.4);

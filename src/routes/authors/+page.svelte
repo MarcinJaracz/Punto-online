@@ -8,7 +8,7 @@
 
 <body>
 	<div class="container">
-		<div class="d-flex justify-content-center align-items-center mt-3">
+		<div class="d-flex justify-content-center align-items-center my-3">
 			<div class="col-8">
 				<div class="row justify-content-center">
 					<div class="mb-4">
