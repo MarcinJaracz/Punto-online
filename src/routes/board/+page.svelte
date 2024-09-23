@@ -1,13 +1,16 @@
 <script>
 	import Return from "$components/return.svelte"
-	import Cards from "$components/cards.svelte"
 	import { noPlayers, setGameExistState } from "$lib/store"
 	import { playClickSound } from "$lib/click"
 	import { dndzone } from "svelte-dnd-action"
+	import { flip } from "svelte/animate"
+	import { onMount, onDestroy } from "svelte"
 
-	let cardItems = []
+	const flipDurationMs = 300
 	let customStyle = { border: "1px solid #1f1f1f23;" }
-
+	let cardItems = []
+	let cards = []
+	let controller
 	let playerCards = {
 		player1: [],
 		player2: [],
@@ -15,31 +18,101 @@
 		player4: [],
 	}
 
-	function handleDragOver(event) {
-		event.preventDefault()
+	onMount(() => {
+		loadCards()
+	})
+
+	onDestroy(() => {
+		if (controller) {
+			controller.abort()
+		}
+	})
+
+	async function loadCards() {
+		controller = new AbortController()
+		const signal = controller.signal
+		try {
+			const response = await fetch("/cards.json", { signal })
+			if (response.ok) {
+				let allCards = await response.json()
+				cards = allCards
+				splitCardsByColor(cards)
+				shuffleCardsForPlayers()
+			} else {
+				console.error("Failed to load cards:", response.statusText)
+			}
+		} catch (error) {
+			if (error.name === "AbortError") {
+				console.log("Fetch aborted")
+			} else {
+				console.error("Error loading cards:", error)
+			}
+		}
 	}
 
-	function handleDrop(event) {
-		event.preventDefault()
-		const cardId = event.dataTransfer.getData("text/plain")
-		const cardElement = document.getElementById(cardId)
-
-		if (cardElement && event.target.classList.contains("box")) {
-			event.target.appendChild(cardElement)
+	function shuffle(array) {
+		for (let i = array.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1))
+			;[array[i], array[j]] = [array[j], array[i]]
 		}
+	}
+
+	function shuffleCardsForPlayers() {
+		for (let player in playerCards) {
+			shuffle(playerCards[player])
+		}
+	}
+
+	function handleDndConsider(e) {
+		console.log("DND Consider event:", e.detail.items)
+		cards = e.detail.items
+	}
+
+	function handleDndFinalize(e) {
+		const { items: updatedItems, from, to, item } = e.detail
+		if (!item) {
+			console.error("Item is undefined:", item)
+			return
+		}
+		if (!item.id) {
+			console.error("undefined id:", item)
+			return
+		}
+		if (to.id === "board") {
+			cardItems = updatedItems
+		} else {
+			playerCards[to.id] = updatedItems
+		}
+		if (from.id !== to.id) {
+			playerCards[from.id] = playerCards[from.id].filter((c) => c.name !== item.name)
+		}
+	}
+
+	function splitCardsByColor(cards) {
+		playerCards.player3 = cards.filter((card) => card.color === "yellow")
+		playerCards.player2 = cards.filter((card) => card.color === "green")
+		playerCards.player1 = cards.filter((card) => card.color === "blue")
+		playerCards.player4 = cards.filter((card) => card.color === "red")
+	}
+
+	function getBackgroundPosition(card) {
+		const x = card.position.col * 100
+		const y = card.position.row * 100
+		return `-${x}px -${y}px`
 	}
 </script>
 
 <svelte:head>
 	<title>Board</title>
 </svelte:head>
+
 <body>
 	<div class="container-fluid">
 		<div
 			class="d-flex justify-content-evenly"
 			style="overflow-x: hidden;"
 		>
-			<!-- Column 1 -->
+			<!-- Column 1  player 1 & 2-->
 			<div
 				class="col-1 d-flex flex-column justify-content-evenly"
 				style="flex-shrink: 0; min-width: 100px;"
@@ -56,9 +129,32 @@
 							<div
 								class="box"
 								id="player1"
-								use:dndzone={{ items: playerCards.player1 }}
+								use:dndzone={{
+									items: playerCards.player1,
+									dragDisabled: false,
+									dropTargetStyle: customStyle,
+								}}
+								on:consider={handleDndConsider}
+								on:finalize={handleDndFinalize}
 							>
-								<Cards color="blue" />
+								<!-- Render cards for player 1 -->
+								{#each playerCards.player1 as card, i (card.id)}
+									<div
+										class="flip-card"
+										draggable="true"
+										on:click={() => (card.flipped = !card.flipped)}
+										animate:flip={{ duration: flipDurationMs }}
+										style="z-index: {playerCards.player1.length - i};"
+									>
+										<div class="flip-card-inner {card.flipped ? 'flipped' : ''}">
+											<div
+												class="flip-card-front"
+												style="background-position: {getBackgroundPosition(card)}"
+											></div>
+											<div class="flip-card-back"></div>
+										</div>
+									</div>
+								{/each}
 							</div>
 						</div>
 					</div>
@@ -76,16 +172,39 @@
 							<div
 								class="box"
 								id="player2"
-								use:dndzone={{ items: playerCards.player2 }}
+								use:dndzone={{
+									items: playerCards.player2,
+									dragDisabled: false,
+									dropTargetStyle: customStyle,
+								}}
+								on:consider={handleDndConsider}
+								on:finalize={handleDndFinalize}
 							>
-								<Cards color="green" />
+								<!-- Render cards for player 2 -->
+								{#each playerCards.player2 as card, i (card.id)}
+									<div
+										class="flip-card"
+										draggable="true"
+										on:click={() => (card.flipped = !card.flipped)}
+										animate:flip={{ duration: flipDurationMs }}
+										style="z-index: {playerCards.player1.length - i}; "
+									>
+										<div class="flip-card-inner {card.flipped ? 'flipped' : ''}">
+											<div
+												class="flip-card-front"
+												style="background-position: {getBackgroundPosition(card)}"
+											></div>
+											<div class="flip-card-back"></div>
+										</div>
+									</div>
+								{/each}
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<!-- Board -->
+			<!-- Board & buttons under-->
 			<div
 				class="col-7 mt-2 d-flex flex-column"
 				style="flex-shrink: 0; min-width: 700px;"
@@ -94,16 +213,49 @@
 					{#each Array(36).fill(0) as _, i}
 						<div
 							class="box"
-							id="cell{i + 1}"
-							use:dndzone={{ items: cardItems, dropTargetStyle: customStyle }}
-							on:dragover={handleDragOver}
-							on:drop={handleDrop}
-						></div>
+							id={i + 1}
+							name="cell_{i + 1}"
+							use:dndzone={{
+								items: cardItems,
+								dropTargetStyle: customStyle,
+								dragDisabled: true,
+							}}
+							on:consider={handleDndConsider}
+							on:finalize={handleDndFinalize}
+						>
+							<!-- Render dropped cards on the board -->
+							{#each cardItems as card (card.id)}
+								<div
+									class="flip-card"
+									style="background-position: {getBackgroundPosition(card)}"
+								></div>
+							{/each}
+						</div>
 					{/each}
+				</div>
+
+				<!-- buttons -->
+				<div class="d-flex justify-content-evenly align-items-center pt-4">
+					<div class="d-inline-block align-self-center">
+						<Return />
+					</div>
+					<h3>
+						<a
+							href="/"
+							data-bs-toggle="tooltip"
+							data-placement="right"
+							title="Go back to main page"
+							style="--hover-color: #dc3545;"
+							on:click={() => setGameExistState(false)}
+							on:mousedown={playClickSound}
+						>
+							<i class="fa-sharp fa-light fa-circle-arrow-left" /> finish this game and exit
+						</a>
+					</h3>
 				</div>
 			</div>
 
-			<!-- Column 2 -->
+			<!-- Column 2  player 3 & 4-->
 			<div
 				class="col-1 d-flex flex-column justify-content-evenly"
 				style="flex-shrink: 0; min-width: 100px;"
@@ -122,9 +274,32 @@
 								<div
 									class="box"
 									id="player3"
-									use:dndzone={{ items: playerCards.player3 }}
+									use:dndzone={{
+										items: playerCards.player3,
+										dragDisabled: false,
+										dropTargetStyle: customStyle,
+									}}
+									on:consider={handleDndConsider}
+									on:finalize={handleDndFinalize}
 								>
-									<Cards color="yellow" />
+									<!-- Render cards for player 3 -->
+									{#each playerCards.player3 as card, i (card.id)}
+										<div
+											class="flip-card"
+											draggable="true"
+											on:click={() => (card.flipped = !card.flipped)}
+											animate:flip={{ duration: flipDurationMs }}
+											style="z-index: {playerCards.player1.length - i}; "
+										>
+											<div class="flip-card-inner {card.flipped ? 'flipped' : ''}">
+												<div
+													class="flip-card-front"
+													style="background-position: {getBackgroundPosition(card)}"
+												></div>
+												<div class="flip-card-back"></div>
+											</div>
+										</div>
+									{/each}
 								</div>
 							</div>
 						</div>
@@ -145,9 +320,32 @@
 								<div
 									class="box"
 									id="player4"
-									use:dndzone={{ items: playerCards.player4 }}
+									use:dndzone={{
+										items: playerCards.player4,
+										dragDisabled: false,
+										dropTargetStyle: customStyle,
+									}}
+									on:consider={handleDndConsider}
+									on:finalize={handleDndFinalize}
 								>
-									<Cards color="red" />
+									<!-- Render cards for player 1 -->
+									{#each playerCards.player4 as card, i (card.id)}
+										<div
+											class="flip-card"
+											draggable="true"
+											on:click={() => (card.flipped = !card.flipped)}
+											animate:flip={{ duration: flipDurationMs }}
+											style="z-index: {playerCards.player1.length - i}; "
+										>
+											<div class="flip-card-inner {card.flipped ? 'flipped' : ''}">
+												<div
+													class="flip-card-front"
+													style="background-position: {getBackgroundPosition(card)}"
+												></div>
+												<div class="flip-card-back"></div>
+											</div>
+										</div>
+									{/each}
 								</div>
 							</div>
 						</div>
@@ -155,29 +353,50 @@
 				{/if}
 			</div>
 		</div>
-		<div class="nav justify-content-center pt-4">
-			<Return />
-		</div>
-		<!-- buttons -->
-		<div class="nav justify-content-center pt-4">
-			<h3>
-				<a
-					href="/"
-					data-bs-toggle="tooltip"
-					data-placement="right"
-					title="Go back to main page"
-					style="--hover-color: #dc3545;"
-					on:click={() => setGameExistState(false)}
-					on:mousedown={playClickSound}
-				>
-					<i class="fa-sharp fa-light fa-circle-arrow-left" /> finish this game and exit
-				</a>
-			</h3>
-		</div>
 	</div>
 </body>
 
 <style>
+	.flip-card {
+		position: absolute;
+		width: 100px;
+		height: 100px;
+		perspective: 1000px;
+		cursor: grab;
+	}
+
+	.flip-card-inner {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		transition: transform 0.6s;
+		transform-style: preserve-3d;
+	}
+
+	.flipped {
+		transform: rotateY(180deg);
+	}
+
+	.flip-card-front,
+	.flip-card-back {
+		position: absolute;
+		width: 100px;
+		height: 100px;
+		backface-visibility: hidden;
+		border-radius: 10px;
+	}
+
+	.flip-card-front {
+		background-image: url("/all-cards.webp");
+		background-size: 900px 400px;
+	}
+
+	.flip-card-back {
+		background-image: url("/Punto-Icon.webp");
+		background-size: cover;
+		transform: rotateY(180deg);
+	}
+
 	.board {
 		display: grid;
 		grid-template-columns: repeat(6, 1fr);
@@ -221,5 +440,8 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+	}
+	h3 {
+		margin-bottom: 0;
 	}
 </style>
