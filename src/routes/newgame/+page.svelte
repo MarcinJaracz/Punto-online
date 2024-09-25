@@ -3,13 +3,11 @@
 	import { fade } from "svelte/transition"
 	import { sineInOut } from "svelte/easing"
 	import { playClickSound } from "$lib/click"
-	import { setNoPlayers, setcardsToWin, setGameExistState, doesTheGameExist } from "$lib/store.js"
+	import { setNoPlayers, cardsToWin, setGameExistState, doesTheGameExist } from "$lib/store.js"
 	import { colorHead } from "$lib/coloredtext"
 
 	const coloredText = colorHead("New Game")
 	export let data
-	setNoPlayers(2)
-	setcardsToWin(5)
 	let handleEscape = data.handleEscape
 	let closePDF = data.closePDF
 	let showPDF = data.showPDF
@@ -47,142 +45,93 @@
 						{@html coloredText}
 					</h1>
 				</div>
-				<!-- pickers -->
+				<!-- number of players -->
 				<div class="row justify-content-center py-5">
-					<!-- numper of players -->
-					<div class="d-flex flex-row py-2">
-						<div class="col justify-content-center">
-							<div
-								class="d-flex p-2 bg-success fs-3 rounded text-white h-100 text-center align-items-center justify-content-center shadow"
-								style="cursor: default;"
-							>
-								Choose number of players
-							</div>
-						</div>
-						<div class="col d-flex justify-content-center">
-							<div
-								class="btn-group h-100 w-100 shadow"
-								role="group"
-							>
-								<input
-									type="radio"
-									class="btn-check"
-									name="options"
-									id="option1"
-									autocomplete="off"
-									checked
-									on:click={() => {
-										setNoPlayers(2)
-										playClickSound()
-									}}
-								/>
-								<label
-									class="btn btn-success d-flex align-items-center justify-content-center"
-									for="option1"
-								>
-									<i class="fas fa-user" />
-									<i class="fas fa-user" />
-								</label>
-
-								<input
-									type="radio"
-									class="btn-check"
-									name="options"
-									id="option2"
-									autocomplete="off"
-									on:click={() => {
-										setNoPlayers(3)
-										playClickSound()
-									}}
-								/>
-								<label
-									class="btn btn-success d-flex align-items-center justify-content-center"
-									for="option2"
-								>
-									<i class="fas fa-user" /><br />
-									<i class="fas fa-user" />
-									<i class="fas fa-user" />
-								</label>
-
-								<input
-									type="radio"
-									class="btn-check"
-									name="options"
-									id="option3"
-									autocomplete="off"
-									on:click={() => {
-										setNoPlayers(4)
-										playClickSound()
-									}}
-								/>
-								<label
-									class="btn btn-success d-flex align-items-center justify-content-center"
-									for="option3"
-								>
-									<i class="fas fa-user" />
-									<i class="fas fa-user" /><br />
-									<i class="fas fa-user" />
-									<i class="fas fa-user" />
-								</label>
-							</div>
+					<!-- "Choose number of players" -->
+					<div class="row justify-content-center mb-3">
+						<div
+							class="d-flex p-2 bg-success fs-3 rounded text-white text-center align-items-center justify-content-center shadow"
+							style="cursor: default;"
+						>
+							Choose number of players
 						</div>
 					</div>
-					<!-- number of cards to -->
-					<div class="d-flex flex-row py-2">
-						<div class="col justify-content-center">
-							<span
-								class="d-block p-2 fs-3 bg-success rounded text-white text-center align-items-center shadow"
-								style="cursor: default;"
-							>
-								Choose how many cards are needed to win
-							</span>
-						</div>
-						<div class="col justify-content-center">
-							<div
-								class="btn-group h-100 w-100 shadow"
-								role="group"
-							>
-								<input
-									type="radio"
-									class="btn-check"
-									name="options2"
-									id="option2-1"
-									autocomplete="off"
-									on:change={() => {
-										setcardsToWin(4)
-										playClickSound()
-									}}
-								/>
-								<label
-									class="btn btn-success fs-3 centered-label"
-									for="option2-1"
-									>4
-								</label>
 
-								<input
-									type="radio"
-									class="btn-check"
-									name="options2"
-									id="option2-2"
-									autocomplete="off"
-									checked
-									on:change={() => {
-										setcardsToWin(5)
-										playClickSound()
-									}}
-								/>
-								<label
-									class="btn btn-success fs-3 centered-label"
-									for="option2-2"
-									>5
-								</label>
-							</div>
+					<!-- Radio buttons -->
+					<div
+						class="row justify-content-center"
+						style="min-height: 55px;"
+					>
+						<div
+							class="btn-group h-100 w-100 shadow px-0"
+							role="group"
+						>
+							<input
+								type="radio"
+								class="btn-check"
+								name="options"
+								id="option1"
+								autocomplete="off"
+								checked
+								on:click={() => {
+									setNoPlayers(2)
+									playClickSound()
+								}}
+							/>
+							<label
+								class="btn btn-success d-flex align-items-center justify-content-center"
+								for="option1"
+							>
+								<i class="fas fa-user"></i>
+								<i class="fas fa-user"></i>
+							</label>
+
+							<input
+								type="radio"
+								class="btn-check"
+								name="options"
+								id="option2"
+								autocomplete="off"
+								on:click={() => {
+									setNoPlayers(3)
+									playClickSound()
+								}}
+							/>
+							<label
+								class="btn btn-success d-flex align-items-center justify-content-center"
+								for="option2"
+							>
+								<i class="fas fa-user"></i>
+								<i class="fas fa-user"></i>
+								<i class="fas fa-user"></i>
+							</label>
+
+							<input
+								type="radio"
+								class="btn-check"
+								name="options"
+								id="option3"
+								autocomplete="off"
+								on:click={() => {
+									setNoPlayers(4)
+									playClickSound()
+								}}
+							/>
+							<label
+								class="btn btn-success d-flex align-items-center justify-content-center"
+								for="option3"
+							>
+								<i class="fas fa-user"></i>
+								<i class="fas fa-user"></i>
+								<i class="fas fa-user"></i>
+								<i class="fas fa-user"></i>
+							</label>
 						</div>
 					</div>
 				</div>
-				<!--buttons -->
+				<!-- button group -->
 				<div class="d-flex justify-content-between align-items-center py-1">
-					<div class="d-inline-block align-self-center bg-danger rounded">
+					<div class="d-inline-block align-self-center">
 						<Return />
 					</div>
 					<button
@@ -291,20 +240,12 @@
 		background-color: #ffffff96;
 		border-radius: 10px;
 		padding: 20px;
-		width: min(800px, 90%);
+		width: min(650px, 90%);
 		backdrop-filter: blur(5px);
 		border-top: 1px solid rgba(255, 255, 255, 0.4);
 		border-left: 1px solid rgba(255, 255, 255, 0.4);
 		box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
 	}
-	.centered-label {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		height: 100%;
-		font-size: 25px;
-	}
-
 	.overlay {
 		display: none;
 		position: fixed;

@@ -21,11 +21,18 @@ export const cardsToWin = persist("cardsToWin", 5)
 export const noPlayers = persist("noPlayers", 2)
 
 export function setNoPlayers(amount) {
-	noPlayers.set(amount)
+	noPlayers.set(amount);
+	// console.log('players', amount);
+	if (amount === 2) {
+		setCardsToWin(5);
+	} else {
+		setCardsToWin(4);
+	}
 }
 
-export function setcardsToWin(amount) {
+export function setCardsToWin(amount) {
 	cardsToWin.set(amount)
+	// console.log('target set to', amount)
 }
 // game state
 export const doesTheGameExist = persist("doesTheGameExist", false)

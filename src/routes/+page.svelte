@@ -4,6 +4,7 @@
 	import { colorHead } from "$lib/coloredtext"
 
 	const coloredText = colorHead("Punto Online")
+	let letters = "Continue".split("")
 </script>
 
 <svelte:head>
@@ -49,7 +50,11 @@
 						style="--hover-color: #ffc107;"
 						on:mousedown={playClickSound}
 					>
-						Continue
+						{#each letters as letter, index}
+							<span style="--index: {index}; --alpha-l: 0.5; --alpha-u: 1;">
+								{letter}
+							</span>
+						{/each}
 					</a>
 				{:else}
 					<span
@@ -105,6 +110,27 @@
 </div>
 
 <style>
+	h3 a#continue {
+		text-align: center;
+		position: relative;
+		top: 50%;
+		white-space: nowrap;
+		transform: translate(0, -50%) translate(calc(var(--x, 0) * 1%), calc(var(--y, 0) * 1%));
+
+		margin: 0;
+	}
+	h3 a#continue span {
+		color: #000000;
+		animation: rise 2.25s infinite ease-in-out;
+		animation-delay: calc((var(--index) - 6) * 0.225s);
+		display: inline-block;
+	}
+	@keyframes rise {
+		25% {
+			color: #ffffff;
+			transform: translate(0, -15%);
+		}
+	}
 	img {
 		display: flex;
 		justify-content: center;
