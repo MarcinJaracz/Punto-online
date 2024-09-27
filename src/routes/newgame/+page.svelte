@@ -3,7 +3,7 @@
 	import { fade } from "svelte/transition"
 	import { sineInOut } from "svelte/easing"
 	import { playClickSound } from "$lib/click"
-	import { setNoPlayers, setGameExistState, setCardsToWin, doesTheGameExist } from "$lib/store.js"
+	import { setNoPlayers, setGameExistState, doesTheGameExist } from "$lib/store.js"
 	import { colorHead } from "$lib/coloredtext"
 
 	const coloredText = colorHead("New Game")

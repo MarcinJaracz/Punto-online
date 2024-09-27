@@ -63,29 +63,12 @@
 		}
 	}
 
-	function handleDndConsider(e) {
-		console.log("DND Consider event:", e.detail.items)
-		cards = e.detail.items
+	function handleDndPlayerConsider(path, e) {
+		cards[path] = e.detail.items
 	}
 
-	function handleDndFinalize(e) {
-		const { items: updatedItems, from, to, item } = e.detail
-		if (!item) {
-			console.error("Item is undefined:", item)
-			return
-		}
-		if (!item.id) {
-			console.error("undefined id:", item)
-			return
-		}
-		if (to.id === "board") {
-			cardItems = updatedItems
-		} else {
-			playerCards[to.id] = updatedItems
-		}
-		if (from.id !== to.id) {
-			playerCards[from.id] = playerCards[from.id].filter((c) => c.name !== item.name)
-		}
+	function handleDndBoardConsider(e) {
+		cardItems = e.detail.items
 	}
 
 	function splitCardsByColor(cards) {
@@ -134,14 +117,13 @@
 									dragDisabled: false,
 									dropTargetStyle: customStyle,
 								}}
-								on:consider={handleDndConsider}
-								on:finalize={handleDndFinalize}
+								on:consider={(e) => handleDndPlayerConsider("player1", e)}
+								on:finalize={(e) => handleDndPlayerConsider("player1", e)}
 							>
 								<!-- Render cards for player 1 -->
 								{#each playerCards.player1 as card, i (card.id)}
 									<div
 										class="flip-card"
-										draggable="true"
 										on:click={() => (card.flipped = !card.flipped)}
 										animate:flip={{ duration: flipDurationMs }}
 										style="z-index: {playerCards.player1.length - i};"
@@ -177,8 +159,8 @@
 									dragDisabled: false,
 									dropTargetStyle: customStyle,
 								}}
-								on:consider={handleDndConsider}
-								on:finalize={handleDndFinalize}
+								on:consider={(e) => handleDndPlayerConsider("player2", e)}
+								on:finalize={(e) => handleDndPlayerConsider("player2", e)}
 							>
 								<!-- Render cards for player 2 -->
 								{#each playerCards.player2 as card, i (card.id)}
@@ -220,13 +202,13 @@
 								dropTargetStyle: customStyle,
 								dragDisabled: true,
 							}}
-							on:consider={handleDndConsider}
-							on:finalize={handleDndFinalize}
+							on:consider={handleDndBoardConsider}
+							on:finalize={handleDndBoardConsider}
 						>
 							<!-- Render dropped cards on the board -->
 							{#each cardItems as card (card.id)}
 								<div
-									class="flip-card"
+									class="flip-card-front"
 									style="background-position: {getBackgroundPosition(card)}"
 								></div>
 							{/each}
@@ -254,7 +236,6 @@
 					</h3>
 				</div>
 			</div>
-
 			<!-- Column 2  player 3 & 4-->
 			<div
 				class="col-1 d-flex flex-column justify-content-evenly"
@@ -279,8 +260,8 @@
 										dragDisabled: false,
 										dropTargetStyle: customStyle,
 									}}
-									on:consider={handleDndConsider}
-									on:finalize={handleDndFinalize}
+									on:consider={(e) => handleDndPlayerConsider("player3", e)}
+									on:finalize={(e) => handleDndPlayerConsider("player3", e)}
 								>
 									<!-- Render cards for player 3 -->
 									{#each playerCards.player3 as card, i (card.id)}
@@ -325,8 +306,8 @@
 										dragDisabled: false,
 										dropTargetStyle: customStyle,
 									}}
-									on:consider={handleDndConsider}
-									on:finalize={handleDndFinalize}
+									on:consider={(e) => handleDndPlayerConsider("player4", e)}
+									on:finalize={(e) => handleDndPlayerConsider("player4", e)}
 								>
 									<!-- Render cards for player 1 -->
 									{#each playerCards.player4 as card, i (card.id)}
