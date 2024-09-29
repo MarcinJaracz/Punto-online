@@ -21,12 +21,12 @@ export const cardsToWin = persist("cardsToWin", 5)
 export const noPlayers = persist("noPlayers", 2)
 
 export function setNoPlayers(amount) {
-	noPlayers.set(amount);
+	noPlayers.set(amount)
 	// console.log('players', amount);
 	if (amount === 2) {
-		setCardsToWin(5);
+		setCardsToWin(5)
 	} else {
-		setCardsToWin(4);
+		setCardsToWin(4)
 	}
 }
 

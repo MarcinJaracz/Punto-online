@@ -7,7 +7,6 @@
 	import { onMount, onDestroy } from "svelte"
 
 	const flipDurationMs = 300
-	let customStyle = { border: "1px solid #1f1f1f23;" }
 	let cardItems = []
 	let cards = []
 	let controller
@@ -63,11 +62,11 @@
 		}
 	}
 
-	function handleDndPlayerConsider(path, e) {
+	function handleDndPlayer(path, e) {
 		cards[path] = e.detail.items
 	}
 
-	function handleDndBoardConsider(e) {
+	function handleDndBoard(e) {
 		cardItems = e.detail.items
 	}
 
@@ -91,6 +90,29 @@
 
 <body>
 	<div class="container-fluid">
+		<!-- buttons -->
+		<div
+			class="d-flex"
+			style="position:absolute;"
+		>
+			<div class="d-inline-block">
+				<Return />
+			</div>
+			<h3>
+				<a
+					href="/"
+					data-bs-toggle="tooltip"
+					data-placement="right"
+					title="Go back to main page"
+					style="--hover-color: #dc3545; margin-top:6px"
+					on:click={() => setGameExistState(false)}
+					on:mousedown={playClickSound}
+				>
+					<i class="fa-light fa-circle-xmark" /> end game
+				</a>
+			</h3>
+		</div>
+		<!-- main body -->
 		<div
 			class="d-flex justify-content-evenly"
 			style="overflow-x: hidden;"
@@ -115,10 +137,10 @@
 								use:dndzone={{
 									items: playerCards.player1,
 									dragDisabled: false,
-									dropTargetStyle: customStyle,
+									dropTargetStyle: {},
 								}}
-								on:consider={(e) => handleDndPlayerConsider("player1", e)}
-								on:finalize={(e) => handleDndPlayerConsider("player1", e)}
+								on:consider={(e) => handleDndPlayer("player1", e)}
+								on:finalize={(e) => handleDndPlayer("player1", e)}
 							>
 								<!-- Render cards for player 1 -->
 								{#each playerCards.player1 as card, i (card.id)}
@@ -157,10 +179,10 @@
 								use:dndzone={{
 									items: playerCards.player2,
 									dragDisabled: false,
-									dropTargetStyle: customStyle,
+									dropTargetStyle: {},
 								}}
-								on:consider={(e) => handleDndPlayerConsider("player2", e)}
-								on:finalize={(e) => handleDndPlayerConsider("player2", e)}
+								on:consider={(e) => handleDndPlayer("player2", e)}
+								on:finalize={(e) => handleDndPlayer("player2", e)}
 							>
 								<!-- Render cards for player 2 -->
 								{#each playerCards.player2 as card, i (card.id)}
@@ -186,7 +208,7 @@
 				</div>
 			</div>
 
-			<!-- Board & buttons under-->
+			<!-- Board -->
 			<div
 				class="col-7 mt-2 d-flex flex-column"
 				style="flex-shrink: 0; min-width: 700px;"
@@ -195,15 +217,15 @@
 					{#each Array(36).fill(0) as _, i}
 						<div
 							class="box"
-							id={i + 1}
+							id="cell_{i + 1}"
 							name="cell_{i + 1}"
 							use:dndzone={{
 								items: cardItems,
-								dropTargetStyle: customStyle,
+								dropTargetStyle: {},
 								dragDisabled: true,
 							}}
-							on:consider={handleDndBoardConsider}
-							on:finalize={handleDndBoardConsider}
+							on:consider={handleDndBoard}
+							on:finalize={handleDndBoard}
 						>
 							<!-- Render dropped cards on the board -->
 							{#each cardItems as card (card.id)}
@@ -214,26 +236,6 @@
 							{/each}
 						</div>
 					{/each}
-				</div>
-
-				<!-- buttons -->
-				<div class="d-flex justify-content-evenly align-items-center pt-4">
-					<div class="d-inline-block align-self-center">
-						<Return />
-					</div>
-					<h3>
-						<a
-							href="/"
-							data-bs-toggle="tooltip"
-							data-placement="right"
-							title="Go back to main page"
-							style="--hover-color: #dc3545;"
-							on:click={() => setGameExistState(false)}
-							on:mousedown={playClickSound}
-						>
-							<i class="fa-sharp fa-light fa-circle-arrow-left" /> finish this game and exit
-						</a>
-					</h3>
 				</div>
 			</div>
 			<!-- Column 2  player 3 & 4-->
@@ -258,10 +260,10 @@
 									use:dndzone={{
 										items: playerCards.player3,
 										dragDisabled: false,
-										dropTargetStyle: customStyle,
+										dropTargetStyle: {},
 									}}
-									on:consider={(e) => handleDndPlayerConsider("player3", e)}
-									on:finalize={(e) => handleDndPlayerConsider("player3", e)}
+									on:consider={(e) => handleDndPlayer("player3", e)}
+									on:finalize={(e) => handleDndPlayer("player3", e)}
 								>
 									<!-- Render cards for player 3 -->
 									{#each playerCards.player3 as card, i (card.id)}
@@ -304,10 +306,10 @@
 									use:dndzone={{
 										items: playerCards.player4,
 										dragDisabled: false,
-										dropTargetStyle: customStyle,
+										dropTargetStyle: {},
 									}}
-									on:consider={(e) => handleDndPlayerConsider("player4", e)}
-									on:finalize={(e) => handleDndPlayerConsider("player4", e)}
+									on:consider={(e) => handleDndPlayer("player4", e)}
+									on:finalize={(e) => handleDndPlayer("player4", e)}
 								>
 									<!-- Render cards for player 1 -->
 									{#each playerCards.player4 as card, i (card.id)}
