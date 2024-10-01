@@ -6,7 +6,7 @@
 	import { flip } from "svelte/animate"
 	import { onMount, onDestroy } from "svelte"
 
-	const flipDurationMs = 300
+	const flipDurationMs = 500
 	let cardItems = []
 	let cards = []
 	let controller
@@ -66,7 +66,11 @@
 		cards[path] = e.detail.items
 	}
 
-	function handleDndBoard(e) {
+	function handleDndBoardFinalize(e) {
+		cardItems = e.detail.items
+	}
+
+	function handleDndBoardConsider(e) {
 		cardItems = e.detail.items
 	}
 
@@ -138,6 +142,7 @@
 									items: playerCards.player1,
 									dragDisabled: false,
 									dropTargetStyle: {},
+									dropAnimationDisabled: true,
 								}}
 								on:consider={(e) => handleDndPlayer("player1", e)}
 								on:finalize={(e) => handleDndPlayer("player1", e)}
@@ -180,6 +185,7 @@
 									items: playerCards.player2,
 									dragDisabled: false,
 									dropTargetStyle: {},
+									dropAnimationDisabled: true,
 								}}
 								on:consider={(e) => handleDndPlayer("player2", e)}
 								on:finalize={(e) => handleDndPlayer("player2", e)}
@@ -219,25 +225,28 @@
 							class="box"
 							id="cell_{i + 1}"
 							name="cell_{i + 1}"
+							data-index={i + 1}
 							use:dndzone={{
 								items: cardItems,
 								dropTargetStyle: {},
 								dragDisabled: true,
+								dropAnimationDisabled: true,
 							}}
-							on:consider={handleDndBoard}
-							on:finalize={handleDndBoard}
+							on:consider={handleDndBoardConsider}
+							on:finalize={handleDndBoardFinalize}
 						>
 							<!-- Render dropped cards on the board -->
-							{#each cardItems as card (card.id)}
+							{#each cardItems as item (item.id)}
 								<div
 									class="flip-card-front"
-									style="background-position: {getBackgroundPosition(card)}"
+									style="background-position: {getBackgroundPosition(item)}"
 								></div>
 							{/each}
 						</div>
 					{/each}
 				</div>
 			</div>
+
 			<!-- Column 2  player 3 & 4-->
 			<div
 				class="col-1 d-flex flex-column justify-content-evenly"
@@ -261,6 +270,7 @@
 										items: playerCards.player3,
 										dragDisabled: false,
 										dropTargetStyle: {},
+										dropAnimationDisabled: true,
 									}}
 									on:consider={(e) => handleDndPlayer("player3", e)}
 									on:finalize={(e) => handleDndPlayer("player3", e)}
@@ -307,6 +317,7 @@
 										items: playerCards.player4,
 										dragDisabled: false,
 										dropTargetStyle: {},
+										dropAnimationDisabled: true,
 									}}
 									on:consider={(e) => handleDndPlayer("player4", e)}
 									on:finalize={(e) => handleDndPlayer("player4", e)}
