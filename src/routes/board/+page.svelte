@@ -9,6 +9,7 @@
 	const flipDurationMs = 500
 	let cardItems = []
 	let cards = []
+	let board = []
 	let controller
 	let playerCards = {
 		player1: [],
@@ -19,6 +20,7 @@
 
 	onMount(() => {
 		loadCards()
+		loadBoard()
 	})
 
 	onDestroy(() => {
@@ -49,6 +51,11 @@
 		}
 	}
 
+	async function loadBoard() {
+		const response = await fetch("/board.json")
+		board = await response.json()
+	}
+
 	function shuffle(array) {
 		for (let i = array.length - 1; i > 0; i--) {
 			const j = Math.floor(Math.random() * (i + 1))
@@ -67,7 +74,16 @@
 	}
 
 	function handleDndBoardFinalize(e) {
-		cardItems = e.detail.items
+		const info = e.detail.items
+		const dropID = e.detail.info.id
+		console.log("Finalize event info:", info)
+		console.log("Finalize event dropID:", dropID)
+		board["#box.id"] = info
+	}
+
+	$: {
+		console.log("BOARD\n-------------------------------\n", board)
+		console.log("cardItems\n-------------------------------\n", cardItems)
 	}
 
 	function handleDndBoardConsider(e) {
@@ -143,6 +159,7 @@
 									dragDisabled: false,
 									dropTargetStyle: {},
 									dropAnimationDisabled: true,
+									morphDisabled: true,
 								}}
 								on:consider={(e) => handleDndPlayer("player1", e)}
 								on:finalize={(e) => handleDndPlayer("player1", e)}
@@ -186,6 +203,7 @@
 									dragDisabled: false,
 									dropTargetStyle: {},
 									dropAnimationDisabled: true,
+									morphDisabled: true,
 								}}
 								on:consider={(e) => handleDndPlayer("player2", e)}
 								on:finalize={(e) => handleDndPlayer("player2", e)}
@@ -223,7 +241,7 @@
 					{#each Array(36).fill(0) as _, i}
 						<div
 							class="box"
-							id="cell_{i + 1}"
+							id={i + 1}
 							name="cell_{i + 1}"
 							data-index={i + 1}
 							use:dndzone={{
@@ -231,6 +249,7 @@
 								dropTargetStyle: {},
 								dragDisabled: true,
 								dropAnimationDisabled: true,
+								morphDisabled: true,
 							}}
 							on:consider={handleDndBoardConsider}
 							on:finalize={handleDndBoardFinalize}
@@ -271,6 +290,7 @@
 										dragDisabled: false,
 										dropTargetStyle: {},
 										dropAnimationDisabled: true,
+										morphDisabled: true,
 									}}
 									on:consider={(e) => handleDndPlayer("player3", e)}
 									on:finalize={(e) => handleDndPlayer("player3", e)}
@@ -318,6 +338,7 @@
 										dragDisabled: false,
 										dropTargetStyle: {},
 										dropAnimationDisabled: true,
+										morphDisabled: true,
 									}}
 									on:consider={(e) => handleDndPlayer("player4", e)}
 									on:finalize={(e) => handleDndPlayer("player4", e)}
