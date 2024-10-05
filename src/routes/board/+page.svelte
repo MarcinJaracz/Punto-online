@@ -7,7 +7,7 @@
 	import { onMount, onDestroy } from "svelte"
 
 	const flipDurationMs = 500
-	let cardItems = []
+	let cardItems = ""
 	let cards = []
 	let board = []
 	let controller
@@ -52,8 +52,20 @@
 	}
 
 	async function loadBoard() {
-		const response = await fetch("/board.json")
-		board = await response.json()
+		try {
+			const response = await fetch("/board.json")
+			if (!response.ok) {
+				throw new Error(`Failed to load board: ${response.statusText}`)
+			}
+			const data = await response.json()
+			if (Array.isArray(data)) {
+				board = [...data]
+			} else {
+				console.error("Unexpected board format:", data)
+			}
+		} catch (error) {
+			console.error("Error loading board:", error)
+		}
 	}
 
 	function shuffle(array) {
@@ -73,21 +85,51 @@
 		cards[path] = e.detail.items
 	}
 
+	function handleDndBoardConsider(e) {
+		console.warn("Items in consider:", e.detail.items)
+	}
+
 	function handleDndBoardFinalize(e) {
-		const info = e.detail.items
-		const dropID = e.detail.info.id
-		console.log("Finalize event info:", info)
-		console.log("Finalize event dropID:", dropID)
-		board["#box.id"] = info
+		cardItems += `${e.detail.info.id},\n`
+
+		const dropID = e.detail.info?.id
+		const destination = e.detail.destination
+		const target = e.detail.info?.target
+
+		if (!destination && target?.id) {
+			const targetID = target.id
+			console.log("Target ID:", targetID)
+
+			const index = parseInt(targetID.split("-")[1], 10)
+
+			if (!isNaN(index)) {
+				console.log("Derived index from target ID:", index)
+				updateBoard(index, dropID)
+			} else {
+				console.warn("Could not derive a valid index from target ID:", targetID)
+			}
+		} else if (destination) {
+			const index = destination.index
+			updateBoard(index, dropID)
+		}
+	}
+
+	function updateBoard(index, cardID) {
+		if (index >= 0 && index < board.length) {
+			board[index] = { ...board[index], card: cardID }
+			console.log(`Updated board at index ${index} with card ${cardID}`)
+		} else {
+			console.warn(`Invalid index: ${index}. Could not update board.`)
+		}
 	}
 
 	$: {
-		console.log("BOARD\n-------------------------------\n", board)
-		console.log("cardItems\n-------------------------------\n", cardItems)
-	}
-
-	function handleDndBoardConsider(e) {
-		cardItems = e.detail.items
+		if (board.length > 0) {
+			console.log("BOARD\n-------------------------------\n", board)
+		}
+		if (cardItems.length > 0) {
+			console.log("cardItems\n-------------------------------\n", cardItems)
+		}
 	}
 
 	function splitCardsByColor(cards) {
@@ -238,14 +280,14 @@
 				style="flex-shrink: 0; min-width: 700px;"
 			>
 				<div class="board">
-					{#each Array(36).fill(0) as _, i}
+					{#each board as column, index}
 						<div
 							class="box"
-							id={i + 1}
-							name="cell_{i + 1}"
-							data-index={i + 1}
+							id={index}
+							name="cell_{index}"
+							data-index={index}
 							use:dndzone={{
-								items: cardItems,
+								items: board[index].card,
 								dropTargetStyle: {},
 								dragDisabled: true,
 								dropAnimationDisabled: true,
@@ -254,8 +296,7 @@
 							on:consider={handleDndBoardConsider}
 							on:finalize={handleDndBoardFinalize}
 						>
-							<!-- Render dropped cards on the board -->
-							{#each cardItems as item (item.id)}
+							{#each board[index].card as item (item.id)}
 								<div
 									class="flip-card-front"
 									style="background-position: {getBackgroundPosition(item)}"
