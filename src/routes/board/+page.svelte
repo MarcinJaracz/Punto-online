@@ -60,6 +60,7 @@
 			const data = await response.json()
 			if (Array.isArray(data)) {
 				board = [...data]
+				console.log(">>> Board loaded properly.")
 			} else {
 				console.error("Unexpected board format:", data)
 			}
@@ -86,51 +87,47 @@
 	}
 
 	function handleDndBoardConsider(e) {
-		console.warn("Items in consider:", e.detail.items)
+		// console.log("consider box id:", e.target.id)
 	}
 
 	function handleDndBoardFinalize(e) {
 		cardItems += `${e.detail.info.id},\n`
 
-		const dropID = e.detail.info?.id
-		const destination = e.detail.destination
-		const target = e.detail.info?.target
+		const dropID = e.detail.info.id
+		const targetID = e.target.id
 
-		if (!destination && target?.id) {
-			const targetID = target.id
-			console.log("Target ID:", targetID)
+		if (targetID) {
+			console.warn("Target ID:", targetID)
 
-			const index = parseInt(targetID.split("-")[1], 10)
+			const index = parseInt(targetID)
 
 			if (!isNaN(index)) {
-				console.log("Derived index from target ID:", index)
+				console.warn("Derived index from target ID:", index)
 				updateBoard(index, dropID)
 			} else {
 				console.warn("Could not derive a valid index from target ID:", targetID)
 			}
-		} else if (destination) {
-			const index = destination.index
-			updateBoard(index, dropID)
 		}
 	}
 
 	function updateBoard(index, cardID) {
 		if (index >= 0 && index < board.length) {
 			board[index] = { ...board[index], card: cardID }
-			console.log(`Updated board at index ${index} with card ${cardID}`)
+			console.warn(`Updated board at index ${index} with card ${cardID}`)
+			console.log(board)
 		} else {
 			console.warn(`Invalid index: ${index}. Could not update board.`)
 		}
 	}
 
-	$: {
-		if (board.length > 0) {
-			console.log("BOARD\n-------------------------------\n", board)
-		}
-		if (cardItems.length > 0) {
-			console.log("cardItems\n-------------------------------\n", cardItems)
-		}
-	}
+	// $: {
+	// 	if (board.length > 0) {
+	// 		console.log("BOARD\n-------------------------------\n", board)
+	// 	}
+	// 	if (cardItems.length > 0) {
+	// 		console.log("cardItems\n-------------------------------\n", cardItems)
+	// 	}
+	// }
 
 	function splitCardsByColor(cards) {
 		playerCards.player3 = cards.filter((card) => card.color === "yellow")
@@ -298,7 +295,7 @@
 						>
 							{#each board[index].card as item (item.id)}
 								<div
-									class="flip-card-front"
+									class="flip-card"
 									style="background-position: {getBackgroundPosition(item)}"
 								></div>
 							{/each}
