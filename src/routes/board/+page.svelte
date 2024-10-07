@@ -7,7 +7,6 @@
 	import { onMount, onDestroy } from "svelte"
 
 	const flipDurationMs = 500
-	let cardItems = ""
 	let cards = []
 	let board = []
 	let controller
@@ -87,25 +86,24 @@
 	}
 
 	function handleDndBoardConsider(e) {
-		// console.log("consider box id:", e.target.id)
+		console.log("Consider box id:", e.target.id, "\nDragging card:", e.detail.items[0]?.id)
 	}
 
 	function handleDndBoardFinalize(e) {
-		cardItems += `${e.detail.info.id},\n`
+		console.log("Finalize|items at the time", e.detail?.items)
 
 		const dropID = e.detail.info.id
 		const targetID = e.target.id
 
 		if (targetID) {
-			console.warn("Target ID:", targetID)
-
+			console.log("Finalize|Target ID:", targetID)
 			const index = parseInt(targetID)
 
 			if (!isNaN(index)) {
-				console.warn("Derived index from target ID:", index)
+				console.log("Finalize|Derived index from target ID:", index)
 				updateBoard(index, dropID)
 			} else {
-				console.warn("Could not derive a valid index from target ID:", targetID)
+				console.log("Finalize|Could not derive a valid index from target ID:", targetID)
 			}
 		}
 	}
@@ -113,21 +111,12 @@
 	function updateBoard(index, cardID) {
 		if (index >= 0 && index < board.length) {
 			board[index] = { ...board[index], card: cardID }
-			console.warn(`Updated board at index ${index} with card ${cardID}`)
-			console.log(board)
+			console.warn(`Finalize|Updated board at index ${index} with card ${cardID}`)
+			console.log("Finalize|Updated board", board)
 		} else {
-			console.warn(`Invalid index: ${index}. Could not update board.`)
+			console.warn(`Finalize|Invalid index: ${index}. Could not update board.`)
 		}
 	}
-
-	// $: {
-	// 	if (board.length > 0) {
-	// 		console.log("BOARD\n-------------------------------\n", board)
-	// 	}
-	// 	if (cardItems.length > 0) {
-	// 		console.log("cardItems\n-------------------------------\n", cardItems)
-	// 	}
-	// }
 
 	function splitCardsByColor(cards) {
 		playerCards.player3 = cards.filter((card) => card.color === "yellow")
@@ -251,7 +240,6 @@
 								{#each playerCards.player2 as card, i (card.id)}
 									<div
 										class="flip-card"
-										draggable="true"
 										on:click={() => (card.flipped = !card.flipped)}
 										animate:flip={{ duration: flipDurationMs }}
 										style="z-index: {playerCards.player1.length - i}; "
@@ -295,7 +283,7 @@
 						>
 							{#each board[index].card as item (item.id)}
 								<div
-									class="flip-card"
+									class="flip-card-front"
 									style="background-position: {getBackgroundPosition(item)}"
 								></div>
 							{/each}
@@ -337,7 +325,6 @@
 									{#each playerCards.player3 as card, i (card.id)}
 										<div
 											class="flip-card"
-											draggable="true"
 											on:click={() => (card.flipped = !card.flipped)}
 											animate:flip={{ duration: flipDurationMs }}
 											style="z-index: {playerCards.player1.length - i}; "
@@ -385,7 +372,6 @@
 									{#each playerCards.player4 as card, i (card.id)}
 										<div
 											class="flip-card"
-											draggable="true"
 											on:click={() => (card.flipped = !card.flipped)}
 											animate:flip={{ duration: flipDurationMs }}
 											style="z-index: {playerCards.player1.length - i}; "
