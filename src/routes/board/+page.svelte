@@ -86,36 +86,16 @@
 	}
 
 	function handleDndBoardConsider(e) {
-		console.log("Consider box id:", e.target.id, "\nDragging card:", e.detail.items[0]?.id)
+		// console.log("Consider box id:", e.target.id, "\nDragging card:", e.detail.items[0]?.id)
 	}
 
-	function handleDndBoardFinalize(e) {
-		console.log("Finalize|items at the time", e.detail?.items)
-
+	function handleDndBoardFinalize(index, e) {
 		const dropID = e.detail.info.id
 		const targetID = e.target.id
+		board[index].card = dropID
 
-		if (targetID) {
-			console.log("Finalize|Target ID:", targetID)
-			const index = parseInt(targetID)
-
-			if (!isNaN(index)) {
-				console.log("Finalize|Derived index from target ID:", index)
-				updateBoard(index, dropID)
-			} else {
-				console.log("Finalize|Could not derive a valid index from target ID:", targetID)
-			}
-		}
-	}
-
-	function updateBoard(index, cardID) {
-		if (index >= 0 && index < board.length) {
-			board[index] = { ...board[index], card: cardID }
-			console.warn(`Finalize|Updated board at index ${index} with card ${cardID}`)
-			console.log("Finalize|Updated board", board)
-		} else {
-			console.warn(`Finalize|Invalid index: ${index}. Could not update board.`)
-		}
+		console.log(">>> Finalize\nItems at the time:", e.detail?.items, "\ntargetID:", targetID, "\ndropID:", dropID)
+		console.log("Board updated:\n", board)
 	}
 
 	function splitCardsByColor(cards) {
@@ -265,10 +245,10 @@
 				style="flex-shrink: 0; min-width: 700px;"
 			>
 				<div class="board">
-					{#each board as column, index}
+					{#each board as card, index}
 						<div
 							class="box"
-							id={index}
+							id="cell_{index}"
 							name="cell_{index}"
 							data-index={index}
 							use:dndzone={{
@@ -279,8 +259,11 @@
 								morphDisabled: true,
 							}}
 							on:consider={handleDndBoardConsider}
-							on:finalize={handleDndBoardFinalize}
+							on:finalize={(e) => handleDndBoardFinalize(index, e)}
 						>
+							cell_{index}
+							<!-- temporally printing id inside a cell. -->
+
 							{#each board[index].card as item (item.id)}
 								<div
 									class="flip-card-front"
