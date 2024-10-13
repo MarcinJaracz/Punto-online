@@ -7,6 +7,7 @@
 	import { onMount, onDestroy } from "svelte"
 
 	const flipDurationMs = 500
+	const isCellFull = new Map()
 	let cards = []
 	let board = []
 	let controller
@@ -82,20 +83,19 @@
 	}
 
 	function handleDndPlayer(path, e) {
-		cards[path] = e.detail.items
+		console.log("player", { event: e.detail })
+		playerCards[path] = e.detail.items
 	}
 
-	function handleDndBoardConsider(e) {
-		// console.log("Consider box id:", e.target.id, "\nDragging card:", e.detail.items[0]?.id)
+	function handleDndBoardConsider(index, e) {
+		board[index].card = e.detail.items
+		board = [...board]
 	}
 
 	function handleDndBoardFinalize(index, e) {
-		const dropID = e.detail.info.id
-		const targetID = e.target.id
-		board[index].card = dropID
-
-		console.log(">>> Finalize\nItems at the time:", e.detail?.items, "\ntargetID:", targetID, "\ndropID:", dropID)
-		console.log("Board updated:\n", board)
+		board[index].card = e.detail.items
+		board = [...board]
+		isCellFull.set(index, true)
 	}
 
 	function splitCardsByColor(cards) {
@@ -255,10 +255,10 @@
 								items: board[index].card,
 								dropTargetStyle: {},
 								dragDisabled: true,
-								dropAnimationDisabled: true,
 								morphDisabled: true,
+								dropFromOthersDisabled: !!isCellFull.get(index),
 							}}
-							on:consider={handleDndBoardConsider}
+							on:consider={(e) => handleDndBoardConsider(index, e)}
 							on:finalize={(e) => handleDndBoardFinalize(index, e)}
 						>
 							cell_{index}
