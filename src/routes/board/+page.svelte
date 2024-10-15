@@ -7,7 +7,6 @@
 	import { onMount, onDestroy } from "svelte"
 
 	const flipDurationMs = 500
-	const isCellFull = new Map()
 	let cards = []
 	let board = []
 	let controller
@@ -83,19 +82,20 @@
 	}
 
 	function handleDndPlayer(path, e) {
-		console.log("player", { event: e.detail })
+		// console.log("player", { event: e.detail })
 		playerCards[path] = e.detail.items
 	}
 
 	function handleDndBoardConsider(index, e) {
 		board[index].card = e.detail.items
 		board = [...board]
+		// console.log(board[index].card[0].points)
 	}
 
 	function handleDndBoardFinalize(index, e) {
 		board[index].card = e.detail.items
+		board[index].isCellFull = true
 		board = [...board]
-		isCellFull.set(index, true)
 	}
 
 	function splitCardsByColor(cards) {
@@ -262,7 +262,7 @@
 								dropTargetStyle: {},
 								dragDisabled: true,
 								morphDisabled: true,
-								dropFromOthersDisabled: !!isCellFull.get(index),
+								dropFromOthersDisabled: !!board[index].isCellFull, //TODO add function to define number of points
 							}}
 							on:consider={(e) => handleDndBoardConsider(index, e)}
 							on:finalize={(e) => handleDndBoardFinalize(index, e)}
