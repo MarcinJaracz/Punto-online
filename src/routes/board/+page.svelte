@@ -2,7 +2,7 @@
 	import Return from "$components/return.svelte"
 	import { noPlayers, setGameExistState } from "$lib/store"
 	import { playClickSound } from "$lib/click"
-	import { dndzone } from "svelte-dnd-action"
+	import { dndzone, SHADOW_ITEM_MARKER_PROPERTY_NAME } from "svelte-dnd-action"
 	import { flip } from "svelte/animate"
 	import { onMount, onDestroy } from "svelte"
 
@@ -166,8 +166,11 @@
 									items: playerCards.player1,
 									dragDisabled: false,
 									dropTargetStyle: {},
-									dropAnimationDisabled: true,
+									dropAnimationDisabled: false,
+									flipDurationMs: flipDurationMs,
 									morphDisabled: true,
+									dropFromOthersDisabled: true,
+									centreDraggedOnCursor: true,
 								}}
 								on:consider={(e) => handleDndPlayer("player1", e)}
 								on:finalize={(e) => handleDndPlayer("player1", e)}
@@ -210,8 +213,11 @@
 									items: playerCards.player2,
 									dragDisabled: false,
 									dropTargetStyle: {},
-									dropAnimationDisabled: true,
+									dropAnimationDisabled: false,
+									flipDurationMs: flipDurationMs,
 									morphDisabled: true,
+									dropFromOthersDisabled: true,
+									centreDraggedOnCursor: true,
 								}}
 								on:consider={(e) => handleDndPlayer("player2", e)}
 								on:finalize={(e) => handleDndPlayer("player2", e)}
@@ -261,14 +267,19 @@
 							on:consider={(e) => handleDndBoardConsider(index, e)}
 							on:finalize={(e) => handleDndBoardFinalize(index, e)}
 						>
-							cell_{index}
-							<!-- temporally printing id inside a cell. -->
-
 							{#each board[index].card as item (item.id)}
 								<div
 									class="flip-card-front"
 									style="background-position: {getBackgroundPosition(item)}"
-								></div>
+								/>
+								{#if item[SHADOW_ITEM_MARKER_PROPERTY_NAME]}
+									<div class="custom-shadow-item">
+										<div
+											class="flip-card-front"
+											style="background-position: {getBackgroundPosition(item)}"
+										/>
+									</div>
+								{/if}
 							{/each}
 						</div>
 					{/each}
@@ -298,8 +309,11 @@
 										items: playerCards.player3,
 										dragDisabled: false,
 										dropTargetStyle: {},
-										dropAnimationDisabled: true,
+										dropAnimationDisabled: false,
+										flipDurationMs: flipDurationMs,
 										morphDisabled: true,
+										dropFromOthersDisabled: true,
+										centreDraggedOnCursor: true,
 									}}
 									on:consider={(e) => handleDndPlayer("player3", e)}
 									on:finalize={(e) => handleDndPlayer("player3", e)}
@@ -345,8 +359,11 @@
 										items: playerCards.player4,
 										dragDisabled: false,
 										dropTargetStyle: {},
-										dropAnimationDisabled: true,
+										dropAnimationDisabled: false,
+										flipDurationMs: flipDurationMs,
 										morphDisabled: true,
+										dropFromOthersDisabled: true,
+										centreDraggedOnCursor: true,
 									}}
 									on:consider={(e) => handleDndPlayer("player4", e)}
 									on:finalize={(e) => handleDndPlayer("player4", e)}
@@ -379,6 +396,13 @@
 </body>
 
 <style>
+	.custom-shadow-item {
+		opacity: 0.5;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
 	.flip-card {
 		position: absolute;
 		width: 100px;
@@ -441,8 +465,6 @@
 		border: 1px solid #1f1f1f23;
 		background-color: #4f4f4f5d;
 		border-radius: 10px;
-		font-size: 10px;
-		font-weight: bold;
 		cursor: default;
 		box-shadow:
 			0 4px 8px 0 #0000001a,
