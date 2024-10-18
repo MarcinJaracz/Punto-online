@@ -18,8 +18,8 @@
 	}
 
 	onMount(() => {
-		loadCards()
 		loadBoard()
+		loadCards()
 	})
 
 	onDestroy(() => {
@@ -89,13 +89,22 @@
 	function handleDndBoardConsider(index, e) {
 		board[index].card = e.detail.items
 		board = [...board]
-		// console.log(board[index].card[0].points)
 	}
 
 	function handleDndBoardFinalize(index, e) {
-		board[index].card = e.detail.items
-		board[index].isCellFull = true
+		const { items } = e.detail
+		const { points, color } = items[0]
+
+		board[index] = {
+			...board[index],
+			card: items,
+			isCellFull: true,
+			points,
+			color,
+		}
+
 		board = [...board]
+		console.log(board)
 	}
 
 	function splitCardsByColor(cards) {
@@ -262,7 +271,7 @@
 								dropTargetStyle: {},
 								dragDisabled: true,
 								morphDisabled: true,
-								dropFromOthersDisabled: !!board[index].isCellFull, //TODO add function to define number of points
+								dropFromOthersDisabled: !!board[index].isCellFull, //TODO add function to allow cards to be laid down if the holding card has more points than the card on the board
 							}}
 							on:consider={(e) => handleDndBoardConsider(index, e)}
 							on:finalize={(e) => handleDndBoardFinalize(index, e)}
