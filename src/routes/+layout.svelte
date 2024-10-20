@@ -43,6 +43,10 @@
 		border-radius: 10px;
 		padding: 5px 10px;
 	}
+	:global(a:focus, div) {
+		outline: none;
+	}
+
 	:global(a:hover) {
 		background-color: var(--hover-color);
 	}
