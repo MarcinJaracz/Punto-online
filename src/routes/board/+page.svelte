@@ -1,6 +1,6 @@
 <script>
 	import Return from "$components/return.svelte"
-	import { noPlayers, setGameExistState } from "$lib/store"
+	import { noPlayers, cardsToWin, setGameExistState } from "$lib/store"
 	import { playClickSound } from "$lib/click"
 	import { dndzone, SHADOW_ITEM_MARKER_PROPERTY_NAME } from "svelte-dnd-action"
 	import { flip } from "svelte/animate"
@@ -16,6 +16,7 @@
 		player3: [],
 		player4: [],
 	}
+	let endOfTheGame = false
 
 	onMount(() => {
 		loadBoard()
@@ -94,6 +95,10 @@
 	function handleDndBoardFinalize(index, e) {
 		const { items } = e.detail
 		const { points, color } = items[0]
+		let pBoard = board[index].points
+		let pHand = points
+
+		console.log("points on hand:", pHand, "\npoints on board:", pBoard)
 
 		board[index] = {
 			...board[index],
@@ -102,9 +107,9 @@
 			points,
 			color,
 		}
-
 		board = [...board]
 		console.log(board)
+		goalFunc(board)
 	}
 
 	function splitCardsByColor(cards) {
@@ -118,6 +123,85 @@
 		const x = card.position.col * 100
 		const y = card.position.row * 100
 		return `-${x}px -${y}px`
+	}
+
+	function goalFunc(board) {
+		const numRows = 6
+		const numCols = 6
+		const sequenceLength = $cardsToWin
+
+		// horizontal loop
+		for (let row = 0; row < numRows; row++) {
+			for (let col = 0; col <= numCols - sequenceLength; col++) {
+				const colors = new Set()
+				for (let k = 0; k < sequenceLength; k++) {
+					const index = row * numCols + (col + k)
+					if (board[index] && board[index].color !== undefined) {
+						colors.add(board[index].color)
+					}
+				}
+				if (colors.size === 1 && !colors.has(null)) {
+					const foundColor = colors.values().next().value
+					endOfTheGame = true
+					console.warn("Game ends,", foundColor, "wins!")
+				}
+			}
+		}
+
+		// vertical loop
+		for (let col = 0; col < numCols; col++) {
+			for (let row = 0; row <= numRows - sequenceLength; row++) {
+				const colors = new Set()
+				for (let k = 0; k < sequenceLength; k++) {
+					const index = (row + k) * numCols + col
+					if (board[index] && board[index].color !== undefined) {
+						colors.add(board[index].color)
+					}
+				}
+				if (colors.size === 1 && !colors.has(null)) {
+					const foundColor = colors.values().next().value
+					endOfTheGame = true
+					console.warn("Game ends,", foundColor, "wins!")
+				}
+			}
+		}
+
+		// diagonal right loop
+		for (let row = 0; row <= numRows - sequenceLength; row++) {
+			for (let col = 0; col <= numCols - sequenceLength; col++) {
+				const colors = new Set()
+				for (let k = 0; k < sequenceLength; k++) {
+					const index = (row + k) * numCols + (col + k)
+					if (board[index] && board[index].color !== undefined) {
+						colors.add(board[index].color)
+					}
+				}
+				if (colors.size === 1 && !colors.has(null)) {
+					const foundColor = colors.values().next().value
+					endOfTheGame = true
+					console.warn("Game ends,", foundColor, "wins!")
+				}
+			}
+		}
+
+		// diagonal left loop
+		for (let row = 0; row <= numRows - sequenceLength; row++) {
+			for (let col = sequenceLength - 1; col < numCols; col++) {
+				const colors = new Set()
+				for (let k = 0; k < sequenceLength; k++) {
+					const index = (row + k) * numCols + (col - k)
+					if (board[index] && board[index].color !== undefined) {
+						colors.add(board[index].color)
+					}
+				}
+				if (colors.size === 1 && !colors.has(null)) {
+					const foundColor = colors.values().next().value
+					endOfTheGame = true
+					console.warn("Game ends,", foundColor, "wins!")
+				}
+			}
+		}
+		return endOfTheGame
 	}
 </script>
 
