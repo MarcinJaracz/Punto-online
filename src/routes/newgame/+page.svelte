@@ -36,6 +36,7 @@
 <body>
 	<div class="container">
 		<div class="d-flex justify-content-center align-items-center h-100">
+			<!-- main body -->
 			<div class="col-7 my-3">
 				<!-- title of the page -->
 				<div class="row justify-content-center">

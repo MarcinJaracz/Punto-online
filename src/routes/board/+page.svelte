@@ -5,6 +5,8 @@
 	import { dndzone, SHADOW_ITEM_MARKER_PROPERTY_NAME } from "svelte-dnd-action"
 	import { flip } from "svelte/animate"
 	import { onMount, onDestroy } from "svelte"
+	import { fade } from "svelte/transition"
+	import { sineInOut } from "svelte/easing"
 
 	const flipDurationMs = 500
 	let cards = []
@@ -16,7 +18,8 @@
 		player3: [],
 		player4: [],
 	}
-	let endOfTheGame = false
+	let showModal = false
+	let foundColor = null
 
 	onMount(() => {
 		loadBoard()
@@ -141,9 +144,8 @@
 					}
 				}
 				if (colors.size === 1 && !colors.has(null)) {
-					const foundColor = colors.values().next().value
-					endOfTheGame = true
-					console.warn("Game ends,", foundColor, "wins!")
+					foundColor = colors.values().next().value
+					showModal = true
 				}
 			}
 		}
@@ -159,9 +161,8 @@
 					}
 				}
 				if (colors.size === 1 && !colors.has(null)) {
-					const foundColor = colors.values().next().value
-					endOfTheGame = true
-					console.warn("Game ends,", foundColor, "wins!")
+					foundColor = colors.values().next().value
+					showModal = true
 				}
 			}
 		}
@@ -177,9 +178,8 @@
 					}
 				}
 				if (colors.size === 1 && !colors.has(null)) {
-					const foundColor = colors.values().next().value
-					endOfTheGame = true
-					console.warn("Game ends,", foundColor, "wins!")
+					foundColor = colors.values().next().value
+					showModal = true
 				}
 			}
 		}
@@ -195,13 +195,13 @@
 					}
 				}
 				if (colors.size === 1 && !colors.has(null)) {
-					const foundColor = colors.values().next().value
-					endOfTheGame = true
-					console.warn("Game ends,", foundColor, "wins!")
+					foundColor = colors.values().next().value
+					showModal = true
 				}
 			}
 		}
-		return endOfTheGame
+
+		return foundColor
 	}
 </script>
 
@@ -233,6 +233,7 @@
 				</a>
 			</h3>
 		</div>
+
 		<!-- main body -->
 		<div
 			class="d-flex justify-content-evenly"
@@ -485,6 +486,48 @@
 				{/if}
 			</div>
 		</div>
+
+		<!-- overlay modal -->
+		{#if showModal}
+			<div
+				class="modal fade show"
+				id="staticBackdrop"
+				tabindex="-1"
+				aria-labelledby="staticBackdropLabel"
+				aria-hidden="true"
+				style="display: block;"
+				transition:fade={{ delay: 750, duration: 500, easing: sineInOut }}
+			>
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content align-items-center">
+						<div class="modal-header">
+							<h1
+								class="modal-title fs-1"
+								id="staticBackdropLabel"
+							>
+								🥳 Congratulations 🎉
+							</h1>
+						</div>
+						<div class="modal-body fs-2">✨{foundColor} wins✨</div>
+						<div class="modal-footer">
+							<button
+								type="button"
+								class="btn btn-success fs-3"
+								on:click={() => {
+									showModal = false
+									window.location.href = "/"
+									setGameExistState(false)
+								}}
+							>
+								Go to main menu
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Backdrop -->
+			<div class="modal-backdrop fade show" />
+		{/if}
 	</div>
 </body>
 
@@ -549,6 +592,7 @@
 		border-left: 1px solid rgba(255, 255, 255, 0.4);
 		box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
 	}
+
 	.box {
 		display: flex;
 		align-items: center;
@@ -563,9 +607,11 @@
 			0 4px 8px 0 #0000001a,
 			0 6px 20px 0 #0000001a;
 	}
+
 	.box:hover {
 		background-color: #4f4f4f9a;
 	}
+
 	.player-container {
 		padding: 25px;
 		background-color: #ffffff96;
@@ -578,7 +624,14 @@
 		justify-content: center;
 		align-items: center;
 	}
+
 	h3 {
 		margin-bottom: 0;
+	}
+
+	.modal-backdrop {
+		background-color: #00000081;
+		backdrop-filter: blur(50px);
+		z-index: 1040;
 	}
 </style>
