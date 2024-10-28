@@ -7,6 +7,8 @@
 	import { onMount, onDestroy } from "svelte"
 	import { fade } from "svelte/transition"
 	import { sineInOut } from "svelte/easing"
+	import { readable } from "svelte/store"
+	import { browser } from "$app/environment"
 
 	const flipDurationMs = 500
 	let cards = []
@@ -20,6 +22,21 @@
 	}
 	let showModal = false
 	let foundColor = null
+	let timer = 60 // seconds
+	let start = new Date().getTime()
+	const mstime = readable(new Date().getTime(), (set) => {
+		let animationFrame
+		const next = () => {
+			set(new Date().getTime())
+			animationFrame = requestAnimationFrame(next)
+		}
+		if (browser && window.requestAnimationFrame) {
+			next()
+			return () => cancelAnimationFrame(animationFrame)
+		} else {
+			return () => {}
+		}
+	})
 
 	onMount(() => {
 		loadBoard()
@@ -32,6 +49,9 @@
 		}
 	})
 
+	$: time = Math.floor(($mstime - start) / 1000)
+	$: toWait = Math.max(0, timer - time)
+	$: progress = (1 - toWait / timer) * 100
 	async function loadCards() {
 		controller = new AbortController()
 		const signal = controller.signal
@@ -86,7 +106,6 @@
 	}
 
 	function handleDndPlayer(path, e) {
-		// console.log("player", { event: e.detail })
 		playerCards[path] = e.detail.items
 	}
 
@@ -235,173 +254,49 @@
 		</div>
 
 		<!-- main body -->
-		<div
-			class="d-flex justify-content-evenly"
-			style="overflow-x: hidden;"
-		>
-			<!-- Column 1  player 1 & 2-->
-			<div
-				class="col-1 d-flex flex-column justify-content-evenly"
-				style="flex-shrink: 0; min-width: 100px;"
-			>
-				<div class="row">
-					<div class="player-container">
-						<div class="d-grid align-items-center justify-content-evenly">
-							<div
-								class="d-block p-2 bg-primary rounded text-white fs-4 text-center mb-2 shadow"
-								style="cursor: default;"
-							>
-								Player 1
-							</div>
-							<div
-								class="box"
-								id="player1"
-								use:dndzone={{
-									items: playerCards.player1,
-									dragDisabled: false,
-									dropTargetStyle: {},
-									dropAnimationDisabled: false,
-									flipDurationMs: flipDurationMs,
-									morphDisabled: true,
-									dropFromOthersDisabled: true,
-									centreDraggedOnCursor: true,
-								}}
-								on:consider={(e) => handleDndPlayer("player1", e)}
-								on:finalize={(e) => handleDndPlayer("player1", e)}
-							>
-								<!-- Render cards for player 1 -->
-								{#each playerCards.player1 as card, i (card.id)}
-									<div
-										class="flip-card"
-										on:click={() => (card.flipped = !card.flipped)}
-										animate:flip={{ duration: flipDurationMs }}
-										style="z-index: {playerCards.player1.length - i};"
-									>
-										<div class="flip-card-inner {card.flipped ? 'flipped' : ''}">
-											<div
-												class="flip-card-front"
-												style="background-position: {getBackgroundPosition(card)}"
-											></div>
-											<div class="flip-card-back"></div>
-										</div>
-									</div>
-								{/each}
-							</div>
-						</div>
-					</div>
+		<div class="d-flex flex-column justify-content-evenly">
+			<!-- timer -->
+			<div class="d-flex flex-row align-items-center justify-content-center mt-3 gap-3">
+				<div class=" fs-3 fw-bold">{toWait}s</div>
+				<div
+					class="progress"
+					style="width:600px; height:40px"
+				>
+					<div
+						class="progress-bar progress-bar-striped progress-bar-animated bg-info border-secondary fs-3 fw-bold text-center text-dark"
+						role="progressbar"
+						style="width: {100 - progress}%"
+						aria-valuenow={progress}
+						aria-valuemin="0"
+						aria-valuemax="60"
+					></div>
 				</div>
-
-				<div class="row">
-					<div class="player-container">
-						<div class="d-grid align-items-center justify-content-evenly">
-							<div
-								class="d-block p-2 bg-success rounded text-white fs-4 text-center mb-2 shadow"
-								style="cursor: default;"
-							>
-								Player 2
-							</div>
-							<div
-								class="box"
-								id="player2"
-								use:dndzone={{
-									items: playerCards.player2,
-									dragDisabled: false,
-									dropTargetStyle: {},
-									dropAnimationDisabled: false,
-									flipDurationMs: flipDurationMs,
-									morphDisabled: true,
-									dropFromOthersDisabled: true,
-									centreDraggedOnCursor: true,
-								}}
-								on:consider={(e) => handleDndPlayer("player2", e)}
-								on:finalize={(e) => handleDndPlayer("player2", e)}
-							>
-								<!-- Render cards for player 2 -->
-								{#each playerCards.player2 as card, i (card.id)}
-									<div
-										class="flip-card"
-										on:click={() => (card.flipped = !card.flipped)}
-										animate:flip={{ duration: flipDurationMs }}
-										style="z-index: {playerCards.player1.length - i}; "
-									>
-										<div class="flip-card-inner {card.flipped ? 'flipped' : ''}">
-											<div
-												class="flip-card-front"
-												style="background-position: {getBackgroundPosition(card)}"
-											></div>
-											<div class="flip-card-back"></div>
-										</div>
-									</div>
-								{/each}
-							</div>
-						</div>
-					</div>
-				</div>
+				<!--[x] add timer component -->
+				<!--[ ] connect timer with player turn -->
 			</div>
 
-			<!-- Board -->
-			<div
-				class="col-7 mt-2 d-flex flex-column"
-				style="flex-shrink: 0; min-width: 700px;"
-			>
-				<div class="board">
-					{#each board as card, index}
-						<div
-							class="box"
-							id="cell_{index}"
-							name="cell_{index}"
-							data-index={index}
-							use:dndzone={{
-								items: board[index].card,
-								dropTargetStyle: {},
-								dragDisabled: true,
-								morphDisabled: true,
-								dropFromOthersDisabled: !!board[index].isCellFull, //TODO add function to allow cards to be laid down if the holding card has more points than the card on the board
-							}}
-							on:consider={(e) => handleDndBoardConsider(index, e)}
-							on:finalize={(e) => handleDndBoardFinalize(index, e)}
-						>
-							{#each board[index].card as item (item.id)}
-								<div
-									class="flip-card-front"
-									style="background-position: {getBackgroundPosition(item)}"
-								/>
-								{#if item[SHADOW_ITEM_MARKER_PROPERTY_NAME]}
-									<div class="custom-shadow-item">
-										<div
-											class="flip-card-front"
-											style="background-position: {getBackgroundPosition(item)}"
-										/>
-									</div>
-								{/if}
-							{/each}
-						</div>
-					{/each}
-				</div>
-			</div>
-
-			<!-- Column 2  player 3 & 4-->
-			<div
-				class="col-1 d-flex flex-column justify-content-evenly"
-				style="flex-shrink: 0; min-width: 100px;"
-			>
-				<!-- Player 3, displayed if numberOfPlayers > 2 -->
-				{#if $noPlayers > 2}
+			<!-- board and players -->
+			<div class="d-flex flex-row align-items-center justify-content-evenly p-1 m-1 gap-3">
+				<!-- Column 1  player 1 & 2-->
+				<div
+					class="col-1 d-flex flex-column justify-content-evenly gap-5"
+					style="flex-shrink: 0; min-width: 120px;"
+				>
 					<div class="row">
 						<div class="player-container">
 							<div class="d-grid align-items-center justify-content-evenly">
 								<div
-									class="d-block p-2 bg-warning rounded text-white fs-4 text-center mb-2 shadow"
+									class="d-block p-2 bg-primary rounded text-white fs-4 text-center mb-2 shadow"
 									style="cursor: default;"
 								>
-									Player 3
+									Player 1
 								</div>
 								<div
 									class="box"
-									id="player3"
+									id="player1"
 									use:dndzone={{
-										items: playerCards.player3,
-										dragDisabled: false,
+										items: playerCards.player1,
+										dragDisabled: false, //[ ] add parameter to playersTurn function
 										dropTargetStyle: {},
 										dropAnimationDisabled: false,
 										flipDurationMs: flipDurationMs,
@@ -409,61 +304,58 @@
 										dropFromOthersDisabled: true,
 										centreDraggedOnCursor: true,
 									}}
-									on:consider={(e) => handleDndPlayer("player3", e)}
-									on:finalize={(e) => handleDndPlayer("player3", e)}
-								>
-									<!-- Render cards for player 3 -->
-									{#each playerCards.player3 as card, i (card.id)}
-										<div
-											class="flip-card"
-											on:click={() => (card.flipped = !card.flipped)}
-											animate:flip={{ duration: flipDurationMs }}
-											style="z-index: {playerCards.player1.length - i}; "
-										>
-											<div class="flip-card-inner {card.flipped ? 'flipped' : ''}">
-												<div
-													class="flip-card-front"
-													style="background-position: {getBackgroundPosition(card)}"
-												></div>
-												<div class="flip-card-back"></div>
-											</div>
-										</div>
-									{/each}
-								</div>
-							</div>
-						</div>
-					</div>
-				{/if}
-
-				<!-- Player 4, displayed if numberOfPlayers > 3 -->
-				{#if $noPlayers > 3}
-					<div class="row">
-						<div class="player-container">
-							<div class="d-grid align-items-center justify-content-evenly">
-								<div
-									class="d-block p-2 bg-danger rounded text-white fs-4 text-center mb-2 shadow"
-									style="cursor: default;"
-								>
-									Player 4
-								</div>
-								<div
-									class="box"
-									id="player4"
-									use:dndzone={{
-										items: playerCards.player4,
-										dragDisabled: false,
-										dropTargetStyle: {},
-										dropAnimationDisabled: false,
-										flipDurationMs: flipDurationMs,
-										morphDisabled: true,
-										dropFromOthersDisabled: true,
-										centreDraggedOnCursor: true,
-									}}
-									on:consider={(e) => handleDndPlayer("player4", e)}
-									on:finalize={(e) => handleDndPlayer("player4", e)}
+									on:consider={(e) => handleDndPlayer("player1", e)}
+									on:finalize={(e) => handleDndPlayer("player1", e)}
 								>
 									<!-- Render cards for player 1 -->
-									{#each playerCards.player4 as card, i (card.id)}
+									{#each playerCards.player1 as card, i (card.id)}
+										<div
+											class="flip-card"
+											on:click={() => (card.flipped = !card.flipped)}
+											animate:flip={{ duration: flipDurationMs }}
+											style="z-index: {playerCards.player1.length - i};"
+										>
+											<div class="flip-card-inner {card.flipped ? 'flipped' : ''}">
+												<div
+													class="flip-card-front"
+													style="background-position: {getBackgroundPosition(card)}"
+												></div>
+												<div class="flip-card-back"></div>
+											</div>
+										</div>
+									{/each}
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="player-container">
+							<div class="d-grid align-items-center justify-content-evenly">
+								<div
+									class="d-block p-2 bg-success rounded text-white fs-4 text-center mb-2 shadow"
+									style="cursor: default;"
+								>
+									Player 2
+								</div>
+								<div
+									class="box"
+									id="player2"
+									use:dndzone={{
+										items: playerCards.player2,
+										dragDisabled: false,
+										dropTargetStyle: {},
+										dropAnimationDisabled: false,
+										flipDurationMs: flipDurationMs,
+										morphDisabled: true,
+										dropFromOthersDisabled: true,
+										centreDraggedOnCursor: true,
+									}}
+									on:consider={(e) => handleDndPlayer("player2", e)}
+									on:finalize={(e) => handleDndPlayer("player2", e)}
+								>
+									<!-- Render cards for player 2 -->
+									{#each playerCards.player2 as card, i (card.id)}
 										<div
 											class="flip-card"
 											on:click={() => (card.flipped = !card.flipped)}
@@ -483,7 +375,154 @@
 							</div>
 						</div>
 					</div>
-				{/if}
+				</div>
+
+				<!-- Board -->
+				<div
+					class="col-7 mt-2 d-flex flex-column"
+					style="flex-shrink: 0; min-width: 700px;"
+				>
+					<div class="board">
+						{#each board as card, index}
+							<div
+								class="box"
+								id="cell_{index}"
+								name="cell_{index}"
+								data-index={index}
+								use:dndzone={{
+									items: board[index].card,
+									dropTargetStyle: {},
+									dragDisabled: true,
+									morphDisabled: true,
+									dropFromOthersDisabled: !!board[index].isCellFull, //TODO add function to allow cards to be laid down if the holding card has more points than the card on the board
+								}}
+								on:consider={(e) => handleDndBoardConsider(index, e)}
+								on:finalize={(e) => handleDndBoardFinalize(index, e)}
+							>
+								{#each board[index].card as item (item.id)}
+									<div
+										class="flip-card-front"
+										style="background-position: {getBackgroundPosition(item)}"
+									/>
+									{#if item[SHADOW_ITEM_MARKER_PROPERTY_NAME]}
+										<div class="custom-shadow-item">
+											<div
+												class="flip-card-front"
+												style="background-position: {getBackgroundPosition(item)}"
+											/>
+										</div>
+									{/if}
+								{/each}
+							</div>
+						{/each}
+					</div>
+				</div>
+
+				<!-- Column 2  player 3 & 4-->
+				<div
+					class="col-1 d-flex flex-column justify-content-evenly gap-5"
+					style="flex-shrink: 0; min-width: 120px;"
+				>
+					<!-- Player 3, displayed if numberOfPlayers > 2 -->
+					{#if $noPlayers > 2}
+						<div class="row">
+							<div class="player-container">
+								<div class="d-grid align-items-center justify-content-evenly">
+									<div
+										class="d-block p-2 bg-warning rounded text-white fs-4 text-center mb-2 shadow"
+										style="cursor: default;"
+									>
+										Player 3
+									</div>
+									<div
+										class="box"
+										id="player3"
+										use:dndzone={{
+											items: playerCards.player3,
+											dragDisabled: false,
+											dropTargetStyle: {},
+											dropAnimationDisabled: false,
+											flipDurationMs: flipDurationMs,
+											morphDisabled: true,
+											dropFromOthersDisabled: true,
+											centreDraggedOnCursor: true,
+										}}
+										on:consider={(e) => handleDndPlayer("player3", e)}
+										on:finalize={(e) => handleDndPlayer("player3", e)}
+									>
+										<!-- Render cards for player 3 -->
+										{#each playerCards.player3 as card, i (card.id)}
+											<div
+												class="flip-card"
+												on:click={() => (card.flipped = !card.flipped)}
+												animate:flip={{ duration: flipDurationMs }}
+												style="z-index: {playerCards.player1.length - i}; "
+											>
+												<div class="flip-card-inner {card.flipped ? 'flipped' : ''}">
+													<div
+														class="flip-card-front"
+														style="background-position: {getBackgroundPosition(card)}"
+													></div>
+													<div class="flip-card-back"></div>
+												</div>
+											</div>
+										{/each}
+									</div>
+								</div>
+							</div>
+						</div>
+					{/if}
+
+					<!-- Player 4, displayed if numberOfPlayers > 3 -->
+					{#if $noPlayers > 3}
+						<div class="row">
+							<div class="player-container">
+								<div class="d-grid align-items-center justify-content-evenly">
+									<div
+										class="d-block p-2 bg-danger rounded text-white fs-4 text-center mb-2 shadow"
+										style="cursor: default;"
+									>
+										Player 4
+									</div>
+									<div
+										class="box"
+										id="player4"
+										use:dndzone={{
+											items: playerCards.player4,
+											dragDisabled: false,
+											dropTargetStyle: {},
+											dropAnimationDisabled: false,
+											flipDurationMs: flipDurationMs,
+											morphDisabled: true,
+											dropFromOthersDisabled: true,
+											centreDraggedOnCursor: true,
+										}}
+										on:consider={(e) => handleDndPlayer("player4", e)}
+										on:finalize={(e) => handleDndPlayer("player4", e)}
+									>
+										<!-- Render cards for player 1 -->
+										{#each playerCards.player4 as card, i (card.id)}
+											<div
+												class="flip-card"
+												on:click={() => (card.flipped = !card.flipped)}
+												animate:flip={{ duration: flipDurationMs }}
+												style="z-index: {playerCards.player1.length - i}; "
+											>
+												<div class="flip-card-inner {card.flipped ? 'flipped' : ''}">
+													<div
+														class="flip-card-front"
+														style="background-position: {getBackgroundPosition(card)}"
+													></div>
+													<div class="flip-card-back"></div>
+												</div>
+											</div>
+										{/each}
+									</div>
+								</div>
+							</div>
+						</div>
+					{/if}
+				</div>
 			</div>
 		</div>
 
@@ -630,6 +669,8 @@
 	}
 
 	.modal-backdrop {
+		width: 100%;
+		height: 100%;
 		background-color: #00000081;
 		backdrop-filter: blur(50px);
 		z-index: 1040;
