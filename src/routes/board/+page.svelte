@@ -48,7 +48,7 @@
 		loadCards().then(() => {
 			setTimeout(() => {
 				playersTurn()
-			}, 3000)
+			}, 2000)
 		}) //[x] add timeout after loading the site to start a game after few seconds
 	})
 
@@ -241,7 +241,7 @@
 		flagYellow = currentPlayer !== 3
 		flagRed = currentPlayer !== 4
 		// console.log("Flags : \nflagBlue:", flagBlue, "\nflagGreen:", flagGreen, "\nflagYellow:", flagYellow, "\nflagRed:", flagRed)
-		currentPlayer = (currentPlayer % 4) + 1
+		currentPlayer = (currentPlayer % $noPlayers) + 1
 		//[ ] Add automatic flip animation at the begining of player's turn
 	}
 </script>
