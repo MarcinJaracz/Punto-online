@@ -36,11 +36,20 @@
 		} else {
 			return () => {}
 		}
-	})
+	}) //[ ] start timer after PlayerTurn callout
+	let flagBlue = true
+	let flagGreen = true
+	let flagYellow = true
+	let flagRed = true
+	let currentPlayer = 1
 
 	onMount(() => {
 		loadBoard()
-		loadCards()
+		loadCards().then(() => {
+			setTimeout(() => {
+				playersTurn()
+			}, 3000)
+		}) //[x] add timeout after loading the site to start a game after few seconds
 	})
 
 	onDestroy(() => {
@@ -120,7 +129,7 @@
 		let pBoard = board[index].points
 		let pHand = points
 
-		console.log("points on hand:", pHand, "\npoints on board:", pBoard)
+		// console.log("points on hand:", pHand, "\npoints on board:", pBoard)
 
 		board[index] = {
 			...board[index],
@@ -130,8 +139,9 @@
 			color,
 		}
 		board = [...board]
-		console.log(board)
+		// console.log(board)
 		goalFunc(board)
+		playersTurn()
 	}
 
 	function splitCardsByColor(cards) {
@@ -222,6 +232,18 @@
 
 		return foundColor
 	}
+
+	//[x] function of players' turn
+	function playersTurn() {
+		console.warn(`player ${currentPlayer} turn`)
+		flagBlue = currentPlayer !== 1
+		flagGreen = currentPlayer !== 2
+		flagYellow = currentPlayer !== 3
+		flagRed = currentPlayer !== 4
+		// console.log("Flags : \nflagBlue:", flagBlue, "\nflagGreen:", flagGreen, "\nflagYellow:", flagYellow, "\nflagRed:", flagRed)
+		currentPlayer = (currentPlayer % 4) + 1
+		//[ ] Add automatic flip animation at the begining of player's turn
+	}
 </script>
 
 <svelte:head>
@@ -271,8 +293,7 @@
 						aria-valuemax="60"
 					></div>
 				</div>
-				<!--[x] add timer component -->
-				<!--[ ] connect timer with player turn -->
+				<!--[ ] connect timer with players turn -->
 			</div>
 
 			<!-- board and players -->
@@ -296,7 +317,7 @@
 									id="player1"
 									use:dndzone={{
 										items: playerCards.player1,
-										dragDisabled: false, //[ ] add parameter to playersTurn function
+										dragDisabled: flagBlue, //[x] add parameter to playersTurn function
 										dropTargetStyle: {},
 										dropAnimationDisabled: false,
 										flipDurationMs: flipDurationMs,
@@ -311,7 +332,7 @@
 									{#each playerCards.player1 as card, i (card.id)}
 										<div
 											class="flip-card"
-											on:click={() => (card.flipped = !card.flipped)}
+											on:click={() => !flagBlue && (card.flipped = !card.flipped && !flagBlue)}
 											animate:flip={{ duration: flipDurationMs }}
 											style="z-index: {playerCards.player1.length - i};"
 										>
@@ -343,7 +364,7 @@
 									id="player2"
 									use:dndzone={{
 										items: playerCards.player2,
-										dragDisabled: false,
+										dragDisabled: flagGreen, //[x] add parameter to playersTurn function
 										dropTargetStyle: {},
 										dropAnimationDisabled: false,
 										flipDurationMs: flipDurationMs,
@@ -358,7 +379,7 @@
 									{#each playerCards.player2 as card, i (card.id)}
 										<div
 											class="flip-card"
-											on:click={() => (card.flipped = !card.flipped)}
+											on:click={() => !flagGreen && (card.flipped = !card.flipped && !flagGreen)}
 											animate:flip={{ duration: flipDurationMs }}
 											style="z-index: {playerCards.player1.length - i}; "
 										>
@@ -398,6 +419,7 @@
 								}}
 								on:consider={(e) => handleDndBoardConsider(index, e)}
 								on:finalize={(e) => handleDndBoardFinalize(index, e)}
+								on:change={playersTurn}
 							>
 								{#each board[index].card as item (item.id)}
 									<div
@@ -439,7 +461,7 @@
 										id="player3"
 										use:dndzone={{
 											items: playerCards.player3,
-											dragDisabled: false,
+											dragDisabled: flagYellow, //[x] add parameter to playersTurn function
 											dropTargetStyle: {},
 											dropAnimationDisabled: false,
 											flipDurationMs: flipDurationMs,
@@ -454,7 +476,7 @@
 										{#each playerCards.player3 as card, i (card.id)}
 											<div
 												class="flip-card"
-												on:click={() => (card.flipped = !card.flipped)}
+												on:click={() => !flagYellow && (card.flipped = !card.flipped && !flagYellow)}
 												animate:flip={{ duration: flipDurationMs }}
 												style="z-index: {playerCards.player1.length - i}; "
 											>
@@ -489,7 +511,7 @@
 										id="player4"
 										use:dndzone={{
 											items: playerCards.player4,
-											dragDisabled: false,
+											dragDisabled: flagRed, //[x] add parameter to playersTurn function
 											dropTargetStyle: {},
 											dropAnimationDisabled: false,
 											flipDurationMs: flipDurationMs,
@@ -504,7 +526,7 @@
 										{#each playerCards.player4 as card, i (card.id)}
 											<div
 												class="flip-card"
-												on:click={() => (card.flipped = !card.flipped)}
+												on:click={() => !flagRed && (card.flipped = !card.flipped && !flagRed)}
 												animate:flip={{ duration: flipDurationMs }}
 												style="z-index: {playerCards.player1.length - i}; "
 											>
