@@ -45,11 +45,7 @@
 
 	onMount(() => {
 		loadBoard()
-		loadCards().then(() => {
-			setTimeout(() => {
-				playersTurn()
-			}, 2000)
-		}) //[x] add timeout after loading the site to start a game after few seconds
+		loadCards().then(playersTurn)
 	})
 
 	onDestroy(() => {
@@ -61,6 +57,7 @@
 	$: time = Math.floor(($mstime - start) / 1000)
 	$: toWait = Math.max(0, timer - time)
 	$: progress = (1 - toWait / timer) * 100
+
 	async function loadCards() {
 		controller = new AbortController()
 		const signal = controller.signal
@@ -119,9 +116,45 @@
 	}
 
 	function handleDndBoardConsider(index, e) {
+		const { items } = e.detail
+		const { points, color } = items[0]
+		let pBoard = board[index].points
+		let pHand = points
+
+		console.log("points on hand:", pHand, "\npoints on board:", pBoard)
+
+		if (pHand > pBoard) {
+			moge = true
+			// board[index] = {
+			// 	...board[index],
+			// 	isCellFull: false,
+			// }
+			// console.log("działa", board)
+		} else {
+			moge = false
+			// board[index] = {
+			// 	...board[index],
+			// 	isCellFull: true,
+			// }
+			// console.log("nie działa", board)
+		}
 		board[index].card = e.detail.items
-		board = [...board]
+		// board[index].points = e.detail.items[0]?.isCellFull
+		// board = [...board]
+		// console.log(e.detail.items[0]?.points)
 	}
+	let moge
+
+	function nowaFunkcja(index, e) {
+		if (moge == true) {
+			// console.warn("moge", moge)
+			handleDndBoardFinalize(index, e)
+		} else {
+			console.warn(moge)
+		}
+	}
+
+	$: moge, console.log("$moge", moge)
 
 	function handleDndBoardFinalize(index, e) {
 		const { items } = e.detail
@@ -129,17 +162,17 @@
 		let pBoard = board[index].points
 		let pHand = points
 
-		// console.log("points on hand:", pHand, "\npoints on board:", pBoard)
+		console.log("points on hand:", pHand, "\npoints on board:", pBoard)
 
 		board[index] = {
 			...board[index],
 			card: items,
-			isCellFull: true,
+			// isCellFull: false,
 			points,
 			color,
 		}
 		board = [...board]
-		// console.log(board)
+		console.log(board)
 		goalFunc(board)
 		playersTurn()
 	}
@@ -233,9 +266,8 @@
 		return foundColor
 	}
 
-	//[x] function of players' turn
 	function playersTurn() {
-		console.warn(`player ${currentPlayer} turn`)
+		// console.warn(`player ${currentPlayer} turn`)
 		flagBlue = currentPlayer !== 1
 		flagGreen = currentPlayer !== 2
 		flagYellow = currentPlayer !== 3
@@ -317,7 +349,7 @@
 									id="player1"
 									use:dndzone={{
 										items: playerCards.player1,
-										dragDisabled: flagBlue, //[x] add parameter to playersTurn function
+										dragDisabled: flagBlue,
 										dropTargetStyle: {},
 										dropAnimationDisabled: false,
 										flipDurationMs: flipDurationMs,
@@ -364,7 +396,7 @@
 									id="player2"
 									use:dndzone={{
 										items: playerCards.player2,
-										dragDisabled: flagGreen, //[x] add parameter to playersTurn function
+										dragDisabled: flagGreen,
 										dropTargetStyle: {},
 										dropAnimationDisabled: false,
 										flipDurationMs: flipDurationMs,
@@ -415,11 +447,10 @@
 									dropTargetStyle: {},
 									dragDisabled: true,
 									morphDisabled: true,
-									dropFromOthersDisabled: !!board[index].isCellFull, //TODO add function to allow cards to be laid down if the holding card has more points than the card on the board
+									dropFromOthersDisabled: false, //!!board[index].isCellFull, //TODO add function to allow cards to be laid down if the holding card has more points than the card on the board
 								}}
 								on:consider={(e) => handleDndBoardConsider(index, e)}
-								on:finalize={(e) => handleDndBoardFinalize(index, e)}
-								on:change={playersTurn}
+								on:finalize={(e) => nowaFunkcja(index, e)}
 							>
 								{#each board[index].card as item (item.id)}
 									<div
@@ -461,7 +492,7 @@
 										id="player3"
 										use:dndzone={{
 											items: playerCards.player3,
-											dragDisabled: flagYellow, //[x] add parameter to playersTurn function
+											dragDisabled: flagYellow,
 											dropTargetStyle: {},
 											dropAnimationDisabled: false,
 											flipDurationMs: flipDurationMs,
@@ -511,7 +542,7 @@
 										id="player4"
 										use:dndzone={{
 											items: playerCards.player4,
-											dragDisabled: flagRed, //[x] add parameter to playersTurn function
+											dragDisabled: flagRed,
 											dropTargetStyle: {},
 											dropAnimationDisabled: false,
 											flipDurationMs: flipDurationMs,
