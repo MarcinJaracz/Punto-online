@@ -42,6 +42,7 @@
 	let flagYellow = true
 	let flagRed = true
 	let currentPlayer = 1
+	let possible
 
 	onMount(() => {
 		loadBoard()
@@ -116,45 +117,28 @@
 	}
 
 	function handleDndBoardConsider(index, e) {
-		const { items } = e.detail
-		const { points, color } = items[0]
-		let pBoard = board[index].points
-		let pHand = points
+		board[index].card = e.detail.items
+		board = [...board]
 
-		console.log("points on hand:", pHand, "\npoints on board:", pBoard)
+		let pBoard = board[index].points
+		let pHand = e.detail.items[0].points
+
+		console.log("|Consider|\n\npoints on hand:", pHand, "\npoints on board:", pBoard)
 
 		if (pHand > pBoard) {
-			moge = true
-			// board[index] = {
-			// 	...board[index],
-			// 	isCellFull: false,
-			// }
-			// console.log("działa", board)
+			possible = true
 		} else {
-			moge = false
-			// board[index] = {
-			// 	...board[index],
-			// 	isCellFull: true,
-			// }
-			// console.log("nie działa", board)
+			possible = false
 		}
-		board[index].card = e.detail.items
-		// board[index].points = e.detail.items[0]?.isCellFull
-		// board = [...board]
-		// console.log(e.detail.items[0]?.points)
 	}
-	let moge
 
-	function nowaFunkcja(index, e) {
-		if (moge == true) {
-			// console.warn("moge", moge)
+	function newDndFinalize(index, e) {
+		if (possible == true) {
 			handleDndBoardFinalize(index, e)
 		} else {
-			console.warn(moge)
+			// console.warn("possible", possible)
 		}
 	}
-
-	$: moge, console.log("$moge", moge)
 
 	function handleDndBoardFinalize(index, e) {
 		const { items } = e.detail
@@ -162,7 +146,7 @@
 		let pBoard = board[index].points
 		let pHand = points
 
-		console.log("points on hand:", pHand, "\npoints on board:", pBoard)
+		console.log("|Finalize|\n\npoints on hand:", pHand, "\npoints on board:", pBoard)
 
 		board[index] = {
 			...board[index],
@@ -172,7 +156,7 @@
 			color,
 		}
 		board = [...board]
-		console.log(board)
+		console.log("|Finalize board|\n", board)
 		goalFunc(board)
 		playersTurn()
 	}
@@ -276,6 +260,8 @@
 		currentPlayer = (currentPlayer % $noPlayers) + 1
 		//[ ] Add automatic flip animation at the begining of player's turn
 	}
+
+	$: possible, console.warn("$: Can I lay down the card", possible)
 </script>
 
 <svelte:head>
@@ -329,7 +315,7 @@
 			</div>
 
 			<!-- board and players -->
-			<div class="d-flex flex-row align-items-center justify-content-evenly p-1 m-1 gap-3">
+			<div class="d-flex flex-row align-items-center justify-content-evenly p-1 m-1 gap-5">
 				<!-- Column 1  player 1 & 2-->
 				<div
 					class="col-1 d-flex flex-column justify-content-evenly gap-5"
@@ -432,10 +418,10 @@
 
 				<!-- Board -->
 				<div
-					class="col-7 mt-2 d-flex flex-column"
+					class="col-7 mt-2 d-flex flex-column align-items-center"
 					style="flex-shrink: 0; min-width: 700px;"
 				>
-					<div class="board">
+					<div class="board m-0">
 						{#each board as card, index}
 							<div
 								class="box"
@@ -447,10 +433,11 @@
 									dropTargetStyle: {},
 									dragDisabled: true,
 									morphDisabled: true,
-									dropFromOthersDisabled: false, //!!board[index].isCellFull, //TODO add function to allow cards to be laid down if the holding card has more points than the card on the board
+									dropFromOthersDisabled: !!board[index].isCellFull, //Q Should I leave it always on false?
+									//TODO add function to allow cards to be laid down if the holding card has more points than the card on the board
 								}}
 								on:consider={(e) => handleDndBoardConsider(index, e)}
-								on:finalize={(e) => nowaFunkcja(index, e)}
+								on:finalize={(e) => newDndFinalize(index, e)}
 							>
 								{#each board[index].card as item (item.id)}
 									<div
@@ -676,6 +663,8 @@
 		grid-template-columns: repeat(6, 1fr);
 		grid-gap: 10px;
 		margin: 0 auto;
+		width: 690px;
+		height: 690px;
 		padding: 20px;
 		background-color: #ffffff96;
 		border-radius: 10px;
