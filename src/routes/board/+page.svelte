@@ -36,7 +36,7 @@
 		} else {
 			return () => {}
 		}
-	}) //[ ] start timer after PlayerTurn callout
+	}) //WIP start timer after PlayerTurn callout
 	let flagBlue = true
 	let flagGreen = true
 	let flagYellow = true
@@ -135,8 +135,6 @@
 	function newDndFinalize(index, e) {
 		if (possible == true) {
 			handleDndBoardFinalize(index, e)
-		} else {
-			// console.warn("possible", possible)
 		}
 	}
 
@@ -151,13 +149,14 @@
 		board[index] = {
 			...board[index],
 			card: items,
-			// isCellFull: false,
+			isCellFull: true,
 			points,
 			color,
 		}
 		board = [...board]
 		console.log("|Finalize board|\n", board)
 		goalFunc(board)
+
 		playersTurn()
 	}
 
@@ -251,12 +250,16 @@
 	}
 
 	function playersTurn() {
+		start = new Date().getTime()
+		timer = 60
+		toWait = timer
+
 		// console.warn(`player ${currentPlayer} turn`)
 		flagBlue = currentPlayer !== 1
 		flagGreen = currentPlayer !== 2
 		flagYellow = currentPlayer !== 3
 		flagRed = currentPlayer !== 4
-		// console.log("Flags : \nflagBlue:", flagBlue, "\nflagGreen:", flagGreen, "\nflagYellow:", flagYellow, "\nflagRed:", flagRed)
+
 		currentPlayer = (currentPlayer % $noPlayers) + 1
 		//[ ] Add automatic flip animation at the begining of player's turn
 	}
@@ -311,7 +314,7 @@
 						aria-valuemax="60"
 					></div>
 				</div>
-				<!--[ ] connect timer with players turn -->
+				<!--[x] connect timer with players turn -->
 			</div>
 
 			<!-- board and players -->
